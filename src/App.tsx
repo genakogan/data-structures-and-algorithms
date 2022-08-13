@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { ReactElement, useState } from "react";
+import Home from "./components/Home/Home";
+import { ThemeProvider } from "styled-components";
+import themes from "./themes";
 
-function App() {
+const App: React.FC<{}> = (): ReactElement => {
+  /*
+  ThemeProvider - a helper component for theming.
+  Injects the theme into all styled components
+   anywhere beneath it in the component tree,
+  via the context API.
+  */
+  const [globalTheme, setGlobalTheme] = useState<string>("dark");
+
+  {/*<Home toggleTheme={setGlobalTheme}  ></Home>*/}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={globalTheme === "dark" ? themes.dark : themes.light}>
+      <Home  ></Home>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
