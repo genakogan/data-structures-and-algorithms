@@ -13,7 +13,7 @@ interface Props {
     align-items: center;
     background-color: ${(props) => props.theme.navbar.background};
     color: ${(props) => props.theme.navbar.foreground};
-    transition-duration: 0.3s;
+    transition-duration: 0.5s;
     transition-property: background-color;
   `;
   
