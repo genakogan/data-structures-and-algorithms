@@ -19,7 +19,7 @@ const App: React.FC<{}> = (): ReactElement => {
   via the context API.
   */
   const [globalTheme, setGlobalTheme] = useState<Theme>(themes.light);
-  const [isWindowVisible, setWindowVisible] = useState<boolean>(false);
+  const [isWindowVisible, setWindowVisible] = useState<boolean>(true);
 
   const onWindowExit = () => {
     setWindowVisible(false);

@@ -11,7 +11,7 @@ interface ThemeSwitchProps {
 const ThemeSwitch: React.FC<ThemeSwitchProps> = (
   props: ThemeSwitchProps
 ): ReactElement => {
-  const handleChangeTheme: () => void = () => {
+  const handleChangeTheme = () => {
     props.changeTheme((prev: Theme) =>
       prev.name === 'dark' ? themes.light : themes.dark
     );
