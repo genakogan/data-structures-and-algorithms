@@ -1,15 +1,19 @@
 import React, { ReactElement } from "react";
 import TopMenu from "../TopMenu/TopMenu";
-import Container from "./Container";
 
+interface HomeProps {
+  changeTheme: Function;
+  onTeamClick: () => void;
+}
 
-
-const Home:React.FC = (): ReactElement => {
- 
+const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   return (
     <div>
-    <TopMenu  ></TopMenu>
-  </div>
+      <TopMenu
+        changeTheme={props.changeTheme}
+        onTeamClick={props.onTeamClick}
+      ></TopMenu>
+    </div>
   );
 };
 

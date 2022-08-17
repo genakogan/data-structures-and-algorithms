@@ -1,9 +1,14 @@
-import { Theme } from "../models/Theme";
+import Theme from "../models/Theme";
 
 const dark: Theme = {
+  name: "dark",
   navbar: {
-    background: "#02E095",
-    foreground: "black",
+    background: "#29323c",
+    foreground: "white",
+  },
+  sidebar: {
+    background: "white",
+    foreground: "#0D1929",
   },
 };
 
