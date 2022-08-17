@@ -21,7 +21,8 @@ const Modal: React.FC<Props> = (props: Props): ReactElement => {
             onClick={(e: React.MouseEvent) => {
               e.stopPropagation();
             }}
-          ></Content>
+          > {props.children}</Content>
+         
         </Container>
       ) : (
         <React.Fragment></React.Fragment>
