@@ -1,24 +1,14 @@
-import React, {ReactElement, useEffect} from 'react';
-import Container from './Container';
-import Content from './Content';
+import React, { ReactElement, useEffect } from "react";
+import Container from "./Container";
+import Content from "./Content";
 
 interface Props {
   isVisible: boolean;
   onExit: Function;
-  children: JSX.Element|JSX.Element[];
+  children: JSX.Element | JSX.Element[];
 }
 
 const Modal: React.FC<Props> = (props: Props): ReactElement => {
-  useEffect(() => {
-    const handleExitKey = (event: KeyboardEvent) => {
-      if (!props.isVisible) return;
-      if (event.code === 'Escape') props.onExit();
-    };
-
-    document.addEventListener('keydown', handleExitKey);
-    return () => document.removeEventListener('keydown', handleExitKey);
-  }, [props]);
-
   return (
     <React.Fragment>
       {props.isVisible ? (
@@ -31,9 +21,7 @@ const Modal: React.FC<Props> = (props: Props): ReactElement => {
             onClick={(e: React.MouseEvent) => {
               e.stopPropagation();
             }}
-          >
-            {props.children}
-          </Content>
+          ></Content>
         </Container>
       ) : (
         <React.Fragment></React.Fragment>
