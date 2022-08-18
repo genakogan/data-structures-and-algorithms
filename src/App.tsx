@@ -5,8 +5,7 @@ import { ThemeProvider } from "styled-components";
 import themes from "./themes";
 import Theme from "./models/Theme";
 
-// Window for Help Team About on 
-import WindowHTA from "./components/TopMenu/WindowHTA/WindowHTA";
+import TeamWindow from "./components/TopMenu/Window/TeamWindow";
 
 
 
@@ -30,7 +29,7 @@ const App: React.FC<{}> = (): ReactElement => {
   return (
     <ThemeProvider theme={globalTheme}>
       <Home changeTheme={setGlobalTheme} onTeamClick={onWindowOpen}></Home>
-      <WindowHTA isVisible={isWindowVisible} onExit={onWindowExit}></WindowHTA>
+      <TeamWindow isVisible={isWindowVisible} onExit={onWindowExit}></TeamWindow>
     </ThemeProvider>
   );
 };
