@@ -1,7 +1,7 @@
 // Genady Kogan
 import React, { ReactElement } from "react";
 import Modal from "./Modal/Modal";
-import NikaCarousel from "./NikaCarousel/NikaCarousel";
+import Carousel from "./Carousel/Carousel";
 
 interface Props {
   isVisible: boolean;
@@ -12,10 +12,11 @@ const TeamWindow: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <Modal isVisible={props.isVisible} onExit={props.onExit}>
       <div style={{ width: "600px", height: "500px" }}>
-        <NikaCarousel>
+        <Carousel>
           <div>1</div>
           <div>2</div>
-        </NikaCarousel>
+          <div>3</div>
+        </Carousel>
       </div>
     </Modal>
   );
