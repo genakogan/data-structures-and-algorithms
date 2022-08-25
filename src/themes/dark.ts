@@ -10,6 +10,10 @@ const dark: Theme = {
     background: "white",
     foreground: "#0D1929",
   },
+  slider: {
+    background: 'white',
+    foreground: 'white',
+  },
 };
 
 export default dark;

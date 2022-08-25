@@ -10,6 +10,10 @@ const light: Theme = {
     background: "#0D1929",
     foreground: "white",
   },
+  slider: {
+    background: 'white',
+    foreground: 'white',
+  },
 };
 
 export default light;

@@ -6,8 +6,8 @@ interface Props {
 }
 
 const Circle = styled.div<Props>`
-  height: 10px;
-  width: 10px;
+  height: 12px;
+  width: 12px;
   border-radius: 10px;
   margin: 5px;
   cursor: pointer;

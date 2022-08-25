@@ -2,6 +2,7 @@ interface Theme {
   name: string;
   navbar: Color;
   sidebar: Color;
+  slider: Color;
 }
 
 interface Color {

@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import BottomMenu from "../BottomMenu/BottomMenu";
 import TopMenu from "../TopMenu/TopMenu";
 
 interface HomeProps {
@@ -13,6 +14,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         changeTheme={props.changeTheme}
         onTeamClick={props.onTeamClick}
       ></TopMenu>
+      <BottomMenu></BottomMenu>
     </div>
   );
 };
