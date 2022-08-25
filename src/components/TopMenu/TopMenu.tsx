@@ -9,59 +9,56 @@ interface TopMenuProps {
   changeTheme: Function;
   onTeamClick: () => void;
 }
-const onAboutClick =() =>{
+const onAboutClick = () => {
   alert("About");
-}
+};
 
-const onHelpClick =() =>{
+const onHelpClick = () => {
   alert("Help");
-}
-
-
-
+};
 
 const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
   return (
     <Container>
       <Row justifyContent="space-between" margin="0 24px">
         <ThemeSwitch changeTheme={props.changeTheme}></ThemeSwitch>
-        <Titles fontSize="24px" underline="" cursor="" userSelect = 'none'>
-         AVDS
+        <Titles fontSize="24px" underline="" cursor="" userSelect="none">
+          AVDS
         </Titles>
       </Row>
       <Row justifyContent="space-between" margin="0 24px">
         <Titles
-          fontSize='15px'
-          underline='text-decoration: underline'
-          cursor='pointer'
-          userSelect = ''
+          fontSize="15px"
+          underline="text-decoration: underline"
+          cursor="pointer"
+          userSelect=""
           onClick={() => onHelpClick()}
         >
           Help
         </Titles>
         <Titles
-          fontSize='15px'
-          underline='text-decoration: underline'
-          cursor='pointer'
-          userSelect = ''
+          fontSize="15px"
+          underline="text-decoration: underline"
+          cursor="pointer"
+          userSelect=""
           onClick={() => props.onTeamClick()}
         >
           Team
         </Titles>
         <Titles
-          fontSize='15px'
-          underline='text-decoration: underline'
-          cursor='pointer'
-          userSelect = ''
+          fontSize="15px"
+          underline="text-decoration: underline"
+          cursor="pointer"
+          userSelect=""
           onClick={() => onAboutClick()}
         >
           About
         </Titles>
         <Titles
-          fontSize='15px'
-          underline='text-decoration: underline'
-          cursor='pointer'
-          userSelect = ''
+          fontSize="15px"
+          underline="text-decoration: underline"
+          cursor="pointer"
+          userSelect=""
           onClick={() => onAboutClick()}
         >
           Sign in
