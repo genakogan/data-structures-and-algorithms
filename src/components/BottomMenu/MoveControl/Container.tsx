@@ -5,10 +5,10 @@ interface Props{
   top: string;
   left: string;
 }
-const Play = styled.div<Props>`
-  z-index: 999;
+const Container = styled.div<Props>`
+  z-index: 1;
   position: fixed;
-  left: ${(props)=> props.left};
+  right: ${(props)=> props.left};
   top: ${(props)=> props.top};
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@ const Play = styled.div<Props>`
   margin-bottom: 20px;
   
   color: white;
-  transition-duration: 0.3s;
+  transition-duration: 0.5s;
   user-select: none;
   cursor: pointer;
 
@@ -32,4 +32,4 @@ const Play = styled.div<Props>`
   }*
 `;
 
-export default Play;
+export default Container;

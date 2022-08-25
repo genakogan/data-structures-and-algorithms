@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import Container from "./Container";
+import BottomMenuContainer from "./BottomMenuContainer";
 import PlayControl from "./MoveControl/PlayControl";
 import {
   PauseIcon,
@@ -15,7 +15,7 @@ import Slider from "../Common/Slider";
 
 const VisualizeButton: React.FC = (): ReactElement => {
   return (
-    <Container>
+    <BottomMenuContainer>
        <Slider>
         <input
           type="range"
@@ -61,7 +61,7 @@ const VisualizeButton: React.FC = (): ReactElement => {
       <SkipBackControl >
         <SkipBackIcon></SkipBackIcon>
       </SkipBackControl>
-    </Container>
+    </BottomMenuContainer>
   );
 };
 

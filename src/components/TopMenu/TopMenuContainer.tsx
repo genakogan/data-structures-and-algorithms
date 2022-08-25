@@ -6,7 +6,7 @@ interface Props {
   theme: Theme;
 }
 
-const Container = styled.div<Props>`
+const TopMenuContainer = styled.div<Props>`
   z-index: 3;
   position: relative;
   width: 100%;
@@ -27,4 +27,4 @@ const Container = styled.div<Props>`
   }
 `;
 
-export default Container;
+export default TopMenuContainer;

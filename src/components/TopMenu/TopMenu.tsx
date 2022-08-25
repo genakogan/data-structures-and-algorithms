@@ -1,6 +1,6 @@
 // Genady Kogan
 import React, { ReactElement } from "react";
-import Container from "./Container";
+import TopMenuContainer from "./TopMenuContainer";
 import Row from "../Common/Row";
 import Titles from "../Common/Titles";
 import ThemeSwitch from "./ThemeSwitch/ThemeSwitch";
@@ -19,7 +19,7 @@ const onHelpClick = () => {
 
 const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
   return (
-    <Container>
+    <TopMenuContainer>
       <Row justifyContent="space-between" margin="0 24px">
         <ThemeSwitch changeTheme={props.changeTheme}></ThemeSwitch>
         <Titles fontSize="24px" underline="" cursor="" userSelect="none">
@@ -64,7 +64,7 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
           Sign in
         </Titles>
       </Row>
-    </Container>
+    </TopMenuContainer>
   );
 };
 
