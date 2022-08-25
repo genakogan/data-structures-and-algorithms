@@ -32,8 +32,8 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <Container>
-      <SideContainer direction="left">
-        <Row justifyContent="space-between" margin="460px 0px">
+     
+        <Row justifyContent="space-between" margin="475px 0px">
           <Titles
             onClick={() => previous()}
             fontSize="18px"
@@ -44,7 +44,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
             Prev
           </Titles>
         </Row>
-      </SideContainer>
+      
 
       <Column width="100%">
       <Row justifyContent="center" style={{ height: "90%", width: "100%" }}>
@@ -60,8 +60,8 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
         
       </Column>
 
-      <SideContainer direction="right">
-      <Row justifyContent="space-between" margin="460px -35px">
+      
+      <Row justifyContent="space-between" margin="475px 0px">
           <Titles
             onClick={() => next()}
             fontSize="18px"
@@ -72,7 +72,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
             Next
           </Titles>
         </Row>
-      </SideContainer>
+      
     </Container>
   );
 };
