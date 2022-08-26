@@ -6,7 +6,7 @@ interface Props {
 }
 
 const StepBackControl: React.FC<Props> = (props: Props): ReactElement => {
-  return <Container left='calc(100% - 400px - 330px)' top = 'calc(100% - 47px)'>{props.children}</Container>;
+  return <Container left='calc(100% - 400px - 250px)' top = 'calc(100% - 47px)'>{props.children}</Container>;
 };
 
 export default StepBackControl;

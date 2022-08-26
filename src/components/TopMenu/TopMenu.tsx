@@ -20,13 +20,13 @@ const onHelpClick = () => {
 const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
   return (
     <TopMenuContainer>
-      <Row justifyContent="space-between" margin="0 24px">
+      <Row justifyContent="space-between" margin="0 40px">
         <ThemeSwitch changeTheme={props.changeTheme}></ThemeSwitch>
         <Titles fontSize="24px" underline="" cursor="" userSelect="none">
           AVDS
         </Titles>
       </Row>
-      <Row justifyContent="space-between" margin="0 24px">
+      <Row justifyContent="space-between" margin="0 35px">
         <Titles
           fontSize="15px"
           underline="text-decoration: underline"

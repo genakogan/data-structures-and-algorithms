@@ -12,10 +12,12 @@ import PauseControl from "./MoveControl/PauseControl";
 import StepBackControl from "./MoveControl/StepBackControl";
 import SkipBackControl from "./MoveControl/SkipBackControl";
 import Slider from "../Common/Slider";
+import Row from "../Common/Row";
 
 const VisualizeButton: React.FC = (): ReactElement => {
   return (
     <BottomMenuContainer>
+       <Row justifyContent="space-between" margin="0 26px">
        <Slider>
         <input
           type="range"
@@ -25,7 +27,9 @@ const VisualizeButton: React.FC = (): ReactElement => {
           step={0.1}          
         />
       </Slider>
-    
+      </Row>
+      
+      
       {/*move control buttons*/}
       {/*skip forwar button*/}
       <SkipForwardControl >
@@ -62,6 +66,8 @@ const VisualizeButton: React.FC = (): ReactElement => {
         <SkipBackIcon></SkipBackIcon>
       </SkipBackControl>
     </BottomMenuContainer>
+
+    
   );
 };
 

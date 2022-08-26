@@ -6,7 +6,7 @@ interface Props {
 }
 
 const SkipBackdControl: React.FC<Props> = (props: Props): ReactElement => {
-  return <Container left = 'calc(100% - 400px - 380px)' top ='calc(100% - 47px)' >{props.children}</Container>;
+  return <Container left = 'calc(100% - 400px - 300px)' top ='calc(100% - 47px)' >{props.children}</Container>;
 };
 
 export default SkipBackdControl;

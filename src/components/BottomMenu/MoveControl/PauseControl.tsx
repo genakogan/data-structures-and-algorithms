@@ -7,7 +7,7 @@ interface Props {
 }
 
 const PauseControl: React.FC<Props> = (props: Props): ReactElement => {
-  return <PauseContainer left = 'calc(100% - 400px - 240px)' top='calc(100% - 47px)'>{props.children}</PauseContainer>;
+  return <PauseContainer left = 'calc(100% - 400px - 150px)' top='calc(100% - 47px)'>{props.children}</PauseContainer>;
 };
 
 export default PauseControl;
