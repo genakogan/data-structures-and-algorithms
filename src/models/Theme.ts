@@ -3,6 +3,7 @@ interface Theme {
   navbar: Color;
   sidebar: Color;
   slider: Color;
+  canvas: Color;
 }
 
 interface Color {

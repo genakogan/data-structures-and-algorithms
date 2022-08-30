@@ -5,6 +5,7 @@ import Column from "../Common/Column";
 import LeftMenu from "../Menus/LeftMenu/LeftMenu";
 import RightMenuContainer from "../Menus/RightMenu/RightMenuContainer";
 import TopMenu from "../Menus/TopMenu/TopMenu";
+import Canvas from "../Canvas/Canvas";
 
 interface HomeProps {
   changeTheme: Function;
@@ -21,6 +22,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         onTeamClick={props.onTeamClick}
       ></TopMenu>
       <LeftMenu></LeftMenu>
+      <Canvas></Canvas>
       <RightMenuContainer></RightMenuContainer>
       
       <BottomMenu

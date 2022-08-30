@@ -14,6 +14,9 @@ const dark: Theme = {
     background: 'white',
     foreground: 'white',
   },
+  canvas: {
+    background: '#0D1929',
+  },
 };
 
 export default dark;

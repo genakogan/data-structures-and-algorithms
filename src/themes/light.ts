@@ -14,6 +14,10 @@ const light: Theme = {
     background: 'white',
     foreground: 'white',
   },
+  canvas: {
+    background: '#EFEFEF',
+    foreground: '',
+  },
 };
 
 export default light;
