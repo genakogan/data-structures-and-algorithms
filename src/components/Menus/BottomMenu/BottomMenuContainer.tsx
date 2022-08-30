@@ -5,7 +5,7 @@ interface Props {
   theme: Theme;
 }
 const BottomMenuContainer = styled.div<Props>`
-  z-index: 3;
+  z-index: 2;
   position: fixed;
   top: calc(100% - 50px);
   display: flex;

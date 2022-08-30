@@ -25,7 +25,7 @@ interface Props {
   zoomPercentage: number;
 }
 
-const VisualizeButton: React.FC<Props> = (props: Props): ReactElement => {
+const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <BottomMenuContainer>
       <Row justifyContent="space-between" margin="0px 30px">
@@ -112,35 +112,8 @@ const VisualizeButton: React.FC<Props> = (props: Props): ReactElement => {
           <SkipForwardIcon></SkipForwardIcon>
         </SkipForwardControl>
       </Row>
-
-      <Row justifyContent="space-between" margin="0px 30px">
-        <Slider width="200px">
-          <input
-            type="range"
-            className="slider"
-            min={0.5}
-            max={1.5}
-            step={0.1}
-            value={props.zoomPercentage}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              props.setZoomPercentage(e.target.value)
-            }
-          />
-        </Slider>
-
-        <Titles
-          fontSize="15px"
-          underline=""
-          cursor=""
-          userSelect=""
-          marginLeft="20px"
-          marginRight="20px"
-        >
-          Zoom
-        </Titles>
-      </Row>
     </BottomMenuContainer>
   );
 };
 
-export default VisualizeButton;
+export default BottomMenu;

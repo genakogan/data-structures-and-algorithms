@@ -6,7 +6,8 @@ interface Props {
 
 const ToggleButton = styled.div.attrs((props: Props) => ({
   width: 32,
-  isVisible: props.isVisible ?? false,}))`
+  isVisible: props.isVisible ?? false,
+}))`
   position: fixed;
   display: flex;
   justify-content: center;

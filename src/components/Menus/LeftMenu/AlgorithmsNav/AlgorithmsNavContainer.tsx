@@ -8,7 +8,7 @@ const AlgorithmsNavContainer = styled.div<Props>`
   position: fixed;
   height: 100%;
   width: 300px;
-  z-index: 1;
+  z-index: 2;
   left: ${(props) => (props.isVisible ? 0 : '-300px')};
   //background-color: ${(props) => props.theme.sidebar.background};
   background-color: red;

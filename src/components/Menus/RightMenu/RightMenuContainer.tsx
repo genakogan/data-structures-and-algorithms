@@ -2,16 +2,14 @@
 import styled from "styled-components";
 import Theme from "../../../models/Theme";
 
-
 interface Props {
   theme: Theme;
 }
 
 const LeftMenuContainer = styled.div<Props>`
   position: fixed;
-  //position: absolute;
-  right: 0;
   display: flex;
+  right: 0;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
@@ -20,7 +18,7 @@ const LeftMenuContainer = styled.div<Props>`
   background-color: ${(props) => props.theme.navbar.background};
   color: ${(props) => props.theme.navbar.foreground};
   overflow-x: hidden;
-  transition-duration: 0.3s;
+  transition-duration: 0.5s;
   transition-property: background-color, left;
 `;
 

@@ -1,8 +1,11 @@
 import React, { ReactElement } from "react";
+import Row from "../../Common/Row";
+import Slider from "../../Common/Slider";
+import Titles from "../../Common/Titles";
 import RightMenuContainer from "./RightMenuContainer";
 
-const LeftMenu: React.FC = (): ReactElement => {
+const RigthMenu: React.FC = (): ReactElement => {
   return <RightMenuContainer></RightMenuContainer>;
 };
 
-export default LeftMenu;
+export default RigthMenu;
