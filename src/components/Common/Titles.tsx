@@ -5,12 +5,14 @@ interface Props {
   underline: string;
   cursor: string;
   userSelect: string;
+  marginLeft: string;
+  marginRight: string;
 }
 
 const Titles = styled.div<Props>`
   font-size: ${(props) => props.fontSize};
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: ${(props) => props.marginLeft};
+  margin-right:  ${(props) => props.marginRight};
   text-overflow: ellipsis;
   white-space: nowrap;
   user-select:${(props) => props.userSelect};

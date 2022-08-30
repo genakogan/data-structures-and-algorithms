@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import themes from "./themes";
 import Theme from "./models/Theme";
 
-import TeamWindow from "./components/TopMenu/Window/TeamWindow";
+import TeamWindow from "./components/Menus/TopMenu/Window/TeamWindow";
 
 
 

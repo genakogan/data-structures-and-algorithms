@@ -1,10 +1,10 @@
 // Genady Kogan
-import React, { ReactElement } from "react";
-import BottomMenu from "../BottomMenu/BottomMenu";
+import React, { ReactElement, useState} from "react";
+import BottomMenu from "../Menus/BottomMenu/BottomMenu";
 import Column from "../Common/Column";
-import LeftMenu from "../LeftMenu/LeftMenu";
-import RightMenuContainer from "../RightMenu/RightMenuContainer";
-import TopMenu from "../TopMenu/TopMenu";
+import LeftMenu from "../Menus/LeftMenu/LeftMenu";
+import RightMenuContainer from "../Menus/RightMenu/RightMenuContainer";
+import TopMenu from "../Menus/TopMenu/TopMenu";
 
 interface HomeProps {
   changeTheme: Function;
@@ -12,6 +12,7 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
+  const [zoomPercentage, setZoomPercentage] = useState<number>(1);
   return (
     <div>
       
@@ -22,7 +23,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <LeftMenu></LeftMenu>
       <RightMenuContainer></RightMenuContainer>
       
-      <BottomMenu></BottomMenu>
+      <BottomMenu
+       setZoomPercentage={setZoomPercentage}
+       zoomPercentage={zoomPercentage} 
+      ></BottomMenu>
     </div>
   );
 };

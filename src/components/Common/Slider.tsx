@@ -3,6 +3,7 @@ import Theme from '../../models/Theme';
 
 interface Props {
   theme: Theme;
+  width: string;
 }
 
 const sliderTrackStyles = `
@@ -14,8 +15,9 @@ const sliderTrackStyles = `
     border-radius: 200px;
 `;
 
-const Slider = styled.div`
-    width: 200px;
+const Slider = styled.div<Props>`
+    z-index: 1;
+    width: ${(props) => props.width};
     height: 25px;
     background-color: transparent;
     border: none;
