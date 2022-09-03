@@ -18,6 +18,14 @@ const light: Theme = {
     background: '#EFEFEF',
     foreground: '',
   },
+  nodeActive: {
+    background: '#02E095',
+    foreground: 'white',
+  },
+  nodeInactive: {
+    background: '#0D1929',
+    foreground: 'white',
+  },
 };
 
 export default light;

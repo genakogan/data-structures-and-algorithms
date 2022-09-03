@@ -17,6 +17,14 @@ const dark: Theme = {
   canvas: {
     background: '#0D1929',
   },
+  nodeActive: {
+    background: '#02E095',
+    foreground: 'white',
+  },
+  nodeInactive: {
+    background: 'transparent',
+    foreground: 'white',
+  },
 };
 
 export default dark;

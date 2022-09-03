@@ -5,7 +5,7 @@ interface Props {
   theme: Theme;
 }
 const BottomMenuContainer = styled.div<Props>`
-  z-index: 2;
+  z-index: 3;
   position: fixed;
   top: calc(100% - 50px);
   display: flex;
@@ -16,6 +16,8 @@ const BottomMenuContainer = styled.div<Props>`
   background-color: ${(props) => props.theme.navbar.background};
   color: ${(props) => props.theme.navbar.foreground};
   transition-duration: 0.5s;
+  user-select: none;
+  
 `;
 
 export default BottomMenuContainer;

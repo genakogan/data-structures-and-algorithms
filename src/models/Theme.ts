@@ -4,6 +4,8 @@ interface Theme {
   sidebar: Color;
   slider: Color;
   canvas: Color;
+  nodeActive: Color;
+  nodeInactive: Color;
 }
 
 interface Color {

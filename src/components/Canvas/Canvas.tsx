@@ -1,12 +1,18 @@
-import React, {ReactElement, useRef, useState} from 'react';
-import CanvasContainer from "./CanvasContainer"
+import React, { ReactElement, useRef, useState } from "react";
+import TreeNode from "../TreeNode/TreeNode";
+import CanvasContainer from "./CanvasContainer";
 
 
-const Canvas: React.FC= (): ReactElement => {
 
-    return(
-    <CanvasContainer></CanvasContainer>
-    )
-}
+const Canvas: React.FC = (): ReactElement => {
+  const canvasRef = useRef<HTMLDivElement>(null);
+  return (
+    <CanvasContainer ref={canvasRef}>
+      <TreeNode canvasRef={canvasRef} isActive={true} content="1"></TreeNode>
 
-export default Canvas
+      <TreeNode canvasRef={canvasRef} isActive={true} content="2"></TreeNode>
+    </CanvasContainer>
+  );
+};
+
+export default Canvas;

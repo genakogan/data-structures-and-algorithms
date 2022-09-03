@@ -15,17 +15,16 @@ const ToggleButton = styled.div.attrs((props: Props) => ({
   left: ${(props) =>
     props.isVisible
       ? `calc(300px - ${props.width}px / 2 - 8px)`
-      : `${props.width-props.width/2}px`};
+      : `${props.width-10-props.width/2}px`};
   top: 250 -50%;
   z-index: 2;
   height: ${(props) => `${props.width}px`};
   width: ${(props) => `${props.width}px`};
   border-radius: ${(props) => `${props.width}px`};
   background-color: ${(props) => props.theme.sidebar.background};
-  border: 1px red;
-  transition-duration: 0.3s;
+  transition-duration: 0.5s;
   cursor: pointer;
-  border: 1px solid red;
+  border: 3px solid red;
   &:focus {
     outline: none;
     border-color: red;

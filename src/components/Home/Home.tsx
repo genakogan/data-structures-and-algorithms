@@ -1,7 +1,6 @@
 // Genady Kogan
 import React, { ReactElement, useState } from "react";
 import BottomMenu from "../Menus/BottomMenu/BottomMenu";
-import Column from "../Common/Column";
 import LeftMenu from "../Menus/LeftMenu/LeftMenu";
 import TopMenu from "../Menus/TopMenu/TopMenu";
 import Canvas from "../Canvas/Canvas";
