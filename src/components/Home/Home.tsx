@@ -5,14 +5,12 @@ import LeftMenu from "../Menus/LeftMenu/LeftMenu";
 import TopMenu from "../Menus/TopMenu/TopMenu";
 import Canvas from "../Canvas/Canvas";
 import RightMenu from "../Menus/RightMenu/RightMenu";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 interface HomeProps {
   changeTheme: Function;
   onTeamClick: () => void;
 }
-
-
 
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
@@ -20,7 +18,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
 
   const addNewNode = () => {
-
     /*
     The slice() method returns a shallow copy of a
     portion of an array into a new array object
@@ -42,9 +39,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     newNodeKeys.push(uuidv4());
     setNodeKeys(newNodeKeys);
     setAdjacencyList((prev: Array<Array<number>>) => newAdjacencyList);
-    console.log(newAdjacencyList);
-   
-  }
+    
+  };
   return (
     <div>
       <TopMenu
@@ -55,7 +51,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       ></TopMenu>
       <LeftMenu addNewNode={addNewNode}></LeftMenu>
       <RightMenu></RightMenu>
-      <Canvas zoomPercentage={zoomPercentage}></Canvas>
+      <Canvas
+        zoomPercentage={zoomPercentage}
+        addNewNode={addNewNode}
+        adjacencyList={adjacencyList}
+        nodeKeys={nodeKeys}
+      ></Canvas>
       <BottomMenu></BottomMenu>
     </div>
   );
