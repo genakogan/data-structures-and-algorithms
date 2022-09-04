@@ -3,10 +3,14 @@ import React, { ReactElement } from "react";
 import AlgorithmsNav from "./AlgorithmsNav/AlgorithmsNav";
 import LeftMenuContainer from "./LeftMenuContainer";
 
-const LeftMenu: React.FC = (): ReactElement => {
+interface Props{
+  addNewNode: () => void;
+}
+
+const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <LeftMenuContainer>
-      <AlgorithmsNav></AlgorithmsNav>
+      <AlgorithmsNav  addNewNode={props.addNewNode}></AlgorithmsNav>
     </LeftMenuContainer>
   );
 };

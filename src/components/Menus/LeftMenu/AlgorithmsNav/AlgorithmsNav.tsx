@@ -4,10 +4,19 @@ import Titles from "../../../Common/Titles";
 import AlgorithmsNavContainer from "./AlgorithmsNavContainer";
 import Arrow from "./Arrow";
 import OptionButton from "./NodeOptions/OptionButton";
-import { AddIcon, DeleteIcon, DirectedIcon, UndirectedIcon } from "./NodeOptions/OptionIcons";
+import {
+  AddIcon,
+  DeleteIcon,
+  DirectedIcon,
+  UndirectedIcon,
+} from "./NodeOptions/OptionIcons";
 import ToggleButton from "./ToggleButton";
 
-const AlgorithmsNav: React.FC = (): ReactElement => {
+interface Props {
+  addNewNode: () => void;
+}
+
+const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => {
     setIsVisible((prev) => !prev);
@@ -18,7 +27,7 @@ const AlgorithmsNav: React.FC = (): ReactElement => {
         <Arrow isVisible={isVisible}></Arrow>
       </ToggleButton>
       <Row justifyContent="space-evenly" margin="10px 0px">
-      <Titles
+        <Titles
           fontSize="18px"
           underline=""
           cursor=""
@@ -28,25 +37,21 @@ const AlgorithmsNav: React.FC = (): ReactElement => {
         >
           Node options
         </Titles>
-        </Row>
+      </Row>
       <Row justifyContent="space-evenly" margin="20px 0px">
-        <OptionButton tooltipContent="Add node">
+        <OptionButton tooltipContent="Add node" onClick={props.addNewNode}>
           <AddIcon></AddIcon>
         </OptionButton>
-        <OptionButton tooltipContent="Add undirected edge">
+
+        <OptionButton tooltipContent="Add undirected edge" onClick={() => {}}>
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-        <OptionButton
-          tooltipContent="Add directed edge"
-          
-        >
+
+        <OptionButton tooltipContent="Add directed edge" onClick={() => {}}>
           <DirectedIcon></DirectedIcon>
         </OptionButton>
 
-        <OptionButton
-          tooltipContent="Delete edge"
-          
-        >
+        <OptionButton tooltipContent="Delete edge" onClick={() => {}}>
           <DeleteIcon></DeleteIcon>
         </OptionButton>
       </Row>
