@@ -7,9 +7,11 @@ interface Props {
   theme: Theme;
   isActive: boolean;
   position: TreeNodePosition;
+  zoomPercentage: number;
 }
 
 const TreeNodeContainer = styled.div.attrs((props: Props) => ({
+  size: props.zoomPercentage * 80,
     style: {
       top: `${props.position.top}px`,
       left: `${props.position.left}px`,
@@ -19,9 +21,9 @@ const TreeNodeContainer = styled.div.attrs((props: Props) => ({
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
-  height: 80px;
-  width: 80px;
+  font-size: ${(props) => `${props.size / 3}px`};
+  height: ${(props) => `${props.size}px`};
+  width: ${(props) => `${props.size}px`};
   box-sizing: border-box;
   background-color: ${(props) =>
     props.isActive
