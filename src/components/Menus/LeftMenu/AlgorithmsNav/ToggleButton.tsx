@@ -22,7 +22,7 @@ const ToggleButton = styled.div.attrs((props: Props) => ({
   width: ${(props) => `${props.width}px`};
   border-radius: ${(props) => `${props.width}px`};
   background-color: ${(props) => props.theme.sidebar.background};
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
   cursor: pointer;
   border: 3px solid red;
   &:focus {

@@ -15,7 +15,7 @@ const Arrow = styled.div<Props>`
     props.isVisible ? "rotate(135deg)" : "rotate(-45deg)"};
   -webkit-transform: ${(props) =>
     props.isVisible ? "rotate(135deg)" : "rotate(-45deg)"};
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
   transition-property: border-color, transform;
 `;
 
