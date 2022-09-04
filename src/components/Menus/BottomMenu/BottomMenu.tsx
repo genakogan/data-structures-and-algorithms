@@ -21,8 +21,7 @@ import Row from "../../Common/Row";
 import Titles from "../../Common/Titles";
 
 interface Props {
-  setZoomPercentage: Function;
-  zoomPercentage: number;
+  
 }
 
 const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {

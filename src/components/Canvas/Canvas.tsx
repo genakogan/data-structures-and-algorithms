@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useRef } from "react";
 import TreeNode from "../TreeNode/TreeNode";
 import CanvasContainer from "./CanvasContainer";
 

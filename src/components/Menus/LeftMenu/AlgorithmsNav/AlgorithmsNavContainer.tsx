@@ -10,8 +10,8 @@ const AlgorithmsNavContainer = styled.div<Props>`
   width: 300px;
   z-index: 2;
   left: ${(props) => (props.isVisible ? 0 : '-300px')};
-  //background-color: ${(props) => props.theme.sidebar.background};
-  background-color: red;
+  background-color: ${(props) => props.theme.sidebar.background};
+
   overflow-x: hidden;
   padding-top: 64px;
   transition-duration: 0.3s;

@@ -17,7 +17,7 @@ const LeftMenuContainer = styled.div<Props>`
   background-color: ${(props) => props.theme.navbar.background};
   color: ${(props) => props.theme.navbar.foreground};
   overflow-x: hidden;
-  transition-duration: 0.3s;
+  transition-duration: 0.5s;
   transition-property: background-color, left;
 `;
 

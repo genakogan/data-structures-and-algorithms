@@ -23,11 +23,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       ></TopMenu>
       <LeftMenu></LeftMenu>
       <RightMenu></RightMenu>
-      <Canvas  zoomPercentage={zoomPercentage} ></Canvas>
-      <BottomMenu
-        setZoomPercentage={setZoomPercentage}
-        zoomPercentage={zoomPercentage}
-      ></BottomMenu>
+      <Canvas zoomPercentage={zoomPercentage}></Canvas>
+      <BottomMenu></BottomMenu>
     </div>
   );
 };

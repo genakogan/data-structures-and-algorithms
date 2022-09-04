@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useRef, useEffect } from "react";
+import React, { ReactElement, useState, useRef } from "react";
 import TreeNodeContainer from "./TreeNodeContainer";
 import TreeNodePosition from "../../models/TreeNodePosition";
 
@@ -52,37 +52,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     }
   };
   
-  useEffect(() => {
-    const handleWindowResize = () => {
-      if (nodeRef.current !== null && canvasRef.current !== null) {
-        const nodeWidth: number = +nodeRef.current.offsetWidth;
-        const canvasWidth: number = +canvasRef.current.offsetWidth;
-        const canvasHeight: number = +canvasRef.current.offsetHeight;
-
-        let newLeft: number = position.left;
-        let newTop: number = position.top;
-
-        if (position.left - nodeWidth / 2 <= 0) {
-          newLeft = 0;
-        } else if (position.left - nodeWidth / 2 >= canvasWidth - nodeWidth) {
-          newLeft = canvasWidth - nodeWidth;
-        }
-
-        if (position.top - nodeWidth <= 0) {
-          newTop = 0;
-        } else if (position.top >= canvasHeight - nodeWidth) {
-          newTop = canvasHeight - nodeWidth;
-        }
-
-        setPosition({
-          top: newTop,
-          left: newLeft,
-        });
-      }
-    };
-    window.addEventListener('resize', handleWindowResize);
-    return () => window.removeEventListener('resize', handleWindowResize);
-  }, [nodeRef, canvasRef, position]);
+  
   return (
     <TreeNodeContainer
       isActive={props.isActive}
