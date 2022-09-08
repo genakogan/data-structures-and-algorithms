@@ -6,6 +6,7 @@ interface Theme {
   canvas: Color;
   nodeActive: Color;
   nodeInactive: Color;
+  edge: Color;
 }
 
 interface Color {

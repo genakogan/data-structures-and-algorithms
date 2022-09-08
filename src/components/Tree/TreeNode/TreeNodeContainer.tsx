@@ -1,7 +1,9 @@
 // Genady Kogan
 import styled from 'styled-components';
-import Theme from '../../models/Theme';
-import TreeNodePosition from '../../models/TreeNodePosition';
+import Theme from '../../../models/Theme';
+import TreeNodePosition from '../../../models/TreeNodePosition';
+
+
 
 interface Props {
   theme: Theme;
@@ -17,6 +19,7 @@ const TreeNodeContainer = styled.div.attrs((props: Props) => ({
       left: `${props.position.left}px`,
     },
   }))<Props>`
+  z-index: 1;
   position: absolute;
   display: flex;
   justify-content: center;

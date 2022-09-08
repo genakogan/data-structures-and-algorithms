@@ -1,13 +1,16 @@
 // Genady Kogan
-import React, { ReactElement, useState, useRef } from "react";
+import React, { ReactElement, useState, useRef, useEffect } from "react";
+import Position from "../../../models/Position";
+import TreeNodePosition from "../../../models/TreeNodePosition";
 import TreeNodeContainer from "./TreeNodeContainer";
-import TreeNodePosition from "../../models/TreeNodePosition";
 
 interface Props {
   isActive: boolean;
   canvasRef: React.RefObject<HTMLDivElement>;
   zoomPercentage: number;
   nodeIdex: number;
+  edgeRef: React.RefObject<HTMLSpanElement> | null;
+  children: JSX.Element | JSX.Element[];
 }
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
@@ -52,6 +55,22 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     }
   };
 
+  //  tree edge effect 
+  useEffect(() => {
+    if (props.edgeRef?.current && nodeRef.current) {
+      const halfNodeWidth: number = +nodeRef.current.offsetWidth / 2;
+      const edgePosition: Position = {
+        top: position.top + halfNodeWidth,
+        left: position.left + halfNodeWidth,
+      };
+      const event = new CustomEvent<Position>("position", {
+        detail: edgePosition,
+      });
+      props.edgeRef.current.dispatchEvent(event);
+    }
+  });
+
+
   return (
     <TreeNodeContainer
       isActive={props.isActive}
@@ -61,6 +80,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       ref={nodeRef}
       zoomPercentage={props.zoomPercentage}
     >
+      {props.children}
       {(props.nodeIdex + 1).toString()}
     </TreeNodeContainer>
   );

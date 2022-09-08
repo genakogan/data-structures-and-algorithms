@@ -25,6 +25,9 @@ const dark: Theme = {
     background: 'transparent',
     foreground: 'white',
   },
+  edge: {
+    background: 'white',
+  },
 };
 
 export default dark;

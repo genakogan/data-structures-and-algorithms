@@ -26,6 +26,9 @@ const light: Theme = {
     background: '#0D1929',
     foreground: 'white',
   },
+  edge: {
+    background: '#0D1929',
+  },
 };
 
 export default light;
