@@ -6,7 +6,6 @@ import TopMenu from "../Menus/TopMenu/TopMenu";
 import Canvas from "../Canvas/Canvas";
 import RightMenu from "../Menus/RightMenu/RightMenu";
 import { v4 as uuidv4 } from "uuid";
-import NodeInfo from "../../models/NodeInfo";
 
 interface HomeProps {
   changeTheme: Function;
@@ -17,7 +16,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
-  const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
 
   const addNewNode = () => {
     /*
@@ -41,7 +39,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     newNodeKeys.push(uuidv4());
     setNodeKeys(newNodeKeys);
     setAdjacencyList((prev: Array<Array<number>>) => newAdjacencyList);
-    
+  };
+
+  const clearCanvas = () => {
+    setAdjacencyList([]);
   };
   return (
     <div>
@@ -51,14 +52,13 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         setZoomPercentage={setZoomPercentage}
         zoomPercentage={zoomPercentage}
       ></TopMenu>
-      <LeftMenu addNewNode={addNewNode}></LeftMenu>
+      <LeftMenu addNewNode={addNewNode} clearCanvas={clearCanvas}></LeftMenu>
       <RightMenu></RightMenu>
       <Canvas
         zoomPercentage={zoomPercentage}
         addNewNode={addNewNode}
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}
-      
       ></Canvas>
       <BottomMenu></BottomMenu>
     </div>

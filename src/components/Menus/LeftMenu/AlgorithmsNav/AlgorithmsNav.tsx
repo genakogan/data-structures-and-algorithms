@@ -3,6 +3,7 @@ import Row from "../../../Common/Row";
 import Titles from "../../../Common/Titles";
 import AlgorithmsNavContainer from "./AlgorithmsNavContainer";
 import Arrow from "./Arrow";
+import ClearButtonContainer from "./NodeOptions/ClearButtonContainer";
 import OptionButton from "./NodeOptions/OptionButton";
 import {
   AddIcon,
@@ -14,6 +15,7 @@ import ToggleButton from "./ToggleButton";
 
 interface Props {
   addNewNode: () => void;
+  clearCanvas: Function;
 }
 
 const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -54,6 +56,21 @@ const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
         <OptionButton tooltipContent="Delete edge" onClick={() => {}}>
           <DeleteIcon></DeleteIcon>
         </OptionButton>
+      </Row>
+
+      <Row justifyContent="space-evenly" margin="10px 0px">
+        <ClearButtonContainer onClick={()=>{props.clearCanvas()}}>
+          <Titles
+            fontSize="18px"
+            underline=""
+            cursor=""
+            userSelect=""
+            marginLeft=""
+            marginRight=""
+          >
+            Clear canvas
+          </Titles>
+        </ClearButtonContainer>
       </Row>
     </AlgorithmsNavContainer>
   );
