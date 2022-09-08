@@ -43,6 +43,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   const clearCanvas = () => {
     setAdjacencyList([]);
+    setNodeKeys([]);
   };
   return (
     <div>
