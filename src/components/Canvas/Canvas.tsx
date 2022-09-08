@@ -1,4 +1,6 @@
-import React, { ReactElement, useRef, useState } from "react";
+// Genady Kogan
+import React, { ReactElement, useRef } from "react";
+
 import TreeNode from "../TreeNode/TreeNode";
 import CanvasContainer from "./CanvasContainer";
 
@@ -7,6 +9,7 @@ interface Props {
   nodeKeys: Array<string>;
   zoomPercentage: number;
   addNewNode: () => void;
+  
 }
 
 const Canvas: React.FC<Props> = (props: Props): ReactElement => {
@@ -16,12 +19,15 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <CanvasContainer ref={canvasRef}>
       {adjacencyList.map((val: Array<number>, index: number) => {
+        
         return (
           <TreeNode
+            key={props.nodeKeys[index]}
             canvasRef={canvasRef}
             zoomPercentage={props.zoomPercentage}
             isActive={true}
-            content="1"
+            nodeIdex={index}
+            
           ></TreeNode>
         );
       })}

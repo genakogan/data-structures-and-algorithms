@@ -6,6 +6,7 @@ import TopMenu from "../Menus/TopMenu/TopMenu";
 import Canvas from "../Canvas/Canvas";
 import RightMenu from "../Menus/RightMenu/RightMenu";
 import { v4 as uuidv4 } from "uuid";
+import NodeInfo from "../../models/NodeInfo";
 
 interface HomeProps {
   changeTheme: Function;
@@ -16,6 +17,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
+  const [graphInfo, setGraphInfo] = useState<Array<NodeInfo>>([]);
 
   const addNewNode = () => {
     /*
@@ -56,6 +58,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         addNewNode={addNewNode}
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}
+      
       ></Canvas>
       <BottomMenu></BottomMenu>
     </div>
