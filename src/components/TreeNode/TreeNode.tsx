@@ -1,12 +1,13 @@
+// Genady Kogan
 import React, { ReactElement, useState, useRef } from "react";
 import TreeNodeContainer from "./TreeNodeContainer";
 import TreeNodePosition from "../../models/TreeNodePosition";
 
 interface Props {
   isActive: boolean;
-  content: string;
   canvasRef: React.RefObject<HTMLDivElement>;
   zoomPercentage: number;
+  nodeIdex: number;
 }
 const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
   const nodeRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
@@ -23,12 +24,11 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     document.onmouseup = handleMouseUp;
   };
 
-
   const handleMouseMove = (e: MouseEvent) => {
     if (nodeRef.current !== null && canvasRef.current !== null) {
-      const nodeWidth: number =+ nodeRef.current.offsetWidth;
-      const canvasWidth: number =+ canvasRef.current.offsetWidth;
-      const canvasHeight: number =+ canvasRef.current.offsetHeight;
+      const nodeWidth: number = +nodeRef.current.offsetWidth;
+      const canvasWidth: number = +canvasRef.current.offsetWidth;
+      const canvasHeight: number = +canvasRef.current.offsetHeight;
 
       let newLeft: number = e.clientX - nodeWidth / 2;
       let newTop: number = e.clientY - nodeWidth;
@@ -51,8 +51,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       });
     }
   };
-  
-  
+
   return (
     <TreeNodeContainer
       isActive={props.isActive}
@@ -62,7 +61,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       ref={nodeRef}
       zoomPercentage={props.zoomPercentage}
     >
-      {props.content}
+      {(props.nodeIdex + 1).toString()}
     </TreeNodeContainer>
   );
 };
