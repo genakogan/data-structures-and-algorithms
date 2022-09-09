@@ -51,7 +51,9 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
       })}
 
       {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
-        return <TreeEdge n1={nodeRefs[n2]} n2={nodeRefs[n1]} key={index} />;
+        console.log(n1);
+        
+        return <TreeEdge  n1={nodeRefs[n2]} n2={nodeRefs[n1]} key={index} />;
       })}
     </CanvasContainer>
   );
