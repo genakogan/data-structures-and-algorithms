@@ -19,10 +19,10 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
   const reducedEdges: Map<number, Array<number>> = new Map();
   const nodeRefs = adjacencyList.map((_) => React.createRef<HTMLSpanElement>());
 
-
   adjacencyList.forEach((adjacentNodes: Array<number>, currentNode: number) => {
     const currentNodeEdges: Array<number> = [];
     adjacentNodes.forEach((adjacentNode: number) => {
+      // if true
       if (!reducedEdges.get(adjacentNode)?.includes(currentNode)) {
         currentNodeEdges.push(adjacentNode);
         connectedNodePairs.push([currentNode, adjacentNode]);
@@ -42,11 +42,10 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
             canvasRef={canvasRef}
             zoomPercentage={props.zoomPercentage}
             isActive={true}
-           edgeRef={nodeRefs[index]}
+            edgeRef={nodeRefs[index]}
             nodeIdex={index}
           >
-            <span
-              ref={nodeRefs[index]}></span>
+            <span ref={nodeRefs[index]}></span>
           </TreeNode>
         );
       })}

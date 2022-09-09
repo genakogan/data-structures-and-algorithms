@@ -55,7 +55,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     }
   };
 
-  //  tree edge effect 
+  //  tree edge effect, node connection 
   useEffect(() => {
     if (props.edgeRef?.current && nodeRef.current) {
       const halfNodeWidth: number = +nodeRef.current.offsetWidth / 2;

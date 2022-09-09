@@ -7,7 +7,7 @@ import Canvas from "../Canvas/Canvas";
 import RightMenu from "../Menus/RightMenu/RightMenu";
 import { v4 as uuidv4 } from "uuid";
 
-const sampleGraph = [[1, 2], [0, 3], [0], [1]];
+const sampleGraph = [[],[0,2],[]];
 
 interface HomeProps {
   changeTheme: Function;
