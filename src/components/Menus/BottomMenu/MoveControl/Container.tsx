@@ -4,6 +4,7 @@ import styled from "styled-components";
 interface Props{
   top: string;
   right: string;
+  isVisualizing: boolean;
 }
 const Container = styled.div<Props>`
   z-index: 1;
@@ -21,16 +22,23 @@ const Container = styled.div<Props>`
   border-radius: 45px;
   margin-right: 20px;
   margin-bottom: 20px;
-  //color: white;
+  background-color: ${(props) =>
+    props.isVisualizing ? 'red' : props.theme.navbar.background};
+  color: white;
   transition-duration: 0.5s;
   user-select: none;
   cursor: pointer;
 
  /* &:hover {
-    letter-spacing: 3px;
-    width: 160px;
-    left: calc(100% - 155px - 20px);
-  }*
+    border-radius: 30px;
+  width: 60px;
+  height: 60px;
+  border-top: 1px solid red;
+  border-right: 1px solid blue;
+  border-bottom: 1px solid green;
+  border-left: 1px solid pink;
+  transform: rotate(45deg)
+  }*/
 `;
 
 export default Container;

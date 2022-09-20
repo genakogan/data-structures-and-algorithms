@@ -6,8 +6,9 @@ import TopMenu from "../Menus/TopMenu/TopMenu";
 import Canvas from "../Canvas/Canvas";
 import RightMenu from "../Menus/RightMenu/RightMenu";
 import { v4 as uuidv4 } from "uuid";
+import Algorithms from "../Tree/Algorithms";
 
-const sampleGraph = [[],[0,2],[0],[]];
+const sampleGraph = [[1, 2, 4], [0, 3], [0, 5], [1], [0], [2]];
 
 interface HomeProps {
   changeTheme: Function;
@@ -16,8 +17,12 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
-  const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>(sampleGraph);
+  const [adjacencyList, setAdjacencyList] =
+    useState<Array<Array<number>>>(sampleGraph);
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
+  const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
+  const [visited, setVisited] = useState<Array<number>>([]);
+  const [startingNode, setStartingNode] = useState<number>(0);
 
   const addNewNode = () => {
     /*
@@ -47,6 +52,14 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList([]);
     setNodeKeys([]);
   };
+  const handlePlayVisualize = async () => {
+    if (isVisualizing) return;
+    setIsVisualizing(true);
+    setVisited([]);
+    await Algorithms.dfs(adjacencyList, startingNode, setVisited);
+    setIsVisualizing(false);
+  };
+
   return (
     <div>
       <TopMenu
@@ -63,7 +76,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}
       ></Canvas>
-      <BottomMenu></BottomMenu>
+      <BottomMenu isVisualizing={isVisualizing} handlePlayVisualize={handlePlayVisualize}></BottomMenu>
     </div>
   );
 };
