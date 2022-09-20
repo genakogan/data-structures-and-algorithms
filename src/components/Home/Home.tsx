@@ -76,7 +76,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}
       ></Canvas>
-      <BottomMenu isVisualizing={isVisualizing} handlePlayVisualize={handlePlayVisualize}></BottomMenu>
+      <BottomMenu
+        handlePlayVisualize={handlePlayVisualize}
+        isVisualizing={isVisualizing}
+      ></BottomMenu>
     </div>
   );
 };

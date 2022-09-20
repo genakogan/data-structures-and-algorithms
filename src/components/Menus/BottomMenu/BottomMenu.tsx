@@ -1,4 +1,4 @@
-import React, { ReactElement,useState } from "react";
+import React, { ReactElement, } from "react";
 import BottomMenuContainer from "./BottomMenuContainer";
 import PlayControl from "./MoveControl/PlayControl";
 import {
@@ -26,7 +26,7 @@ interface Props {
 }
 
 const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
-  const [onClickk, Clicking] = useState<boolean>(false);
+ 
 
   return (
     <BottomMenuContainer>
