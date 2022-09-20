@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement,useState } from "react";
 import BottomMenuContainer from "./BottomMenuContainer";
 import PlayControl from "./MoveControl/PlayControl";
 import {
@@ -21,10 +21,13 @@ import Row from "../../Common/Row";
 import Titles from "../../Common/Titles";
 
 interface Props {
-  
+  handlePlayVisualize: Function;
+  isVisualizing: boolean;
 }
 
 const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
+  const [onClickk, Clicking] = useState<boolean>(false);
+
   return (
     <BottomMenuContainer>
       <Row justifyContent="space-between" margin="0px 30px">
@@ -83,31 +86,31 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
 
       {/*move control buttons*/}
       <Row justifyContent="space-between" margin="0px 30px">
-        <SkipBackControl>
+        <SkipBackControl  isVisualizing={props.isVisualizing}>
           <SkipBackIcon></SkipBackIcon>
         </SkipBackControl>
 
-        <StepBackControl>
+        <StepBackControl isVisualizing={props.isVisualizing}>
           <StepBackIcon></StepBackIcon>
         </StepBackControl>
 
-        <PlayControl>
+        <PlayControl isVisualizing={props.isVisualizing} onClick={props.handlePlayVisualize}>
           <PlayIcon></PlayIcon>
         </PlayControl>
 
-        <PauseControl>
+        <PauseControl isVisualizing={props.isVisualizing}>
           <PauseIcon></PauseIcon>
         </PauseControl>
 
-        <ReplayControl>
+        <ReplayControl isVisualizing={props.isVisualizing}>
           <ReplayIcon></ReplayIcon>
         </ReplayControl>
 
-        <StepForwardControl>
+        <StepForwardControl isVisualizing={props.isVisualizing}>
           <StepForwardIcon></StepForwardIcon>
         </StepForwardControl>
 
-        <SkipForwardControl>
+        <SkipForwardControl isVisualizing={props.isVisualizing}>
           <SkipForwardIcon></SkipForwardIcon>
         </SkipForwardControl>
       </Row>
