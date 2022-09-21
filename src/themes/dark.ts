@@ -22,7 +22,7 @@ const dark: Theme = {
     foreground: 'white',
   },
   nodeInactive: {
-    background: 'transparent',
+    background: '#29323c',
     foreground: 'white',
   },
   edge: {

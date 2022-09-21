@@ -10,6 +10,7 @@ interface Props {
   nodeKeys: Array<string>;
   zoomPercentage: number;
   addNewNode: () => void;
+  visited: Array<number>;
 }
 
 const Canvas: React.FC<Props> = (props: Props): ReactElement => {
@@ -18,6 +19,8 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
   const connectedNodePairs: Array<Array<number>> = [];
   const reducedEdges: Map<number, Array<number>> = new Map();
   const nodeRefs = adjacencyList.map((_) => React.createRef<HTMLSpanElement>());
+
+  const visited = props.visited;
 
   // adjacencyList = [[],[0,2],[0],[]];
   adjacencyList.forEach((adjacentNodes: Array<number>, currentNode: number) => {
@@ -45,7 +48,7 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
             key={props.nodeKeys[index]}
             canvasRef={canvasRef}
             zoomPercentage={props.zoomPercentage}
-            isActive={true}
+            isActive={visited.includes(index)}
             edgeRef={nodeRefs[index]}
             nodeIdex={index}
           >

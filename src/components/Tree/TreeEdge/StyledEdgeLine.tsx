@@ -1,3 +1,4 @@
+// Genady Kogan
 import styled from "styled-components";
 
 

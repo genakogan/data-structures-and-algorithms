@@ -23,6 +23,7 @@ import Titles from "../../Common/Titles";
 interface Props {
   handlePlayVisualize: Function;
   isVisualizing: boolean;
+  playVisualizing: boolean;
 }
 
 const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
@@ -94,7 +95,7 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
           <StepBackIcon></StepBackIcon>
         </StepBackControl>
 
-        <PlayControl isVisualizing={props.isVisualizing} onClick={props.handlePlayVisualize}>
+        <PlayControl isVisualizing={props.playVisualizing} onClick={props.handlePlayVisualize}>
           <PlayIcon></PlayIcon>
         </PlayControl>
 

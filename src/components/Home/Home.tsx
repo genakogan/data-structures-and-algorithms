@@ -21,6 +21,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     useState<Array<Array<number>>>(sampleGraph);
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
+  const [playVisualizing, setPlayVisualizing] = useState<boolean>(false);
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
 
@@ -53,11 +54,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setNodeKeys([]);
   };
   const handlePlayVisualize = async () => {
-    if (isVisualizing) return;
-    setIsVisualizing(true);
+    if (playVisualizing) return;
+    setPlayVisualizing(true);
     setVisited([]);
     await Algorithms.dfs(adjacencyList, startingNode, setVisited);
-    setIsVisualizing(false);
+    setPlayVisualizing(false);
   };
 
   return (
@@ -75,10 +76,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         addNewNode={addNewNode}
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}
+        visited={visited}
       ></Canvas>
       <BottomMenu
         handlePlayVisualize={handlePlayVisualize}
         isVisualizing={isVisualizing}
+        playVisualizing={playVisualizing}
       ></BottomMenu>
     </div>
   );
