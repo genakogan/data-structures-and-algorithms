@@ -18,7 +18,7 @@ const TopMenuContainer = styled.div<Props>`
   color: ${(props) => props.theme.navbar.foreground};
   transition-duration: 0.5s;
   transition-property: background-color;
-  @media (max-width: 550px) {
+  @media (max-width: 50px) {
     display: block;
     margin-left: auto;
     margin-right: auto;

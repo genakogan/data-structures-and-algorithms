@@ -7,20 +7,14 @@ const dfs = async (
   node: number,
   setVisited: Function,
   visualizationSpeed: number,
+  setCurrentEdge: Function,
   previousNode: number
 ): Promise<void> => {
-
-  
   if (globalVisited.includes(node)) return;
   await helpers.asyncTimout(visualizationSpeed);
-
-  /*
-  the concat() method joins two or more strings, does
-  not change the existing strings, returns a new string.
-  */
   globalVisited = globalVisited.concat(node);
   setVisited(globalVisited);
-
+  setCurrentEdge([previousNode, node]);
 
   for (let neighbour of graph[node]) {
     await dfs(
@@ -28,6 +22,7 @@ const dfs = async (
       neighbour,
       setVisited,
       visualizationSpeed,
+      setCurrentEdge,
       node
     );
   }
@@ -38,11 +33,10 @@ const dfsWrapper = async (
   node: number,
   setVisited: Function,
   visualizationSpeed: number,
+  setCurrentEdge: Function
 ) => {
   globalVisited = [];
 
-  /* last parametrs is previousNode, -1 for starting */
-  await dfs(graph, node, setVisited, visualizationSpeed, -1);
+  await dfs(graph, node, setVisited, visualizationSpeed, setCurrentEdge, -1);
 };
-
 export default dfsWrapper;

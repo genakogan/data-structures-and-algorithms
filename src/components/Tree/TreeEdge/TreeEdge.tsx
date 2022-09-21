@@ -2,27 +2,43 @@ import React, { ReactElement, RefObject, useEffect, useState } from "react";
 import Position from "../../../models/Position";
 import StyledEdgeContainer from "./StyledEdgeContainer";
 import StyledEdgeLine from "./StyledEdgeLine";
+import StyledPolygon from "./StyledPolygon";
 
 interface EdgeProps {
   n1: RefObject<HTMLSpanElement>;
   n2: RefObject<HTMLSpanElement>;
+  isDirected: boolean;
+  isVisited: boolean;
+  zoomPercentage: number;
+  edgeKey: string;
 }
 
 const TreeEdge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
   const [position1, setPosition1] = useState<Position | null>(null);
   const [position2, setPosition2] = useState<Position | null>(null);
+  const [currentN1, setCurrentN1] = useState<HTMLSpanElement | null>(
+    props.n1.current
+  );
+  const [currentN2, setCurrentN2] = useState<HTMLSpanElement | null>(
+    props.n2.current
+  );
 
   useEffect(() => {
-    if (props.n1.current && props.n1.current.parentElement) {
-      const initialTop: number = +props.n1.current.parentElement.style.top.replace(
+    if (currentN1 === null) setCurrentN1(props.n1.current);
+    if (currentN2 === null) setCurrentN2(props.n2.current);
+  }, [props.n1, currentN1, setCurrentN1, props.n2, currentN2]);
+
+  useEffect(() => {
+    if (currentN1 && currentN1.parentElement) {
+      const initialTop: number = +currentN1.parentElement.style.top.replace(
         'px',
         ''
       );
-      const initialLeft: number = +props.n1.current.parentElement.style.left.replace(
+      const initialLeft: number = +currentN1.parentElement.style.left.replace(
         'px',
         ''
       );
-      const nodeRadius: number = props.n1.current.parentElement.offsetWidth / 2;
+      const nodeRadius: number = currentN1.parentElement.offsetWidth / 2;
       const initialPosition1: Position = {
         top: initialTop + nodeRadius,
         left: initialLeft + nodeRadius,
@@ -33,25 +49,26 @@ const TreeEdge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
           setPosition1(newPosition1);
         }
       };
-      props.n1.current.addEventListener('position', handler);
       if (!position1) {
         setPosition1(initialPosition1);
       }
-      return () => props.n1.current?.removeEventListener('position', handler);
+      currentN1.addEventListener('position', handler);
+
+      return () => currentN1?.removeEventListener('position', handler);
     }
-  }, [props.n1, position1]);
+  }, [position1, currentN1]);
 
   useEffect(() => {
-    if (props.n2.current && props.n2.current.parentElement) {
-      const initialTop: number = +props.n2.current.parentElement.style.top.replace(
+    if (currentN2 && currentN2.parentElement) {
+      const initialTop: number = +currentN2.parentElement.style.top.replace(
         'px',
         ''
       );
-      const initialLeft: number = +props.n2.current.parentElement.style.left.replace(
+      const initialLeft: number = +currentN2.parentElement.style.left.replace(
         'px',
         ''
       );
-      const nodeRadius: number = props.n2.current.parentElement.offsetWidth / 2;
+      const nodeRadius: number = currentN2.parentElement.offsetWidth / 2;
       const initialPosition1: Position = {
         top: initialTop + nodeRadius,
         left: initialLeft + nodeRadius,
@@ -62,33 +79,49 @@ const TreeEdge: React.FC<EdgeProps> = (props: EdgeProps): ReactElement => {
           setPosition2(newPosition2);
         }
       };
-      props.n2.current.addEventListener('position', handler);
       if (!position2) {
         setPosition2(initialPosition1);
       }
-      return () => props.n2.current?.removeEventListener('position', handler);
+      currentN2.addEventListener('position', handler);
+      return () => currentN2?.removeEventListener('position', handler);
     }
-  }, [props.n2, position2]);
+  }, [props.n2, position2, currentN2]);
+
+  const pos1Top = position1 ? position1.top : 0;
+  const pos2Top = position2 ? position2.top : 0;
+  const pos1Left = position1 ? position1.left : 0;
+  const pos2Left = position2 ? position2.left : 0;
+  const arrowWidth = 10 * props.zoomPercentage;
+  const arrowHeight = 7 * props.zoomPercentage;
 
   return (
     <StyledEdgeContainer
-      height={Math.max(
-        position1 ? position1.top + 3 : 0,
-        position2 ? position2.top + 3 : 0
-      )}
-      width={Math.max(
-        position1 ? position1.left + 3 : 0,
-        position2 ? position2.left + 3 : 0
-      )}
+      height={Math.max(pos1Top, pos2Top) + arrowHeight * 2}
+      width={Math.max(pos1Left, pos2Left) + arrowWidth * 2}
     >
+      <defs>
+        <marker
+          orient="auto"
+          id={props.edgeKey}
+          markerWidth={arrowWidth}
+          markerHeight={arrowHeight}
+          refX={5}
+          refY={arrowHeight / 2}
+        >
+          <StyledPolygon
+            points={`0 0, ${arrowWidth} ${arrowHeight / 2}, 0 ${arrowHeight}`}
+            isVisited={props.isVisited}
+          />
+        </marker>
+      </defs>
       <StyledEdgeLine
-        x1={position1 ? position1.left : 0}
-        y1={position1 ? position1.top : 0}
-        x2={position2 ? position2.left : 0}
-        y2={position2 ? position2.top : 0}
+        points={`${pos1Left},${pos1Top},${(pos1Left + pos2Left) / 2},${
+          (pos1Top + pos2Top) / 2
+        },${pos2Left},${pos2Top}`}
+        isVisited={props.isVisited}
+        markerMid={props.isDirected ? `url(#${props.edgeKey})` : 'none'}
       />
     </StyledEdgeContainer>
   );
 };
-
 export default TreeEdge;

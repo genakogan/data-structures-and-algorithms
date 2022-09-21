@@ -9,11 +9,13 @@ interface Props {
   adjacencyList: Array<Array<number>>;
   nodeKeys: Array<string>;
   zoomPercentage: number;
-  addNewNode: () => void;
+  
   visited: Array<number>;
+  currentEdge: [number, number];
 }
 
 const Canvas: React.FC<Props> = (props: Props): ReactElement => {
+  const currentEdge = props.currentEdge;
   const canvasRef = useRef<HTMLDivElement>(null);
   const adjacencyList = props.adjacencyList;
   const connectedNodePairs: Array<Array<number>> = [];
@@ -58,7 +60,16 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
       })}
 
       {connectedNodePairs.map(([n1, n2]: Array<number>, index: number) => {
-        return <TreeEdge n1={nodeRefs[n2]} n2={nodeRefs[n1]} key={index} />;
+        const isVisited: boolean =
+        (currentEdge[0] === n1 && currentEdge[1] === n2) ||
+        (currentEdge[0] === n2 && currentEdge[1] === n1);
+        return <TreeEdge n1={nodeRefs[n1]}
+        n2={nodeRefs[n2]}
+        key={`${props.nodeKeys[n1]}${props.nodeKeys[n2]}`}
+        edgeKey={`${props.nodeKeys[n1]}${props.nodeKeys[n2]}`}
+        isDirected={!adjacencyList[n2].includes(n1)}
+        zoomPercentage={props.zoomPercentage}
+        isVisited={isVisited} />;
       })}
     </CanvasContainer>
   );
