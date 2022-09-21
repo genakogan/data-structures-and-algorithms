@@ -7,6 +7,7 @@ interface Props {
 }
 
 const LeftMenuContainer = styled.div<Props>`
+
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -19,6 +20,7 @@ const LeftMenuContainer = styled.div<Props>`
   overflow-x: hidden;
   transition-duration: 0.5s;
   transition-property: background-color, left;
+ 
 `;
 
 export default LeftMenuContainer;

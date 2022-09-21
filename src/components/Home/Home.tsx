@@ -25,6 +25,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
+  const [currentEdge, setCurrentEdge] = useState<[number, number]>([-1, -1]);
   const addNewNode = () => {
     /*
     The slice() method returns a shallow copy of a
@@ -57,12 +58,17 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (playVisualizing) return;
     setPlayVisualizing(true);
     setVisited([]);
-    await Algorithms.dfs(adjacencyList,
+    setCurrentEdge([-1, -1]);
+    await Algorithms.dfs(
+      adjacencyList,
       startingNode,
       setVisited,
-      visualizationSpeed);
+      visualizationSpeed,
+      setCurrentEdge
+    );
     setPlayVisualizing(false);
   };
+
   const changeVisualizationSpeed = (speed: number) => {
     if (isVisualizing) return;
     setVisualizationSpeed(speed);
@@ -75,15 +81,17 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         setZoomPercentage={setZoomPercentage}
         zoomPercentage={zoomPercentage}
       ></TopMenu>
-      <LeftMenu addNewNode={addNewNode} clearCanvas={clearCanvas}></LeftMenu>
       <RightMenu></RightMenu>
+      <LeftMenu addNewNode={addNewNode} clearCanvas={clearCanvas}></LeftMenu>
+
       <Canvas
-        zoomPercentage={zoomPercentage}
-        addNewNode={addNewNode}
+        visited={visited}
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}
-        visited={visited}
+        zoomPercentage={zoomPercentage}
+        currentEdge={currentEdge}
       ></Canvas>
+
       <BottomMenu
         handlePlayVisualize={handlePlayVisualize}
         isVisualizing={isVisualizing}
