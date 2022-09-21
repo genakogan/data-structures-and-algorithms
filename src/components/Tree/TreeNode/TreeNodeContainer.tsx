@@ -19,7 +19,7 @@ const TreeNodeContainer = styled.div.attrs((props: Props) => ({
       left: `${props.position.left}px`,
     },
   }))<Props>`
-  z-index: 2;
+  z-index: 1;
   position: absolute;
   display: flex;
   justify-content: center;

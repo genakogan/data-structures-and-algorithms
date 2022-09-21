@@ -24,6 +24,8 @@ interface Props {
   handlePlayVisualize: Function;
   isVisualizing: boolean;
   playVisualizing: boolean;
+  setVisualizationSpeed: Function;
+  visualizationSpeed: number;
 }
 
 const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
@@ -36,9 +38,15 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
           <input
             type="range"
             className="slider"
-            min={0.5}
-            max={1.5}
-            step={0.1}
+            min={500}
+            max={3000}
+            step={50}
+            value={3500 - props.visualizationSpeed}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const val: number = +e.target.value;
+            const speed: number = +e.target.max + +e.target.min - val;
+            props.setVisualizationSpeed(speed);
+          }}
           />
         </Slider>
 
@@ -50,7 +58,7 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
           marginLeft="20px"
           marginRight="20px"
         >
-          1x
+          {props.visualizationSpeed+"x"}
         </Titles>
         <Titles
           fontSize="15px"

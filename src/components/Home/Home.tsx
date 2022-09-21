@@ -24,7 +24,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [playVisualizing, setPlayVisualizing] = useState<boolean>(false);
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
-
+  const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
   const addNewNode = () => {
     /*
     The slice() method returns a shallow copy of a
@@ -57,10 +57,16 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (playVisualizing) return;
     setPlayVisualizing(true);
     setVisited([]);
-    await Algorithms.dfs(adjacencyList, startingNode, setVisited);
+    await Algorithms.dfs(adjacencyList,
+      startingNode,
+      setVisited,
+      visualizationSpeed);
     setPlayVisualizing(false);
   };
-
+  const changeVisualizationSpeed = (speed: number) => {
+    if (isVisualizing) return;
+    setVisualizationSpeed(speed);
+  };
   return (
     <div>
       <TopMenu
@@ -82,6 +88,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         handlePlayVisualize={handlePlayVisualize}
         isVisualizing={isVisualizing}
         playVisualizing={playVisualizing}
+        visualizationSpeed={visualizationSpeed}
+        setVisualizationSpeed={changeVisualizationSpeed}
       ></BottomMenu>
     </div>
   );
