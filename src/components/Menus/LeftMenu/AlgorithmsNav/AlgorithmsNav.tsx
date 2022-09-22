@@ -16,6 +16,7 @@ import ToggleButton from "./ToggleButton";
 interface Props {
   addNewNode: () => void;
   clearCanvas: Function;
+  onUndirectedEdgeClick: Function;
 }
 
 const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -45,7 +46,12 @@ const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
           <AddIcon></AddIcon>
         </OptionButton>
 
-        <OptionButton tooltipContent="Add undirected edge" onClick={() => {}}>
+        <OptionButton
+          tooltipContent="Add undirected edge"
+          onClick={() => {
+            props.onUndirectedEdgeClick();
+          }}
+        >
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
 
@@ -59,7 +65,11 @@ const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
       </Row>
 
       <Row justifyContent="space-evenly" margin="10px 0px">
-        <ClearButtonContainer onClick={()=>{props.clearCanvas()}}>
+        <ClearButtonContainer
+          onClick={() => {
+            props.clearCanvas();
+          }}
+        >
           <Titles
             fontSize="18px"
             underline=""

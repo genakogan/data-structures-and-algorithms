@@ -7,6 +7,7 @@ import Canvas from "../Canvas/Canvas";
 import RightMenu from "../Menus/RightMenu/RightMenu";
 import { v4 as uuidv4 } from "uuid";
 import Algorithms from "../Tree/Algorithms";
+import CreateEdgeModal from "../Tree/CreateEdgeModal/CreateEdgeModal";
 
 const sampleGraph = [[1, 2, 4], [0, 3], [0, 5], [1], [0], [2]];
 
@@ -26,6 +27,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [startingNode, setStartingNode] = useState<number>(0);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
   const [currentEdge, setCurrentEdge] = useState<[number, number]>([-1, -1]);
+  const [isConnectingUndirected, setIsConnectingUndirected] =
+    useState<boolean>(false);
+  const [isConnectingDirected, setIsConnectingDirected] =
+    useState<boolean>(false);
   const addNewNode = () => {
     /*
     The slice() method returns a shallow copy of a
@@ -73,6 +78,43 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (isVisualizing) return;
     setVisualizationSpeed(speed);
   };
+
+  const handleEdgeModalExit = () => {
+    setIsConnectingUndirected(false);
+    setIsConnectingDirected(false);
+  };
+
+  const onCreateUndirectedEdge = (firstNode: number, secondNode: number) => {
+    connectNodes(firstNode, secondNode, isConnectingDirected);
+  };
+
+  const connectNodes = (
+    firstNode: number,
+    secondNode: number,
+    directed: boolean
+  ) => {
+    if (firstNode === undefined || secondNode === undefined) return;
+    if (firstNode === secondNode) return;
+    if (
+      firstNode > adjacencyList.length - 1 ||
+      secondNode > adjacencyList.length - 1
+    )
+      return;
+    if (adjacencyList[firstNode].includes(secondNode)) return;
+    if (adjacencyList[secondNode].includes(firstNode)) return;
+
+    addNewEdge(firstNode, secondNode, directed);
+  };
+  const addNewEdge = (
+    firstNode: number,
+    secondNode: number,
+    isDirected: boolean
+  ) => {
+    const newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList[firstNode].push(secondNode);
+    if (!isDirected) newAdjacencyList[secondNode].push(firstNode);
+    setAdjacencyList(newAdjacencyList);
+  };
   return (
     <div>
       <TopMenu
@@ -82,7 +124,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         zoomPercentage={zoomPercentage}
       ></TopMenu>
       <RightMenu></RightMenu>
-      <LeftMenu addNewNode={addNewNode} clearCanvas={clearCanvas}></LeftMenu>
+      <LeftMenu
+        addNewNode={addNewNode}
+        clearCanvas={clearCanvas}
+        onUndirectedEdgeClick={() => setIsConnectingUndirected(true)}
+      ></LeftMenu>
 
       <Canvas
         visited={visited}
@@ -99,6 +145,14 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         visualizationSpeed={visualizationSpeed}
         setVisualizationSpeed={changeVisualizationSpeed}
       ></BottomMenu>
+
+      <CreateEdgeModal
+        directed={isConnectingDirected}
+        isVisible={isConnectingDirected || isConnectingUndirected}
+        onExit={handleEdgeModalExit}
+        onAddEdge={onCreateUndirectedEdge}
+        adjacencyList={adjacencyList}
+      />
     </div>
   );
 };
