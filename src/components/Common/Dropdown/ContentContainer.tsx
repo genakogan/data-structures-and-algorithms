@@ -19,7 +19,7 @@ const ContentContainer = styled.div<Props>`
       ? themes.light.navbar.background
       : themes.dark.navbar.background};
 
-  transition: max-height 0.2s, background-color 0.3s;
+  transition: max-height 0.4s, background-color 0.5s;
   scrollbar-color: white transparent;
   scrollbar-width: thin;
   &::-webkit-scrollbar {

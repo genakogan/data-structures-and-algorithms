@@ -4,22 +4,21 @@ interface Props {
   fontSize: string;
   underline: string;
   cursor: string;
-  userSelect: string;
   marginLeft: string;
   marginRight: string;
 }
 
-const Titles = styled.div<Props>`
+const TopMenuContentText = styled.div<Props>`
   font-size: ${(props) => props.fontSize};
   margin-left: ${(props) => props.marginLeft};
   margin-right:  ${(props) => props.marginRight};
   text-overflow: ellipsis;
   white-space: nowrap;
-  user-select:${(props) => props.userSelect};
+  user-select:none;
   cursor: ${(props) => props.cursor};
   &:hover {
     ${(props) => props.underline}
   }
 `;
 
-export default Titles;
+export default TopMenuContentText;

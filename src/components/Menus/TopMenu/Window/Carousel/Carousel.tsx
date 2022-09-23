@@ -37,7 +37,6 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
           fontSize="18px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
         >
@@ -64,7 +63,6 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
           fontSize="18px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
         >

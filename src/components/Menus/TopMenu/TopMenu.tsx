@@ -26,10 +26,9 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
       <Row justifyContent="space-between" margin="0 40px">
         <ThemeSwitch changeTheme={props.changeTheme}></ThemeSwitch>
         <TopMenuContentText
-          fontSize="24px"
+          fontSize="30px"
           underline=""
           cursor=""
-          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
         >
@@ -41,7 +40,6 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
           fontSize="15px"
           underline=""
           cursor=""
-          userSelect="none"
           marginLeft="20px"
           marginRight="-20px"
         >
@@ -66,7 +64,6 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
           fontSize="15px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
           onClick={() => onHelpClick()}
@@ -77,7 +74,6 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
           fontSize="15px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
           onClick={() => props.onTeamClick()}
@@ -88,7 +84,6 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
           fontSize="15px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
           onClick={() => onAboutClick()}
@@ -99,7 +94,6 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
           fontSize="15px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
           onClick={() => onAboutClick()}

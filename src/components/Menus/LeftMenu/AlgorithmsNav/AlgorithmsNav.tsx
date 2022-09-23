@@ -2,11 +2,11 @@
 import React, { ReactElement, useState } from "react";
 import Dropdown from "../../../Common/Dropdown/Dropdown";
 import Row from "../../../Common/Row";
-import StyledButton from "../../../Tree/CreateEdgeModal/StyledButton";
-import LeftMenuContentText from "../LeftMenuContentText";
+import LeftMenuBottomContentText from "../ContentText/LeftMenuBottomContentText";
+import LeftMenuContentText from "../ContentText/LeftMenuContentText";
 import AlgorithmsNavContainer from "./AlgorithmsNavContainer";
 import Arrow from "./Arrow";
-import ClearButtonContainer from "./NodeOptions/ClearButtonContainer";
+import ButtonContainer from "./NodeOptions/ButtonContainer";
 import OptionButton from "./NodeOptions/OptionButton";
 import {
   AddIcon,
@@ -39,7 +39,7 @@ const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
       </ToggleButton>
 
       <Row justifyContent="space-evenly" margin="10px 0px">
-        <LeftMenuContentText>Node options</LeftMenuContentText>
+        <LeftMenuContentText fontSize="22px">Node options</LeftMenuContentText>
       </Row>
 
       <Row justifyContent="space-evenly" margin="20px 0px">
@@ -66,21 +66,13 @@ const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
       </Row>
 
       <Row justifyContent="space-evenly" margin="10px 0px">
-        <ClearButtonContainer
-          onClick={() => {
-            props.clearCanvas();
-          }}
-        >
-          <LeftMenuContentText>Clear canvas</LeftMenuContentText>
-        </ClearButtonContainer>
+        <LeftMenuContentText fontSize="22px">
+          Create undirected edge
+        </LeftMenuContentText>
       </Row>
 
-      <Row justifyContent="space-evenly" margin="10px 0px">
-        <LeftMenuContentText>Create undirected edge</LeftMenuContentText>
-      </Row>
-
-      <Row justifyContent="space-between">
-        <LeftMenuContentText>From</LeftMenuContentText>
+      <Row justifyContent="space-between" margin="0px 20px">
+        <LeftMenuContentText fontSize="15px">From</LeftMenuContentText>
         <Dropdown
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
@@ -88,7 +80,7 @@ const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
           selectedTile={firstNode}
           setSelectedTile={setFirstNode}
         />
-        <LeftMenuContentText>To</LeftMenuContentText>
+        <LeftMenuContentText fontSize="15px">To</LeftMenuContentText>
         <Dropdown
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
@@ -98,13 +90,29 @@ const AlgorithmsNav: React.FC<Props> = (props: Props): ReactElement => {
         />
       </Row>
 
-      <StyledButton
-        onClick={() => {
-          props.onAddEdge(firstNode, secondNode);
-        }}
-      >
-        Add
-      </StyledButton>
+      <Row justifyContent="space-evenly" margin="10px 0px">
+        <ButtonContainer
+          onClick={() => {
+            props.onAddEdge(firstNode, secondNode);
+          }}
+        >
+          <LeftMenuBottomContentText fontSize="16px">
+            Add undirected edge
+          </LeftMenuBottomContentText>
+        </ButtonContainer>
+      </Row>
+
+      <Row justifyContent="space-evenly" margin="10px 0px">
+        <ButtonContainer
+          onClick={() => {
+            props.clearCanvas();
+          }}
+        >
+          <LeftMenuBottomContentText fontSize="16px">
+            Clear canvas
+          </LeftMenuBottomContentText>
+        </ButtonContainer>
+      </Row>
     </AlgorithmsNavContainer>
   );
 };

@@ -9,7 +9,7 @@ const ClearButton = styled.div`
       : themes.dark.navbar.background};
   color: white;
   height: 30px;
-  width: 180px;
+  width: 220px;
   font-size: 18px;
   margin: 10px 30px;
   display: flex;
