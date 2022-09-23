@@ -11,7 +11,7 @@ import Dropdown from '../../Common/Dropdown/Dropdown';
 
 
 interface Props {
-  directed: boolean;
+  
   isVisible: boolean;
   onExit: Function;
   onAddEdge: Function;
@@ -27,7 +27,7 @@ const CreateEdgeModal = (props: Props) => {
       <div>
         <StyledEdgePrompt>
           <TitleText>
-            Create {props.directed ? 'directed' : 'undirected'} edge
+            Create undirected edge
           </TitleText>
           <Row justifyContent="space-between">
             <ContentText>From</ContentText>

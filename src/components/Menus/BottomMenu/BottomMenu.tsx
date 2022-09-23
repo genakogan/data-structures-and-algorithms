@@ -18,7 +18,7 @@ import StepBackControl from "./MoveControl/StepBackControl";
 import SkipBackControl from "./MoveControl/SkipBackControl";
 import Slider from "../../Common/Slider";
 import Row from "../../Common/Row";
-import Titles from "../../Common/Titles";
+import BottomMenuContentText from "./BottomMenuContentText";
 
 interface Props {
   handlePlayVisualize: Function;
@@ -50,7 +50,7 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
           />
         </Slider>
 
-        <Titles
+        <BottomMenuContentText
           fontSize="15px"
           underline=""
           cursor=""
@@ -59,17 +59,17 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
           marginRight="20px"
         >
           {props.visualizationSpeed+"x"}
-        </Titles>
-        <Titles
+        </BottomMenuContentText>
+        <BottomMenuContentText
           fontSize="15px"
           underline=""
           cursor=""
-          userSelect=""
+          userSelect="none"
           marginLeft="0px"
           marginRight="20px"
         >
           Speed
-        </Titles>
+        </BottomMenuContentText>
 
         <Slider width="300px">
           <input
@@ -81,16 +81,16 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
           />
         </Slider>
 
-        <Titles
+        <BottomMenuContentText
           fontSize="15px"
           underline=""
           cursor=""
-          userSelect=""
+          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
         >
           Steps
-        </Titles>
+        </BottomMenuContentText>
       </Row>
 
       {/*move control buttons*/}

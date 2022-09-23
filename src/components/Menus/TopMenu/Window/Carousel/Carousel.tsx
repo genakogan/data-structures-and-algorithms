@@ -1,7 +1,7 @@
 // Genady Kogan
 import { ReactElement, useState } from "react";
 import Row from "../../../../Common/Row";
-import Titles from "../../../../Common/Titles";
+import TopMenuContentText from "../../TopMenuContentText";
 import Column from "./Column";
 import Container from "./Container";
 import ControlIndecators from "./ControlIndecators/ControlIndecators";
@@ -32,7 +32,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <Container>
       <Row justifyContent="space-between" margin="475px 0px">
-        <Titles
+        <TopMenuContentText
           onClick={() => previous()}
           fontSize="18px"
           underline="text-decoration: underline"
@@ -42,7 +42,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
           marginRight="20px"
         >
           Prev
-        </Titles>
+        </TopMenuContentText>
       </Row>
 
       <Column width="100%">
@@ -59,7 +59,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
       </Column>
 
       <Row justifyContent="space-between" margin="475px 0px">
-        <Titles
+        <TopMenuContentText
           onClick={() => next()}
           fontSize="18px"
           underline="text-decoration: underline"
@@ -69,7 +69,7 @@ const Carousel: React.FC<Props> = (props: Props): ReactElement => {
           marginRight="20px"
         >
           Next
-        </Titles>
+        </TopMenuContentText>
       </Row>
     </Container>
   );

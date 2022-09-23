@@ -2,9 +2,9 @@
 import React, { ReactElement } from "react";
 import TopMenuContainer from "./TopMenuContainer";
 import Row from "../../Common/Row";
-import Titles from "../../Common/Titles";
 import ThemeSwitch from "./ThemeSwitch/ThemeSwitch";
 import Slider from "../../Common/Slider";
+import TopMenuContentText from "./TopMenuContentText";
 
 interface TopMenuProps {
   changeTheme: Function;
@@ -25,7 +25,7 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
     <TopMenuContainer>
       <Row justifyContent="space-between" margin="0 40px">
         <ThemeSwitch changeTheme={props.changeTheme}></ThemeSwitch>
-        <Titles
+        <TopMenuContentText
           fontSize="24px"
           underline=""
           cursor=""
@@ -34,19 +34,19 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
           marginRight="20px"
         >
           AVDS
-        </Titles>
+        </TopMenuContentText>
       </Row>
       <Row justifyContent="space-between" margin="0 35px">
-        <Titles
+        <TopMenuContentText
           fontSize="15px"
           underline=""
           cursor=""
-          userSelect=""
+          userSelect="none"
           marginLeft="20px"
           marginRight="-20px"
         >
           Zoom
-        </Titles>
+        </TopMenuContentText>
 
         <Row justifyContent="space-between" margin="0px 30px">
           <Slider width="200px">
@@ -62,50 +62,50 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
             />
           </Slider>
         </Row>
-        <Titles
+        <TopMenuContentText
           fontSize="15px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect=""
+          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
           onClick={() => onHelpClick()}
         >
           Help
-        </Titles>
-        <Titles
+        </TopMenuContentText>
+        <TopMenuContentText
           fontSize="15px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect=""
+          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
           onClick={() => props.onTeamClick()}
         >
           Team
-        </Titles>
-        <Titles
+        </TopMenuContentText>
+        <TopMenuContentText
           fontSize="15px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect=""
+          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
           onClick={() => onAboutClick()}
         >
           About
-        </Titles>
-        <Titles
+        </TopMenuContentText>
+        <TopMenuContentText
           fontSize="15px"
           underline="text-decoration: underline"
           cursor="pointer"
-          userSelect=""
+          userSelect="none"
           marginLeft="20px"
           marginRight="20px"
           onClick={() => onAboutClick()}
         >
           Sign in
-        </Titles>
+        </TopMenuContentText>
       </Row>
     </TopMenuContainer>
   );
