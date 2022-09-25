@@ -12,12 +12,14 @@ interface Props {
   onAddEdge: Function;
   onDirectedEdgeClick: VoidFunction;
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
+  onNodeDelete: (node: number) => void;
 }
 
 const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <LeftMenuContainer>
       <NodeEdgeNav
+        onNodeDelete = {props.onNodeDelete}
         onDirectedEdgeClick = {props.onDirectedEdgeClick}
         onAddEdge = {props.onAddEdge}
         adjacencyList = {props.adjacencyList}

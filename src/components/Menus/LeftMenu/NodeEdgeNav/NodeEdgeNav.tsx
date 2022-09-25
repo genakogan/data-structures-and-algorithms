@@ -25,6 +25,7 @@ interface Props {
   onAddEdge: Function;
   onDirectedEdgeClick: VoidFunction;
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
+  onNodeDelete: (node: number) => void;
 }
 
 const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -37,10 +38,13 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
   };
   return (
     <NodeEdgeNavContainer isVisible={isVisible}>
+
+      {/* toggle button */}
       <ToggleButton isVisible={isVisible} onClick={() => toggleVisibility()}>
         <Arrow isVisible={isVisible}></Arrow>
       </ToggleButton>
 
+      {/* node area */}
       <Row justifyContent="space-evenly" margin="10px 0px">
         <LeftMenuContentText fontSize="22px">Node options</LeftMenuContentText>
       </Row>
@@ -50,6 +54,41 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           <AddIcon></AddIcon>
         </OptionButton>
 
+        <OptionButton tooltipContent="Delete node" onClick={() => {}}>
+          <DeleteIcon></DeleteIcon>
+        </OptionButton>
+      </Row>
+
+      <Row justifyContent="space-between" margin="0px 20px">
+        <LeftMenuContentText fontSize="15px">Delete</LeftMenuContentText>
+        <Dropdown
+          content={props.adjacencyList.map(
+            (_, index: number) => `${index + 1}`
+          )}
+          selectedTile={firstNode}
+          setSelectedTile={setFirstNode}
+        />
+        <LeftMenuContentText fontSize="15px">node</LeftMenuContentText>
+      </Row>
+
+      <Row justifyContent="space-evenly" margin="10px 0px">
+        <ButtonContainer
+          onClick={() => {
+            props.onNodeDelete(firstNode);
+          }}
+        >
+          <LeftMenuBottomContentText fontSize="16px">
+            Delete
+          </LeftMenuBottomContentText>
+        </ButtonContainer>
+      </Row>
+
+      {/* edge area */}
+      <Row justifyContent="space-evenly" margin="10px 0px">
+        <LeftMenuContentText fontSize="22px">Edge options</LeftMenuContentText>
+      </Row>
+
+      <Row justifyContent="space-evenly" margin="10px 0px">
         <OptionButton
           tooltipContent="Add undirected edge"
           onClick={() => {
@@ -67,16 +106,6 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
         >
           <DirectedIcon></DirectedIcon>
         </OptionButton>
-
-        <OptionButton tooltipContent="Delete edge" onClick={() => {}}>
-          <DeleteIcon></DeleteIcon>
-        </OptionButton>
-      </Row>
-
-      <Row justifyContent="space-evenly" margin="10px 0px">
-        <LeftMenuContentText fontSize="22px">
-          Create undirected edge
-        </LeftMenuContentText>
       </Row>
 
       <Row justifyContent="space-between" margin="0px 20px">
@@ -129,7 +158,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           }}
         >
           <LeftMenuBottomContentText fontSize="16px">
-           Delete edge
+            Delete edge
           </LeftMenuBottomContentText>
         </ButtonContainer>
       </Row>

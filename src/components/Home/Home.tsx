@@ -173,6 +173,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <RightMenu></RightMenu>
 
       <LeftMenu
+        onNodeDelete={deleteNode}
         onEdgeDelete={deleteEdge}
         connectNodes = {connectNodes}
         onAddEdge = {onCreateUndirectedEdge}
