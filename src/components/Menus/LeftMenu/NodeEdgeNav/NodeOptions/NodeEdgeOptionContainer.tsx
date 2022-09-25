@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import themes from '../../../../../themes';
 
 
-const Container = styled.div`
+const NodeEdgeOptionContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -18,4 +18,4 @@ const Container = styled.div`
   cursor: pointer;
 `;
 
-export default Container;
+export default NodeEdgeOptionContainer;

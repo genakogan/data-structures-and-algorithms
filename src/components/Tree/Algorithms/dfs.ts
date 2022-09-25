@@ -39,4 +39,5 @@ const dfsWrapper = async (
 
   await dfs(graph, node, setVisited, visualizationSpeed, setCurrentEdge, -1);
 };
+
 export default dfsWrapper;

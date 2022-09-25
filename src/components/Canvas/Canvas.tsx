@@ -9,9 +9,10 @@ interface Props {
   adjacencyList: Array<Array<number>>;
   nodeKeys: Array<string>;
   zoomPercentage: number;
-  
   visited: Array<number>;
   currentEdge: [number, number];
+  onEdgeDelete: (firstNode: number, secondNode: number) => void;
+  onNodeDelete: (node: number) => void;
 }
 
 const Canvas: React.FC<Props> = (props: Props): ReactElement => {

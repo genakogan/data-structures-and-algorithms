@@ -4,7 +4,7 @@ interface Props {
   isVisible: boolean;
 }
 
-const AlgorithmsNavContainer = styled.div<Props>`
+const NodeEdgeNavContainer = styled.div<Props>`
   position: fixed;
   height: 100%;
   width: 300px;
@@ -18,4 +18,4 @@ const AlgorithmsNavContainer = styled.div<Props>`
   transition-property: background-color, left;
 `;
 
-export default AlgorithmsNavContainer;
+export default NodeEdgeNavContainer;

@@ -1,6 +1,6 @@
 // Genady Kogan
 import React, { ReactElement } from "react";
-import Modal from "./Modal/Modal";
+import Modal from "../../../Common/Modal/Modal";
 import Carousel from "./Carousel/Carousel";
 
 interface Props {

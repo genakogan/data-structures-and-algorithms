@@ -85,13 +85,13 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const onCreateUndirectedEdge = (firstNode: number, secondNode: number) => {
-    connectNodes(firstNode, secondNode);
+    connectNodes(firstNode, secondNode,isConnectingDirected);
   };
 
   const connectNodes = (
     firstNode: number,
     secondNode: number,
-  
+    directed: boolean
   ) => {
     if (firstNode === undefined || secondNode === undefined) return;
     if (firstNode === secondNode) return;
@@ -103,20 +103,63 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (adjacencyList[firstNode].includes(secondNode)) return;
     if (adjacencyList[secondNode].includes(firstNode)) return;
 
-    addNewEdge(firstNode, secondNode);
+    addNewEdge(firstNode, secondNode, directed);
   };
 
   const addNewEdge = (
     firstNode: number,
     secondNode: number,
-    
+    isDirected: boolean
   ) => {
     const newAdjacencyList = adjacencyList.slice();
     newAdjacencyList[firstNode].push(secondNode);
-    newAdjacencyList[secondNode].push(firstNode);
+    if (!isDirected) newAdjacencyList[secondNode].push(firstNode);
     setAdjacencyList(newAdjacencyList);
   };
+  const deleteNode = (node: number) => {
+   
+  
+    let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
+      
+      //remove node from neighbours and decrement all nodes bigger than the
+      //removed node
+      return val
+        .filter((neighbour: number) => node !== neighbour)
+        .map((current: number) => {
+          if (current >= node) return current - 1;
+          
+          return current;
+        });
+    });
+    
+    newAdjacencyList = newAdjacencyList.filter(
+      (_, index: number) => index !== node
+    );
 
+    const newNodeKeys = nodeKeys.filter((_, index: number) => index !== node);
+
+    setNodeKeys(newNodeKeys);
+    setAdjacencyList(newAdjacencyList);
+    resetGraphState();
+  };
+
+  const resetGraphState = () => {
+    setVisited([]);
+    setCurrentEdge([-1, -1]);
+    
+  };
+  const deleteEdge = (firstNode: number, secondNode: number) => {
+    const newAdjacencyList = adjacencyList.slice();
+    newAdjacencyList[firstNode] = newAdjacencyList[firstNode].filter(
+      (val: number) => val !== secondNode
+    );
+    newAdjacencyList[secondNode] = newAdjacencyList[secondNode].filter(
+      (val: number) => val !== firstNode
+    );
+
+    setAdjacencyList(newAdjacencyList);
+    resetGraphState();
+  };
   
   return (
     <div>
@@ -130,14 +173,18 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <RightMenu></RightMenu>
 
       <LeftMenu
+        connectNodes = {connectNodes}
         onAddEdge = {onCreateUndirectedEdge}
         adjacencyList={adjacencyList}
         addNewNode={addNewNode}
         clearCanvas={clearCanvas}
         onUndirectedEdgeClick={() => setIsConnectingUndirected(true)}
+        onDirectedEdgeClick={() => setIsConnectingDirected(true)}
       ></LeftMenu>
 
       <Canvas
+        onNodeDelete={deleteNode}
+        onEdgeDelete={deleteEdge}
         visited={visited}
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}
@@ -154,6 +201,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       ></BottomMenu>
 
       <CreateEdgeModal
+        directed={isConnectingDirected}
         isVisible={isConnectingDirected || isConnectingUndirected}
         onExit={handleEdgeModalExit}
         onAddEdge={onCreateUndirectedEdge}

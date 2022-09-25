@@ -1,6 +1,6 @@
 // Genady Kogan
 import React, { ReactElement } from "react";
-import NodeOptionContainer from "./NodeOptionContainer";
+import NodeOptionContainer from "./NodeEdgeOptionContainer";
 
 interface Props {
   onClick: Function;
