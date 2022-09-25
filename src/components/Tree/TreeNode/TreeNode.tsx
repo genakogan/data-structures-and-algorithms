@@ -102,6 +102,42 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
     window.addEventListener('resize', handleWindowResize);
     return () => window.removeEventListener('resize', handleWindowResize);
   }, [nodeRef, canvasRef, position]);
+
+ //side effect for centering position on initial render
+ useEffect(() => {
+  if (position.top !== -100) return;
+  if (canvasRef.current && nodeRef.current) {
+    const canvasWidth = canvasRef.current.offsetWidth;
+    const canvasHeight = canvasRef.current.offsetHeight;
+    const nodeWidth: number = +nodeRef.current.offsetWidth;
+    setPosition({
+      left: (canvasWidth - nodeWidth) / 2,
+      top: (canvasHeight - nodeWidth) / 2,
+    });
+  }
+}, [canvasRef, nodeRef, setPosition, position]);
+
+ //side effect for handling out of boundries when zooming in and out
+ useEffect(() => {
+  const event = new CustomEvent<Position>('resize', {});
+  window.dispatchEvent(event);
+}, [props.zoomPercentage]);
+
+  //side effect for fire node position to connected edges
+  useEffect(() => {
+    if (props.edgeRef?.current && nodeRef.current) {
+      const halfNodeWidth: number = +nodeRef.current.offsetWidth / 2;
+      const edgePosition: Position = {
+        top: position.top + halfNodeWidth,
+        left: position.left + halfNodeWidth,
+      };
+      const event = new CustomEvent<Position>('position', {
+        detail: edgePosition,
+      });
+      props.edgeRef.current.dispatchEvent(event);
+    }
+  });
+
   return (
     <TreeNodeContainer
       isActive={props.isActive}
