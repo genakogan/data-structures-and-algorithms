@@ -11,6 +11,7 @@ interface Props {
   adjacencyList: Array<Array<number>>;
   onAddEdge: Function;
   onDirectedEdgeClick: VoidFunction;
+  onEdgeDelete: (firstNode: number, secondNode: number) => void;
 }
 
 const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
@@ -24,6 +25,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         connectNodes={props.connectNodes}
         clearCanvas={props.clearCanvas}
         onUndirectedEdgeClick = {props.onUndirectedEdgeClick}
+        onEdgeDelete = {props.onEdgeDelete}
       ></NodeEdgeNav>
       
     </LeftMenuContainer>

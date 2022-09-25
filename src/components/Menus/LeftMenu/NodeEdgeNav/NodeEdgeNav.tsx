@@ -24,6 +24,7 @@ interface Props {
   adjacencyList: Array<Array<number>>;
   onAddEdge: Function;
   onDirectedEdgeClick: VoidFunction;
+  onEdgeDelete: (firstNode: number, secondNode: number) => void;
 }
 
 const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -124,7 +125,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       <Row justifyContent="space-evenly" margin="10px 0px">
         <ButtonContainer
           onClick={() => {
-            props.connectNodes(firstNode, secondNode, true);
+            props.onEdgeDelete(firstNode, secondNode);
           }}
         >
           <LeftMenuBottomContentText fontSize="16px">
