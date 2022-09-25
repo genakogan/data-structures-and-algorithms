@@ -50,17 +50,26 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       </Row>
 
       <Row justifyContent="space-evenly" margin="20px 0px">
-        <OptionButton tooltipContent="Add node" onClick={props.addNewNode}>
+       {/*
+       <OptionButton tooltipContent="Add node" onClick={props.addNewNode}>
           <AddIcon></AddIcon>
         </OptionButton>
-
         <OptionButton tooltipContent="Delete node" onClick={() => {}}>
           <DeleteIcon></DeleteIcon>
         </OptionButton>
+        */}
+      <ButtonContainer
+          onClick={props.addNewNode}
+        >
+          <LeftMenuBottomContentText fontSize="16px">
+            Add new node
+          </LeftMenuBottomContentText>
+        </ButtonContainer>
+
       </Row>
 
-      <Row justifyContent="space-between" margin="0px 20px">
-        <LeftMenuContentText fontSize="15px">Delete</LeftMenuContentText>
+      <Row justifyContent="space-between" margin="0px 40px">
+        <LeftMenuContentText fontSize="15px">Nodes:</LeftMenuContentText>
         <Dropdown
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
@@ -68,7 +77,6 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           selectedTile={firstNode}
           setSelectedTile={setFirstNode}
         />
-        <LeftMenuContentText fontSize="15px">node</LeftMenuContentText>
       </Row>
 
       <Row justifyContent="space-evenly" margin="10px 0px">
@@ -78,7 +86,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           }}
         >
           <LeftMenuBottomContentText fontSize="16px">
-            Delete
+            Delete node
           </LeftMenuBottomContentText>
         </ButtonContainer>
       </Row>
@@ -88,6 +96,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
         <LeftMenuContentText fontSize="22px">Edge options</LeftMenuContentText>
       </Row>
 
+      {/*
       <Row justifyContent="space-evenly" margin="10px 0px">
         <OptionButton
           tooltipContent="Add undirected edge"
@@ -97,7 +106,6 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
         >
           <UndirectedIcon></UndirectedIcon>
         </OptionButton>
-
         <OptionButton
           tooltipContent="Add directed edge"
           onClick={() => {
@@ -107,6 +115,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           <DirectedIcon></DirectedIcon>
         </OptionButton>
       </Row>
+      */}
 
       <Row justifyContent="space-between" margin="0px 20px">
         <LeftMenuContentText fontSize="15px">From</LeftMenuContentText>
@@ -117,7 +126,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           selectedTile={firstNode}
           setSelectedTile={setFirstNode}
         />
-        <LeftMenuContentText fontSize="15px">To</LeftMenuContentText>
+        <LeftMenuContentText fontSize="15px">to</LeftMenuContentText>
         <Dropdown
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`

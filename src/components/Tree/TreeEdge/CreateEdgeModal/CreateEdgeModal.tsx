@@ -5,9 +5,9 @@ import ContentText from './ContentText';
 import StyledEdgePrompt from './StyledEdgePrompt';
 import StyledButton from './StyledButton';
 import StyledActionContainer from './StyledActionContainer';
-import Modal from '../../Common/Modal/Modal';
-import Row from '../../Common/Row';
-import Dropdown from '../../Common/Dropdown/Dropdown';
+import Modal from '../../../Common/Modal/Modal';
+import Row from '../../../Common/Row';
+import Dropdown from '../../../Common/Dropdown/Dropdown';
 
 
 interface Props {

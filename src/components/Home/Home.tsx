@@ -7,7 +7,7 @@ import Canvas from "../Canvas/Canvas";
 import RightMenu from "../Menus/RightMenu/RightMenu";
 import { v4 as uuidv4 } from "uuid";
 import Algorithms from "../Tree/Algorithms";
-import CreateEdgeModal from "../Tree/CreateEdgeModal/CreateEdgeModal";
+import CreateEdgeModal from "../Tree/TreeEdge/CreateEdgeModal/CreateEdgeModal";
 
 interface HomeProps {
   changeTheme: Function;
@@ -60,6 +60,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setCurrentEdge([-1, -1]);
   };
   const handlePlayVisualize = async () => {
+    if (adjacencyList.length === 0) return;
     if (playVisualizing) return;
     setPlayVisualizing(true);
     setVisited([]);
