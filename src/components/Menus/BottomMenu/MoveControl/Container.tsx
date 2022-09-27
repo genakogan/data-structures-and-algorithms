@@ -23,14 +23,14 @@ const Container = styled.div<Props>`
   margin-right: 20px;
   margin-bottom: 20px;
   background-color: ${(props) =>
-    props.isVisualizing ? 'red' : props.theme.navbar.background};
+    props.isVisualizing ? 'white' : props.theme.navbar.background};
   color: white;
   transition-duration: 0.5s;
   user-select: none;
   cursor: pointer;
 
- /* &:hover {
-    border-radius: 30px;
+ /*&:hover {
+  border-radius: 30px;
   width: 60px;
   height: 60px;
   border-top: 1px solid red;
@@ -39,6 +39,7 @@ const Container = styled.div<Props>`
   border-left: 1px solid pink;
   transform: rotate(45deg)
   }*/
+  
 `;
 
 export default Container;

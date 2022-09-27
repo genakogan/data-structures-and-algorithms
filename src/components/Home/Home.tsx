@@ -6,8 +6,10 @@ import TopMenu from "../Menus/TopMenu/TopMenu";
 import Canvas from "../Canvas/Canvas";
 import RightMenu from "../Menus/RightMenu/RightMenu";
 import { v4 as uuidv4 } from "uuid";
-import Algorithms from "../Tree/Algorithms";
+
 import CreateEdgeModal from "../Tree/TreeEdge/CreateEdgeModal/CreateEdgeModal";
+import Algorithms from "../../models/Algorithms";
+import algorithms from "../Tree/Algorithms";
 
 interface HomeProps {
   changeTheme: Function;
@@ -18,8 +20,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [zoomPercentage, setZoomPercentage] = useState<number>(1);
   const [adjacencyList, setAdjacencyList] = useState<Array<Array<number>>>([]);
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
+  const [isPlayVisualizing, setPlayVisualizing] = useState<boolean>(false);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
-  const [playVisualizing, setPlayVisualizing] = useState<boolean>(false);
+  
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
@@ -28,6 +31,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     useState<boolean>(false);
   const [isConnectingDirected, setIsConnectingDirected] =
     useState<boolean>(false);
+
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
+    Algorithms.dfs
+  );
   const addNewNode = () => {
     /*
     The slice() method returns a shallow copy of a
@@ -61,17 +68,26 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
   const handlePlayVisualize = async () => {
     if (adjacencyList.length === 0) return;
-    if (playVisualizing) return;
+    if (isPlayVisualizing) return;
     setPlayVisualizing(true);
     setVisited([]);
     setCurrentEdge([-1, -1]);
-    await Algorithms.dfs(
-      adjacencyList,
-      startingNode,
-      setVisited,
-      visualizationSpeed,
-      setCurrentEdge
-    );
+
+    switch (
+      selectedAlgorithm 
+    ) {
+      case Algorithms.dfs:
+        await algorithms.dfs(
+          adjacencyList,
+          startingNode,
+          setVisited,
+          visualizationSpeed,
+          setCurrentEdge
+        );
+        break;
+      default:
+        break;
+    }
     setPlayVisualizing(false);
   };
 
@@ -86,7 +102,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   const onCreateUndirectedEdge = (firstNode: number, secondNode: number) => {
-    connectNodes(firstNode, secondNode,isConnectingDirected);
+    connectNodes(firstNode, secondNode, isConnectingDirected);
   };
 
   const connectNodes = (
@@ -118,21 +134,18 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList(newAdjacencyList);
   };
   const deleteNode = (node: number) => {
-   
-  
     let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
-      
       //remove node from neighbours and decrement all nodes bigger than the
       //removed node
       return val
         .filter((neighbour: number) => node !== neighbour)
         .map((current: number) => {
           if (current >= node) return current - 1;
-          
+
           return current;
         });
     });
-    
+
     newAdjacencyList = newAdjacencyList.filter(
       (_, index: number) => index !== node
     );
@@ -147,7 +160,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const resetGraphState = () => {
     setVisited([]);
     setCurrentEdge([-1, -1]);
-    
   };
   const deleteEdge = (firstNode: number, secondNode: number) => {
     const newAdjacencyList = adjacencyList.slice();
@@ -161,7 +173,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList(newAdjacencyList);
     resetGraphState();
   };
-  
+
   return (
     <div>
       <TopMenu
@@ -176,13 +188,15 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <LeftMenu
         onNodeDelete={deleteNode}
         onEdgeDelete={deleteEdge}
-        connectNodes = {connectNodes}
-        onAddEdge = {onCreateUndirectedEdge}
+        connectNodes={connectNodes}
+        onAddEdge={onCreateUndirectedEdge}
         adjacencyList={adjacencyList}
         addNewNode={addNewNode}
         clearCanvas={clearCanvas}
         onUndirectedEdgeClick={() => setIsConnectingUndirected(true)}
         onDirectedEdgeClick={() => setIsConnectingDirected(true)}
+        setSelectedAlgorithm={setSelectedAlgorithm}
+        selectedAlgorithm={selectedAlgorithm}
       ></LeftMenu>
 
       <Canvas
@@ -198,7 +212,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <BottomMenu
         handlePlayVisualize={handlePlayVisualize}
         isVisualizing={isVisualizing}
-        playVisualizing={playVisualizing}
+        playVisualizing={isPlayVisualizing}
         visualizationSpeed={visualizationSpeed}
         setVisualizationSpeed={changeVisualizationSpeed}
       ></BottomMenu>

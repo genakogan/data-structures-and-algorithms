@@ -2,19 +2,20 @@
 import React, { ReactElement, useState } from "react";
 import Dropdown from "../../../Common/Dropdown/Dropdown";
 import Row from "../../../Common/Row";
-import LeftMenuBottomContentText from "../ContentText/LeftMenuBottomContentText";
-import LeftMenuContentText from "../ContentText/LeftMenuContentText";
-import Arrow from "./Arrow";
-import NodeEdgeNavContainer from "./NodeEdgeNavContainer";
-import ButtonContainer from "./NodeOptions/ButtonContainer";
-import OptionButton from "./NodeOptions/OptionButton";
-import {
+import LeftMenuBottomContentText from "../Common/ContentText/LeftMenuBottomContentText";
+import LeftMenuContentText from "../Common/ContentText/LeftMenuContentText";
+import Arrow from "../Common/Arrow";
+
+import ButtonContainer from "./NodeEdgeOptions/ButtonContainer";
+/*import OptionButton from "./NodeEdgeOptions/OptionButton";*/
+/*import {
   AddIcon,
   DeleteIcon,
   DirectedIcon,
   UndirectedIcon,
-} from "./NodeOptions/OptionIcons";
-import ToggleButton from "./ToggleButton";
+} from "./NodeEdgeOptions/OptionIcons";*/
+import ToggleButton from "../Common/ToggleButton";
+import Container from "../Common/Container";
 
 interface Props {
   addNewNode: () => void;
@@ -37,10 +38,10 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
     setIsVisible((prev) => !prev);
   };
   return (
-    <NodeEdgeNavContainer isVisible={isVisible}>
+    <Container isVisible={isVisible}>
 
       {/* toggle button */}
-      <ToggleButton isVisible={isVisible} onClick={() => toggleVisibility()}>
+      <ToggleButton top ="100px" isVisible={isVisible} onClick={() => toggleVisibility()}>
         <Arrow isVisible={isVisible}></Arrow>
       </ToggleButton>
 
@@ -183,7 +184,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           </LeftMenuBottomContentText>
         </ButtonContainer>
       </Row>
-    </NodeEdgeNavContainer>
+    </Container>
   );
 };
 
