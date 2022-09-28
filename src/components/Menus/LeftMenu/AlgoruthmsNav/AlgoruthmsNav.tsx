@@ -50,7 +50,7 @@ const AlgoruthmsNav: React.FC<Props> = (props: Props): ReactElement => {
       
       {/* selection of algorithms */}
       <Row justifyContent="center">
-        <Dropdown
+        <Dropdown  width = '170px'
           selectedTile={availableAlgorithms.indexOf(props.selectedAlgorithm)}
           setSelectedTile={setSelectedAlgorithm}
           content={availableAlgorithms}

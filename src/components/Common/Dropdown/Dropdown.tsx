@@ -1,5 +1,5 @@
 import React, {ReactElement, useState, useRef, useEffect} from 'react';
-import Container from './Container';
+import DropdownContainer from './DropdownContainer';
 import Arrow from './Arrow';
 import ContentContainer from './ContentContainer';
 import ContentTile from './ContentTile';
@@ -9,6 +9,7 @@ interface Props {
   content: Array<string>;
   selectedTile: number;
   setSelectedTile: Function;
+  width: string;
 }
 
 const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
@@ -38,7 +39,7 @@ const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
   }, [dropdownRef, isExpanded, setIsExpanded]);
 
   return (
-    <Container ref={dropdownRef} onClick={() => toggleDropdown()}>
+    <DropdownContainer width = {props.width} ref={dropdownRef} onClick={() => toggleDropdown()}>
       
       {/* show algorithm in algorithm window */}
       <div style={{marginLeft: '12px'}}>
@@ -62,7 +63,7 @@ const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
           );
         })}
       </ContentContainer>
-    </Container>
+    </DropdownContainer>
   );
 };
 

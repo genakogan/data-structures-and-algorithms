@@ -71,7 +71,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
 
       <Row justifyContent="space-between" margin="0px 40px">
         <LeftMenuContentText fontSize="15px">Nodes:</LeftMenuContentText>
-        <Dropdown
+        <Dropdown  width = '80px'
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
           )}
@@ -120,7 +120,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
 
       <Row justifyContent="space-between" margin="0px 20px">
         <LeftMenuContentText fontSize="15px">From</LeftMenuContentText>
-        <Dropdown
+        <Dropdown width = '80px'
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
           )}
@@ -128,7 +128,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           setSelectedTile={setFirstNode}
         />
         <LeftMenuContentText fontSize="15px">to</LeftMenuContentText>
-        <Dropdown
+        <Dropdown width = '80px'
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
           )}
