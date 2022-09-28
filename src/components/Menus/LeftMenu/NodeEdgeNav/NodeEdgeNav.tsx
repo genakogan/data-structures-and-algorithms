@@ -38,7 +38,8 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
     setIsVisible((prev) => !prev);
   };
   return (
-    <Container isVisible={isVisible}>
+    <Container visibility = 'visible'
+    isVisible={isVisible}>
 
       {/* toggle button */}
       <ToggleButton top ="100px" isVisible={isVisible} onClick={() => toggleVisibility()}>
