@@ -38,11 +38,13 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
     setIsVisible((prev) => !prev);
   };
   return (
-    <Container visibility = 'visible'
-    isVisible={isVisible}>
-
+    <Container  isVisible={isVisible}>
       {/* toggle button */}
-      <ToggleButton top ="100px" isVisible={isVisible} onClick={() => toggleVisibility()}>
+      <ToggleButton
+        top="100px"
+        isVisible={isVisible}
+        onClick={() => toggleVisibility()}
+      >
         <Arrow isVisible={isVisible}></Arrow>
       </ToggleButton>
 
@@ -52,7 +54,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       </Row>
 
       <Row justifyContent="space-evenly" margin="20px 0px">
-       {/*
+        {/*
        <OptionButton tooltipContent="Add node" onClick={props.addNewNode}>
           <AddIcon></AddIcon>
         </OptionButton>
@@ -60,19 +62,17 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           <DeleteIcon></DeleteIcon>
         </OptionButton>
         */}
-      <ButtonContainer
-          onClick={props.addNewNode}
-        >
+        <ButtonContainer onClick={props.addNewNode}>
           <LeftMenuBottomContentText fontSize="16px">
             Add new node
           </LeftMenuBottomContentText>
         </ButtonContainer>
-
       </Row>
 
       <Row justifyContent="space-between" margin="0px 40px">
         <LeftMenuContentText fontSize="15px">Nodes:</LeftMenuContentText>
-        <Dropdown  width = '80px'
+        <Dropdown
+          width="80px"
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
           )}
@@ -121,7 +121,8 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
 
       <Row justifyContent="space-between" margin="0px 20px">
         <LeftMenuContentText fontSize="15px">From</LeftMenuContentText>
-        <Dropdown width = '80px'
+        <Dropdown
+          width="80px"
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
           )}
@@ -129,7 +130,8 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           setSelectedTile={setFirstNode}
         />
         <LeftMenuContentText fontSize="15px">to</LeftMenuContentText>
-        <Dropdown width = '80px'
+        <Dropdown
+          width="80px"
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
           )}
