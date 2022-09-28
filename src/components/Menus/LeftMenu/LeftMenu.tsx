@@ -32,47 +32,44 @@ interface Props {
 
 const availableAlgorithms: Array<Algorithms> = [Algorithms.dfs];
 const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [isAlgorithmsVisible, setAlgorithmsIsVisible] = useState<boolean>(false);
+  const [isNodeEdgeNavVisible, setNodeEdgeNavVisible] =
+    useState<boolean>(false);
+  const [isAlgorithmsVisible, setAlgorithmsIsVisible] =
+    useState<boolean>(false);
   const [firstNode, setFirstNode] = useState<number>(0);
   const [secondNode, setSecondNode] = useState<number>(1);
-  const [AlgorithmsZIndex, setAlgorithmsZIndex] = useState<string>('visible');
-  const [NodeEdgeZIndex, setNodeEdgeZIndex] = useState<string>('visible');
-console.log(AlgorithmsZIndex);
-  
+
   const setSelectedAlgorithm = (val: number) => {
     const newSelectedAlgorithm = availableAlgorithms[val];
     props.setSelectedAlgorithm(newSelectedAlgorithm);
   };
 
-  const toggleVisibility = () => {
-    setIsVisible((prev) => !prev);
-    if (!isVisible){
-     setAlgorithmsZIndex('hidden')}
-     else{
-      setAlgorithmsZIndex('visible')
-     }
+  const toggleNodeEdgeVisibility = () => {
+    if (isAlgorithmsVisible) {
+      setAlgorithmsIsVisible((prev) => !prev);
+    }
+    setNodeEdgeNavVisible((prev) => !prev);
   };
-
-
 
   const toggleAlgoritmsVisibility = () => {
+    if (isNodeEdgeNavVisible) {
+      setNodeEdgeNavVisible((prev) => !prev);
+    }
     setAlgorithmsIsVisible((prev) => !prev);
   };
-  
 
   return (
     <LeftMenuContainer>
       {/* node and age area */}
-      <Container visibility={NodeEdgeZIndex} isVisible={isVisible}>
+      <ToggleButton
+        top="100px"
+        isVisible={isNodeEdgeNavVisible}
+        onClick={() => toggleNodeEdgeVisibility()}
+      >
+        <Arrow isVisible={isNodeEdgeNavVisible}></Arrow>
+      </ToggleButton>
+      <Container isVisible={isNodeEdgeNavVisible}>
         {/* toggle button */}
-        <ToggleButton visibility={NodeEdgeZIndex}
-          top="100px"
-          isVisible={isVisible}
-          onClick={() => toggleVisibility()}
-        >
-          <Arrow isVisible={isVisible}></Arrow>
-        </ToggleButton>
 
         {/* node area */}
         <Row justifyContent="space-evenly" margin="10px 0px">
@@ -220,15 +217,14 @@ console.log(AlgorithmsZIndex);
       </Container>
 
       {/* algorithms area */}
-      <Container visibility= {AlgorithmsZIndex} isVisible={isAlgorithmsVisible}>
-        <ToggleButton visibility={NodeEdgeZIndex}
-          top="150px"
-          isVisible={isAlgorithmsVisible}
-          onClick={() => toggleAlgoritmsVisibility()}
-        >
-          <Arrow isVisible={isAlgorithmsVisible}></Arrow>
-        </ToggleButton>
-
+      <ToggleButton
+        top="150px"
+        isVisible={isAlgorithmsVisible}
+        onClick={() => toggleAlgoritmsVisibility()}
+      >
+        <Arrow isVisible={isAlgorithmsVisible}></Arrow>
+      </ToggleButton>
+      <Container isVisible={isAlgorithmsVisible}>
         {/* Algorithm  */}
         <Row justifyContent="space-evenly" margin="10px 0px">
           <LeftMenuContentText fontSize="22px">Algorithm</LeftMenuContentText>

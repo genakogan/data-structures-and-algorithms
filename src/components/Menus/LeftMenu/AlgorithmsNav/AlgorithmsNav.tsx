@@ -29,7 +29,7 @@ const AlgoruthmsNav: React.FC<Props> = (props: Props): ReactElement => {
     setIsVisible((prev) => !prev);
   };
   return (
-    <Container visibility = 'visible' isVisible={isVisible}>
+    <Container isVisible={isVisible}>
       {/* toggle button */}
       <ToggleButton
         top="150px"
