@@ -20,6 +20,8 @@ const availableAlgorithms: Array<Algorithms> = [Algorithms.dfs];
 const AlgoruthmsNav: React.FC<Props> = (props: Props): ReactElement => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
+
+
   const setSelectedAlgorithm = (val: number) => {
     const newSelectedAlgorithm = availableAlgorithms[val];
     props.setSelectedAlgorithm(newSelectedAlgorithm);
@@ -30,6 +32,7 @@ const AlgoruthmsNav: React.FC<Props> = (props: Props): ReactElement => {
   };
   return (
     <Container isVisible={isVisible}>
+
       {/* toggle button */}
       <ToggleButton
         top="150px"
@@ -52,6 +55,11 @@ const AlgoruthmsNav: React.FC<Props> = (props: Props): ReactElement => {
           setSelectedTile={setSelectedAlgorithm}
           content={availableAlgorithms}
         ></Dropdown>
+      </Row>
+      <Row justifyContent="space-evenly" margin="10px 0px">
+        <LeftMenuContentText fontSize="18px">Starting node</LeftMenuContentText>
+        
+      
       </Row>
     </Container>
   );

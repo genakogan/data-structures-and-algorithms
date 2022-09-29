@@ -28,6 +28,8 @@ interface Props {
   /* algorithms */
   setSelectedAlgorithm: Function;
   selectedAlgorithm: Algorithms;
+  startingNode: number;
+  setStartingNode: Function;
 }
 
 const availableAlgorithms: Array<Algorithms> = [Algorithms.dfs];
@@ -38,7 +40,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
     useState<boolean>(false);
   const [firstNode, setFirstNode] = useState<number>(0);
   const [secondNode, setSecondNode] = useState<number>(1);
-
+  const adjacencyList = props.adjacencyList;
   const setSelectedAlgorithm = (val: number) => {
     const newSelectedAlgorithm = availableAlgorithms[val];
     props.setSelectedAlgorithm(newSelectedAlgorithm);
@@ -225,9 +227,10 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         <Arrow isVisible={isAlgorithmsVisible}></Arrow>
       </ToggleButton>
       <Container isVisible={isAlgorithmsVisible}>
+
         {/* Algorithm  */}
         <Row justifyContent="space-evenly" margin="10px 0px">
-          <LeftMenuContentText fontSize="22px">Algorithm</LeftMenuContentText>
+          <LeftMenuContentText fontSize="22px">Algorithms</LeftMenuContentText>
         </Row>
 
         {/* selection of algorithms */}
@@ -239,6 +242,19 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
             content={availableAlgorithms}
           ></Dropdown>
         </Row>
+
+        {/*  */}
+        <Row justifyContent="space-evenly" margin="10px 0px">
+          <LeftMenuContentText fontSize="15px">Starting node</LeftMenuContentText>
+          <Dropdown  width="80px"
+            selectedTile={props.startingNode} //
+            setSelectedTile={props.setStartingNode}
+            content={adjacencyList.map((val: Array<number>, index: number) => {
+              return (index + 1).toString();
+            })}
+          ></Dropdown>
+        </Row>
+
       </Container>
     </LeftMenuContainer>
   );
