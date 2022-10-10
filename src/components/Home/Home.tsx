@@ -197,6 +197,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         onDirectedEdgeClick={() => setIsConnectingDirected(true)}
         setSelectedAlgorithm={setSelectedAlgorithm}
         selectedAlgorithm={selectedAlgorithm}
+        startingNode={startingNode}
+        setStartingNode={setStartingNode} 
       ></LeftMenu>
 
       <Canvas
