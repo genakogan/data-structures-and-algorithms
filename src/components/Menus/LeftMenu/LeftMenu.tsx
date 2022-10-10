@@ -79,8 +79,8 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         isVisible={isNodeEdgeNavVisible}
         onClick={() => toggleNodeEdgeVisibility()}
       >
-        <ToolTip top='none' left='none' isVisible={isNodeEdgeTooltipVisible}>
-          {"Node-adge options"}
+        <ToolTip top='none' left='50px' isVisible={isNodeEdgeTooltipVisible}>
+          {"Node-edge"}
         </ToolTip>
         <Arrow isVisible={isNodeEdgeNavVisible}></Arrow>
       </ToggleButton>
@@ -240,7 +240,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         isVisible={isAlgorithmsVisible}
         onClick={() => toggleAlgoritmsVisibility()}
       >
-        <ToolTip top='none' left='none' isVisible={isAlgorithmsTooltipVisible}>{"Algorithms"}</ToolTip>
+        <ToolTip top='none' left='50px' isVisible={isAlgorithmsTooltipVisible}>{"Algorithms"}</ToolTip>
         <Arrow isVisible={isAlgorithmsVisible}></Arrow>
       </ToggleButton>
       <Container isVisible={isAlgorithmsVisible}>

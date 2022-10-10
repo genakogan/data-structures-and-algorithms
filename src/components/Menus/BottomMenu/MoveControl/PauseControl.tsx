@@ -1,4 +1,4 @@
-import React, { ReactElement,useState } from "react";
+import React, { ReactElement, useState } from "react";
 import ToolTip from "../../../Common/ToolTip";
 import Container from "./Container";
 
@@ -19,7 +19,9 @@ const PauseControl: React.FC<Props> = (props: Props): ReactElement => {
       onMouseEnter={() => setIsToolTipVisible(true)}
       onMouseLeave={() => setIsToolTipVisible(false)}
     >
-      <ToolTip top='-50px' left='none' isVisible={isToolTipVisible}>{props.tooltipContent}</ToolTip>
+      <ToolTip top="-35px" left="none" isVisible={isToolTipVisible}>
+        {props.tooltipContent}
+      </ToolTip>
       {props.children}
     </Container>
   );

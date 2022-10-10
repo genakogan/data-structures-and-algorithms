@@ -20,6 +20,7 @@ const Track = styled.div<Props>`
   transition-duration: 0.3s;
   transition-property: background-color;
   cursor: pointer;
+  justify-content: center;
 `;
 
 export default Track;

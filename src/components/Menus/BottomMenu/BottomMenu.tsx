@@ -98,31 +98,31 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
         </Row>
       {/*move control buttons*/}
       
-        <SkipBackControl  isVisualizing={props.isVisualizing}>
+        <SkipBackControl  isVisualizing={props.isVisualizing} tooltipContent="Skip back">
           <SkipBackIcon></SkipBackIcon>
         </SkipBackControl>
 
-        <StepBackControl isVisualizing={props.isVisualizing}>
+        <StepBackControl isVisualizing={props.isVisualizing} tooltipContent="Step back">
           <StepBackIcon></StepBackIcon>
         </StepBackControl>
 
-        <PlayControl isVisualizing={props.playVisualizing} onClick={props.handlePlayVisualize}>
+        <PlayControl isVisualizing={props.playVisualizing} onClick={props.handlePlayVisualize} tooltipContent="Play">
           <PlayIcon></PlayIcon>
         </PlayControl>
 
-        <PauseControl isVisualizing={props.isVisualizing}  tooltipContent="Pause"> 
+        <PauseControl isVisualizing={props.isVisualizing} tooltipContent="Pause"> 
           <PauseIcon></PauseIcon>
         </PauseControl>
 
-        <ReplayControl isVisualizing={props.isVisualizing}>
+        <ReplayControl isVisualizing={props.isVisualizing} tooltipContent="Replay">
           <ReplayIcon></ReplayIcon>
         </ReplayControl>
 
-        <StepForwardControl isVisualizing={props.isVisualizing}>
+        <StepForwardControl isVisualizing={props.isVisualizing} tooltipContent="Step forward">
           <StepForwardIcon></StepForwardIcon>
         </StepForwardControl>
 
-        <SkipForwardControl isVisualizing={props.isVisualizing}>
+        <SkipForwardControl isVisualizing={props.isVisualizing} tooltipContent="Skip forward">
           <SkipForwardIcon></SkipForwardIcon>
         </SkipForwardControl>
      
