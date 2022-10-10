@@ -15,7 +15,7 @@ const LeftMenuContainer = styled.div<Props>`
   right: 0;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${(props) => props.theme.navbar.background};
+  background-color: transparent;
   color: ${(props) => props.theme.navbar.foreground};
   overflow-x: hidden;
   transition-duration: 0.5s;

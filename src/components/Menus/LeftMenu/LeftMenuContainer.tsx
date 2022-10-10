@@ -7,15 +7,15 @@ interface Props {
 }
 
 const LeftMenuContainer = styled.div<Props>`
-
+  z-index: 3;
   position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   width: 50px;
-  z-index: 2;
-  background-color: ${(props) => props.theme.navbar.background};
+  
+  background-color: transparent;
   color: ${(props) => props.theme.navbar.foreground};
   overflow-x: hidden;
   transition-duration: 0.5s;

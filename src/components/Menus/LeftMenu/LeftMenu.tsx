@@ -12,6 +12,7 @@ import LeftMenuContentText from "./Common/ContentText/LeftMenuContentText";
 import Dropdown from "../../Common/Dropdown/Dropdown";
 import ButtonContainer from "./NodeEdgeNav/NodeEdgeOptions/ButtonContainer";
 import LeftMenuBottomContentText from "./Common/ContentText/LeftMenuBottomContentText";
+import ToolTip from "../../Common/ToolTip";
 
 interface Props {
   /* node and edge */
@@ -38,7 +39,11 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
     useState<boolean>(false);
   const [firstNode, setFirstNode] = useState<number>(0);
   const [secondNode, setSecondNode] = useState<number>(1);
-
+  /*tooltip visibility */
+  const [isNodeEdgeTooltipVisible, setIsNodeedgeToolTipVisible] =
+    useState<boolean>(false);
+  const [isAlgorithmsTooltipVisible, setIsAlgorithmsToolTipVisible] =
+    useState<boolean>(false);
   const setSelectedAlgorithm = (val: number) => {
     const newSelectedAlgorithm = availableAlgorithms[val];
     props.setSelectedAlgorithm(newSelectedAlgorithm);
@@ -60,12 +65,17 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <LeftMenuContainer>
-      {/* node and age area */}
+      {/* node and adge area */}
       <ToggleButton
+        onMouseEnter={() => setIsNodeedgeToolTipVisible(true)}
+        onMouseLeave={() => setIsNodeedgeToolTipVisible(false)}
         top="100px"
         isVisible={isNodeEdgeNavVisible}
         onClick={() => toggleNodeEdgeVisibility()}
       >
+        <ToolTip top='none' left='none' isVisible={isNodeEdgeTooltipVisible}>
+          {"Node-adge options"}
+        </ToolTip>
         <Arrow isVisible={isNodeEdgeNavVisible}></Arrow>
       </ToggleButton>
       <Container isVisible={isNodeEdgeNavVisible}>
@@ -218,10 +228,13 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
 
       {/* algorithms area */}
       <ToggleButton
+        onMouseEnter={() => setIsAlgorithmsToolTipVisible(true)}
+        onMouseLeave={() => setIsAlgorithmsToolTipVisible(false)}
         top="150px"
         isVisible={isAlgorithmsVisible}
         onClick={() => toggleAlgoritmsVisibility()}
       >
+        <ToolTip top='none' left='none' isVisible={isAlgorithmsTooltipVisible}>{"Algorithms"}</ToolTip>
         <Arrow isVisible={isAlgorithmsVisible}></Arrow>
       </ToggleButton>
       <Container isVisible={isAlgorithmsVisible}>

@@ -34,7 +34,7 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <BottomMenuContainer>
       <Row justifyContent="space-between" margin="0px 30px">
-        <Slider width="200px">
+        <Slider width="200px" paddingRight ='120px'>
           <input
             type="range"
             className="slider"
@@ -51,16 +51,18 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
         </Slider>
 
         <BottomMenuContentText
+          left='250px'
           fontSize="15px"
           underline=""
           cursor=""
           userSelect=""
-          marginLeft="20px"
+          marginLeft="20px" 
           marginRight="20px"
         >
           {props.visualizationSpeed+"x"}
         </BottomMenuContentText>
         <BottomMenuContentText
+          left='325px'
           fontSize="15px"
           underline=""
           cursor=""
@@ -71,7 +73,7 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
           Speed
         </BottomMenuContentText>
 
-        <Slider width="300px">
+        <Slider width="300px" paddingRight ='none'>
           <input
             type="range"
             className="slider"
@@ -82,6 +84,7 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
         </Slider>
 
         <BottomMenuContentText
+          left='700px'
           fontSize="15px"
           underline=""
           cursor=""
@@ -91,10 +94,10 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
         >
           Steps
         </BottomMenuContentText>
-      </Row>
-
+  
+        </Row>
       {/*move control buttons*/}
-      <Row justifyContent="space-between" margin="0px 30px">
+      
         <SkipBackControl  isVisualizing={props.isVisualizing}>
           <SkipBackIcon></SkipBackIcon>
         </SkipBackControl>
@@ -107,7 +110,7 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
           <PlayIcon></PlayIcon>
         </PlayControl>
 
-        <PauseControl isVisualizing={props.isVisualizing}>
+        <PauseControl isVisualizing={props.isVisualizing}  tooltipContent="Pause"> 
           <PauseIcon></PauseIcon>
         </PauseControl>
 
@@ -122,7 +125,7 @@ const BottomMenu: React.FC<Props> = (props: Props): ReactElement => {
         <SkipForwardControl isVisualizing={props.isVisualizing}>
           <SkipForwardIcon></SkipForwardIcon>
         </SkipForwardControl>
-      </Row>
+     
     </BottomMenuContainer>
   );
 };

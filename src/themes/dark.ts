@@ -11,8 +11,8 @@ const dark: Theme = {
     foreground: "#0D1929",
   },
   slider: {
-    background: 'white',
-    foreground: 'white',
+    background: 'red',
+    foreground: 'red',
   },
   canvas: {
     background: '#0D1929',

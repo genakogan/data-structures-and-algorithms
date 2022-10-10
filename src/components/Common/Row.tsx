@@ -10,6 +10,7 @@ const Row = styled.div<Props>`
   justify-content: ${(props) => props.justifyContent};
   align-items: center;
   margin: ${(props) => props.margin};
+ 
 `;
 
 export default Row;

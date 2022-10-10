@@ -15,7 +15,7 @@ const Container = styled.div<Props>`
   //padding-left: 20px;
   display: flex;
   justify-content: center;
-  font-size: 24px;
+  //font-size: 24px;
   align-items: center;
   width: 45px;
   height: 45px;

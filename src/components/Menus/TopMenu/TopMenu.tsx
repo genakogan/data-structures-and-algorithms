@@ -41,13 +41,13 @@ const TopMenu: React.FC<TopMenuProps> = (props: TopMenuProps): ReactElement => {
           underline=""
           cursor=""
           marginLeft="20px"
-          marginRight="-20px"
+          marginRight="-25px"
         >
           Zoom
         </TopMenuContentText>
 
         <Row justifyContent="space-between" margin="0px 30px">
-          <Slider width="200px">
+          <Slider width="200px" paddingRight ='10px'>
             <input
               type="range"
               className="slider"

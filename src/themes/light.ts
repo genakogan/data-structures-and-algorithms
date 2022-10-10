@@ -11,8 +11,8 @@ const light: Theme = {
     foreground: "white",
   },
   slider: {
-    background: 'white',
-    foreground: 'white',
+    background: 'red',
+    foreground: 'red',
   },
   canvas: {
     background: '#EFEFEF',

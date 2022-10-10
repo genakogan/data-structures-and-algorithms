@@ -7,6 +7,7 @@ interface Props {
   userSelect: string;
   marginLeft: string;
   marginRight: string;
+  left: string;
 }
 
 const Titles = styled.div<Props>`
@@ -20,6 +21,9 @@ const Titles = styled.div<Props>`
   &:hover {
     ${(props) => props.underline}
   }
+  position: absolute;
+  color:red;
+  left:${(props) => props.left};
 `;
 
 export default Titles;

@@ -4,6 +4,7 @@ import Theme from "../../models/Theme";
 interface Props {
   theme: Theme;
   width: string;
+  paddingRight:string;
 }
 
 const sliderTrackStyles = `
@@ -16,11 +17,12 @@ const sliderTrackStyles = `
 `;
 
 const Slider = styled.div<Props>`
-  z-index: 3;
+  z-index: 2;
   width: ${(props) => props.width};
   height: 25px;
   background-color: transparent;
-  border: none;
+  border: 20px;
+  padding-right: ${(props) => props.paddingRight};
   //transform: rotate(90deg);
   padding-left: 20px;
   input {
@@ -49,34 +51,35 @@ const Slider = styled.div<Props>`
       width: 16px;
       height: 16px;
       background: ${(props) => props.theme.slider.background};
-      border: 1px solid;
+      border: 3px solid;
       border-color: ${(props) => props.theme.slider.foreground};
       border-radius: 200px;
     }
 
     &::-ms-thumb {
-      margin: 0px; /*removes the margin to fix thumb and track allignment in chrome from ie*/
+        margin: 0px; /*removes the margin to fix thumb and track allignment in chrome from ie*/
     }
 
     &::-moz-focus-outer {
-      border: 0; /* removes dotted border when clicked on in firefox */
+        border: 0; /* removes dotted border when clicked on in firefox */
     }
 
-    &::-webkit-slider-runnable-track {
-      ${sliderTrackStyles}
-      background: ${(props) => props.theme.slider.background};
+    &::-webkit-slider-runnable-track{
+        ${sliderTrackStyles}
+        background: ${(props) => props.theme.slider.background};
     }
 
-    &::-moz-range-track {
-      ${sliderTrackStyles}
+    &::-moz-range-track{
+        ${sliderTrackStyles}
+
     }
 
     &::-ms-track {
-      ${sliderTrackStyles}
+        ${sliderTrackStyles}
     }
 
     &::-moz-range-progress {
-      background: ${(props) => props.theme.slider.background};
+         background: ${(props) => props.theme.slider.background};
     }
   }
 `;
