@@ -22,7 +22,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
   const [isPlayVisualizing, setPlayVisualizing] = useState<boolean>(false);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
-  
+
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
@@ -73,9 +73,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setVisited([]);
     setCurrentEdge([-1, -1]);
 
-    switch (
-      selectedAlgorithm 
-    ) {
+    switch (selectedAlgorithm) {
       case Algorithms.dfs:
         await algorithms.dfs(
           adjacencyList,
@@ -197,13 +195,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         onDirectedEdgeClick={() => setIsConnectingDirected(true)}
         setSelectedAlgorithm={setSelectedAlgorithm}
         selectedAlgorithm={selectedAlgorithm}
+        
         startingNode={startingNode}
-        setStartingNode={setStartingNode} 
+        setStartingNode={setStartingNode}
       ></LeftMenu>
 
       <Canvas
-        onNodeDelete={deleteNode}
-        onEdgeDelete={deleteEdge}
         visited={visited}
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}
