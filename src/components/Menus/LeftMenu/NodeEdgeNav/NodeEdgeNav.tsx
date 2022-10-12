@@ -29,26 +29,51 @@ interface Props {
 const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
   const [firstNode, setFirstNode] = useState<number>(0);
   const [secondNode, setSecondNode] = useState<number>(1);
-  /* input node */
-  const [term, setTerm] = useState<string>("");
-  const [treeList, setTreeList] = useState<Array<number>>([]);
 
-  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+  /* a user-selected node */
+  const [aUserSelectedTreeNode, addUserSelectedTreeNode] = useState<string>("");
+  const [userSelectedTreeNodeArray,_] = useState<Array<number>>([]);
 
-  // preventing the page from reloading
-  event.preventDefault();
+  const [dUserSelectedTreeNode, deleteUserSelectedTreeNode] = useState<string>("");
 
-  // insert new valuse
-  treeList.push(Number(term));
-  setTerm('');
+  /* add a user-selected node */
+  const submitAddForm = (event: React.FormEvent<HTMLFormElement>) => {
+    // preventing the page from reloading
+    event.preventDefault();
+
+    // insert new valuse
+    userSelectedTreeNodeArray.push(Number(aUserSelectedTreeNode));
+    addUserSelectedTreeNode("");
+    console.log(userSelectedTreeNodeArray);
   };
 
-  const handleChange=(e: { target: { value: string; }; }) =>{
-
+  const addNode = (e: { target: { value: string } }) => {
     // prevent typing non-numeric in input type number
-    const result = e.target.value.replace(/\D/g, '');
-    setTerm(result);
-  }
+    const result = e.target.value.replace(/\D/g, "");
+    addUserSelectedTreeNode(result);
+  };
+
+  /* delete a user-selected node */
+  const submitDeleteForm = (event: React.FormEvent<HTMLFormElement>) => {
+    // preventing the page from reloading
+    event.preventDefault();
+    deleteUserSelectedTreeNode("");
+    
+
+    const indexOfObject = userSelectedTreeNodeArray.findIndex((node) => {
+      return node === Number(dUserSelectedTreeNode);
+    });
+
+    if (indexOfObject !== -1) {
+      userSelectedTreeNodeArray.splice(indexOfObject, 1);
+    }
+    console.log(userSelectedTreeNodeArray);
+  };
+  const deleteNode = (e: { target: { value: string } }) => {
+    // prevent typing non-numeric in input type number
+    const result = e.target.value.replace(/\D/g, "");
+    deleteUserSelectedTreeNode(result);
+  };
 
   return (
     <Container isVisible={props.isVisible}>
@@ -88,24 +113,44 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       </Row>
 
       {/* add user node */}
-
-      <form onSubmit={submitForm}>
+      <form onSubmit={submitAddForm}>
         <Row justifyContent="space-between" margin="0px 10px">
           <SubmitButton
-            disabled ={!term}
+            disabled={!aUserSelectedTreeNode}
             type="submit"
             value="Add node"
             width="120px"
           ></SubmitButton>
 
           <Input
-           type='text'
-            placeholder="New node"
-            width='72px'
-            right='30px'
-            height='27px'
-            value={term}
-            onChange={handleChange}
+            type="text"
+            placeholder="add node"
+            width="72px"
+            right="30px"
+            height="27px"
+            value={aUserSelectedTreeNode}
+            onChange={addNode}
+          ></Input>
+        </Row>
+      </form>
+
+      <form onSubmit={submitDeleteForm}>
+        <Row justifyContent="space-between" margin="0px 10px">
+          <SubmitButton
+            disabled={!dUserSelectedTreeNode}
+            type="submit"
+            value="Delete node"
+            width="120px"
+          ></SubmitButton>
+
+          <Input
+            type="text"
+            placeholder="delete node"
+            width="72px"
+            right="30px"
+            height="27px"
+            value={dUserSelectedTreeNode}
+            onChange={deleteNode}
           ></Input>
         </Row>
       </form>

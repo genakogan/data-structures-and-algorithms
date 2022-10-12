@@ -12,7 +12,7 @@ interface Props{
 
 const SubmitButton = styled.input.attrs((props: Props)=>({ 
     type: 'submit',
-    value: 'Add node',
+    value: props.value,
     width: props.width,
     theme: props.theme,
   }))`

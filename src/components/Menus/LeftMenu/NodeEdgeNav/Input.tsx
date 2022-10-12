@@ -14,7 +14,7 @@ const Input = styled.input.attrs(props => ({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 15px;
+  font-size: 12px;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   right: ${(props) => props.right};
