@@ -1,5 +1,5 @@
 // Genady Kogan
-import React, { ReactElement, useState } from "react";
+import React, { ChangeEvent, ReactElement, useState } from "react";
 import Dropdown from "../../../Common/Dropdown/Dropdown";
 import Row from "../../../Common/Row";
 import LeftMenuBottomContentText from "../Common/ContentText/LeftMenuBottomContentText";
@@ -13,6 +13,8 @@ import ButtonContainer from "./NodeEdgeOptions/ButtonContainer";
   UndirectedIcon,
 } from "./NodeEdgeOptions/OptionIcons";*/
 import Container from "../Common/Container";
+import SubmitButton from "./SubmitButton";
+import Input from "./Input";
 
 interface Props {
   isVisible: boolean;
@@ -27,6 +29,26 @@ interface Props {
 const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
   const [firstNode, setFirstNode] = useState<number>(0);
   const [secondNode, setSecondNode] = useState<number>(1);
+  /* input node */
+  const [term, setTerm] = useState<string>("");
+  const [treeList, setTreeList] = useState<Array<number>>([]);
+
+  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+
+  // preventing the page from reloading
+  event.preventDefault();
+
+  // insert new valuse
+  treeList.push(Number(term));
+  setTerm('');
+  };
+
+  const handleChange=(e: { target: { value: string; }; }) =>{
+
+    // prevent typing non-numeric in input type number
+    const result = e.target.value.replace(/\D/g, '');
+    setTerm(result);
+  }
 
   return (
     <Container isVisible={props.isVisible}>
@@ -35,7 +57,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       </Row>
 
       <Row justifyContent="space-evenly" margin="20px 0px">
-        <ButtonContainer onClick={props.addNewNode}>
+        <ButtonContainer width="220px" onClick={props.addNewNode}>
           <LeftMenuBottomContentText fontSize="16px">
             Add new node
           </LeftMenuBottomContentText>
@@ -43,9 +65,19 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       </Row>
 
       {/* add new node */}
-      <Row justifyContent="space-between" margin="0px 40px">
-        <LeftMenuContentText fontSize="15px">Nodes:</LeftMenuContentText>
+      <Row justifyContent="space-between" margin="0px 10px">
+        <ButtonContainer
+          width="120px"
+          onClick={() => {
+            props.onNodeDelete(firstNode);
+          }}
+        >
+          <LeftMenuBottomContentText fontSize="16px">
+            Delete node
+          </LeftMenuBottomContentText>
+        </ButtonContainer>
         <Dropdown
+          right="30px"
           width="80px"
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
@@ -55,18 +87,28 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
         />
       </Row>
 
-      {/* delete node */}
-      <Row justifyContent="space-evenly" margin="10px 0px">
-        <ButtonContainer
-          onClick={() => {
-            props.onNodeDelete(firstNode);
-          }}
-        >
-          <LeftMenuBottomContentText fontSize="16px">
-            Delete node
-          </LeftMenuBottomContentText>
-        </ButtonContainer>
-      </Row>
+      {/* add user node */}
+
+      <form onSubmit={submitForm}>
+        <Row justifyContent="space-between" margin="0px 10px">
+          <SubmitButton
+            disabled ={!term}
+            type="submit"
+            value="Add node"
+            width="120px"
+          ></SubmitButton>
+
+          <Input
+           type='text'
+            placeholder="New node"
+            width='72px'
+            right='30px'
+            height='27px'
+            value={term}
+            onChange={handleChange}
+          ></Input>
+        </Row>
+      </form>
 
       {/* edge area*/}
       <Row justifyContent="space-evenly" margin="10px 0px">
@@ -77,6 +119,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       <Row justifyContent="space-between" margin="0px 20px">
         <LeftMenuContentText fontSize="15px">From</LeftMenuContentText>
         <Dropdown
+          right="none"
           width="80px"
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
@@ -86,6 +129,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
         />
         <LeftMenuContentText fontSize="15px">to</LeftMenuContentText>
         <Dropdown
+          right="none"
           width="80px"
           content={props.adjacencyList.map(
             (_, index: number) => `${index + 1}`
@@ -98,6 +142,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       {/* add undirected edge */}
       <Row justifyContent="space-evenly" margin="10px 0px">
         <ButtonContainer
+          width="220px"
           onClick={() => {
             props.connectNodes(firstNode, secondNode, false);
           }}
@@ -111,6 +156,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       {/* add directed edge */}
       <Row justifyContent="space-evenly" margin="10px 0px">
         <ButtonContainer
+          width="220px"
           onClick={() => {
             props.connectNodes(firstNode, secondNode, true);
           }}
@@ -124,6 +170,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       {/* Delete edge */}
       <Row justifyContent="space-evenly" margin="10px 0px">
         <ButtonContainer
+          width="220px"
           onClick={() => {
             props.onEdgeDelete(firstNode, secondNode);
           }}
@@ -137,6 +184,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       {/* Clear canvas */}
       <Row justifyContent="space-evenly" margin="10px 0px">
         <ButtonContainer
+          width="220px"
           onClick={() => {
             props.clearCanvas();
           }}
