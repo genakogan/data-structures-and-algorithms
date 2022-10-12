@@ -49,7 +49,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     All new array represent new node
     */
     newAdjacencyList.push([]);
-
+    console.log(newAdjacencyList);
     /* 
     All node have a unique key
     */

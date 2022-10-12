@@ -10,6 +10,7 @@ interface Props {
   selectedTile: number;
   setSelectedTile: Function;
   width: string;
+  right: string;
 }
 
 const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
@@ -39,7 +40,7 @@ const Dropdown: React.FC<Props> = (props: Props): ReactElement => {
   }, [dropdownRef, isExpanded, setIsExpanded]);
 
   return (
-    <DropdownContainer width = {props.width} ref={dropdownRef} onClick={() => toggleDropdown()}>
+    <DropdownContainer right={props.right} width = {props.width} ref={dropdownRef} onClick={() => toggleDropdown()}>
       
       {/* show algorithm in algorithm window */}
       <div style={{marginLeft: '12px'}}>

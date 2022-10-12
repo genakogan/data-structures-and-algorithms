@@ -56,6 +56,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
 
   return (
     <LeftMenuContainer>
+      
       {/* node-edge toggleButton*/}
       <ToggleButton
         onMouseEnter={() => setIsNodeedgeToolTipVisible(true)}

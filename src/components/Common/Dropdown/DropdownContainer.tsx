@@ -3,10 +3,12 @@ import themes from '../../../themes';
 
 interface Props{
   width: string;
+  right: string;
 }
 
 const Container = styled.div.attrs((props: Props)=>({
   width: props.width,
+  right: props.right
 }))`
   user-select: none;
   position: relative;
@@ -16,6 +18,7 @@ const Container = styled.div.attrs((props: Props)=>({
   font-size: 18px;
   width: ${(props) => props.width};
   height: 30px;
+  right: ${(props) => props.right};
   margin-top: 10px;
   margin-bottom: 10px;
   color: white;

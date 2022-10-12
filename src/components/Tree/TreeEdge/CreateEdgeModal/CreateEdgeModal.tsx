@@ -31,7 +31,7 @@ const CreateEdgeModal = (props: Props) => {
           </TitleText>
           <Row justifyContent="space-between">
             <ContentText>From</ContentText>
-            <Dropdown width = '80px'
+            <Dropdown right='none' width = '80px'
               content={props.adjacencyList.map(
                 (_, index: number) => `${index + 1}`
               )}
@@ -39,7 +39,7 @@ const CreateEdgeModal = (props: Props) => {
               setSelectedTile={setFirstNode}
             />
             <ContentText>To</ContentText>
-            <Dropdown width = '80px'
+            <Dropdown right='none' width = '80px'
               content={props.adjacencyList.map(
                 (_, index: number) => `${index + 1}`
               )}

@@ -31,6 +31,7 @@ const AlgoruthmsNav: React.FC<Props> = (props: Props): ReactElement => {
       {/* select of algorithms */}
       <Row justifyContent="center">
         <Dropdown
+        right='none'
           width="170px"
           selectedTile={availableAlgorithms.indexOf(props.selectedAlgorithm)}
           setSelectedTile={setSelectedAlgorithm}
@@ -42,6 +43,8 @@ const AlgoruthmsNav: React.FC<Props> = (props: Props): ReactElement => {
       <Row justifyContent="space-evenly" margin="10px 0px">
         <LeftMenuContentText fontSize="15px">Starting node</LeftMenuContentText>
         <Dropdown
+        
+        right='none'
           width="80px"
           selectedTile={props.selectedTile} //
           setSelectedTile={props.setSelectedTile}
