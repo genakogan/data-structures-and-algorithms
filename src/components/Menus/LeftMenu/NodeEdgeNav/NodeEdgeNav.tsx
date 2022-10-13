@@ -24,8 +24,8 @@ interface Props {
   connectNodes: Function;
   onEdgeDelete: Function;
   clearCanvas: () => void;
-
-  transferArrayData: (userSelectedTreeNodeArray: Array<number>) => void;
+ 
+  userSelectedNodesArrayData: (userSelectedTreeNodeArray: Array<number>) => void;
 }
 
 const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -47,7 +47,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
     // insert new valuse
     userSelectedTreeNodeArray.push(Number(aUserSelectedTreeNode));
     addUserSelectedTreeNode("");
-    props.transferArrayData(userSelectedTreeNodeArray);
+    props.userSelectedNodesArrayData(userSelectedTreeNodeArray);
     console.log(userSelectedTreeNodeArray);
   };
 

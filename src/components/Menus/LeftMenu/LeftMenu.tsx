@@ -24,8 +24,8 @@ interface Props {
   selectedAlgorithm: Algorithms;
   startingNode: number;
   setStartingNode: Function;
-
-  transferArrayData: (userSelectedTreeNodeArray: Array<number>)=>void;
+  //===================================================================
+  userSelectedNodesArrayData: (userSelectedTreeNode: Array<number>) => void;
 }
 const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
   const [isNodeEdgeNavVisible, setNodeEdgeNavVisible] =
@@ -46,17 +46,15 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
       setAlgorithmsIsVisible((prev) => !prev);
     }
     setNodeEdgeNavVisible((prev) => !prev);
-    
   };
 
-    /* management of algorithms control */
+  /* management of algorithms control */
   const toggleAlgoritmsVisibility = () => {
     if (isNodeEdgeNavVisible) {
       setNodeEdgeNavVisible((prev) => !prev);
     }
     setAlgorithmsIsVisible((prev) => !prev);
   };
-
 
   return (
     <LeftMenuContainer>
@@ -96,8 +94,8 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         connectNodes={props.connectNodes}
         onEdgeDelete={props.onEdgeDelete}
         clearCanvas={props.clearCanvas}
-
-        transferArrayData={props.transferArrayData}
+        /* transfer array data from NodeEdgeNav*/
+        userSelectedNodesArrayData={props.userSelectedNodesArrayData}
       ></NodeEdgeNav>
 
       <AlgorithmsNav

@@ -33,6 +33,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
   );
+  //===================================================================
+  //===================================================================
+  const [userSelectedTreeNodeArray, updateNodesArray] = useState<
+    Array<number>
+  >([]);
+  const [userSelectedNodeKeys, setUserSelectedNodeKeys] = useState<Array<string>>([]);
 
   //===================================================================
   //===================================================================
@@ -50,7 +56,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     All new array represent new node
     */
     newAdjacencyList.push([]);
-    console.log(newAdjacencyList);
     /* 
     All node have a unique key
     */
@@ -176,10 +181,15 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   //===================================================================
   //===================================================================
 
-  const transferArrayData = (userSelectedTreeNodeArray: Array<number>) => {
-    console.log(userSelectedTreeNodeArray);
+  const userSelectedNodesArrayData = (userSelectedTreeNode: Array<number>) => {
+    /* update user selected nodes array */
+    updateNodesArray(userSelectedTreeNode);
+   
+    const newNodeKeys = userSelectedNodeKeys.slice();
+    newNodeKeys.push(uuidv4());
+    setUserSelectedNodeKeys(newNodeKeys);
+    console.log(newNodeKeys);
   };
-
 
   return (
     <div>
@@ -193,9 +203,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <RightMenu></RightMenu>
 
       <LeftMenu
-
-        transferArrayData={transferArrayData}
-
         onNodeDelete={deleteNode}
         onEdgeDelete={deleteEdge}
         connectNodes={connectNodes}
@@ -209,9 +216,14 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         selectedAlgorithm={selectedAlgorithm}
         startingNode={startingNode}
         setStartingNode={setStartingNode}
+        /* transfer array data from NodeEdgeNav*/
+        userSelectedNodesArrayData={userSelectedNodesArrayData}
       ></LeftMenu>
 
       <Canvas
+        //===============================================
+        userSelectedTreeNodeArray={userSelectedTreeNodeArray}
+        //===============================================
         visited={visited}
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}

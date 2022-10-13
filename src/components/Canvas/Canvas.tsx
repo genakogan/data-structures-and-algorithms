@@ -11,6 +11,8 @@ interface Props {
   zoomPercentage: number;
   visited: Array<number>;
   currentEdge: [number, number];
+  //==========================================
+  userSelectedTreeNodeArray: Array<number>;
 }
 
 const Canvas: React.FC<Props> = (props: Props): ReactElement => {
@@ -52,6 +54,21 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
             isActive={visited.includes(index)}
             edgeRef={nodeRefs[index]}
             nodeIdex={index}
+          >
+            <span ref={nodeRefs[index]}></span>
+          </TreeNode>
+        );
+      })}
+
+      {adjacencyList.map((val: Array<number>, index: number) => {
+        return (
+          <TreeNode
+            key={props.nodeKeys[index]}
+            canvasRef={canvasRef}
+            zoomPercentage={props.zoomPercentage}
+            isActive={visited.includes(index)}
+            edgeRef={nodeRefs[index]}
+            nodeIdex={index+1}
           >
             <span ref={nodeRefs[index]}></span>
           </TreeNode>
