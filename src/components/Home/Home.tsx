@@ -22,7 +22,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
   const [isPlayVisualizing, setPlayVisualizing] = useState<boolean>(false);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
-
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
@@ -31,10 +30,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     useState<boolean>(false);
   const [isConnectingDirected, setIsConnectingDirected] =
     useState<boolean>(false);
-
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
   );
+
+  //===================================================================
+  //===================================================================
   const addNewNode = () => {
     /*
     The slice() method returns a shallow copy of a
@@ -131,6 +132,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (!isDirected) newAdjacencyList[secondNode].push(firstNode);
     setAdjacencyList(newAdjacencyList);
   };
+
   const deleteNode = (node: number) => {
     let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
       //remove node from neighbours and decrement all nodes bigger than the
@@ -171,6 +173,13 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList(newAdjacencyList);
     resetGraphState();
   };
+  //===================================================================
+  //===================================================================
+
+  const transferArrayData = (userSelectedTreeNodeArray: Array<number>) => {
+    console.log(userSelectedTreeNodeArray);
+  };
+
 
   return (
     <div>
@@ -184,6 +193,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       <RightMenu></RightMenu>
 
       <LeftMenu
+
+        transferArrayData={transferArrayData}
+
         onNodeDelete={deleteNode}
         onEdgeDelete={deleteEdge}
         connectNodes={connectNodes}
@@ -195,7 +207,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         onDirectedEdgeClick={() => setIsConnectingDirected(true)}
         setSelectedAlgorithm={setSelectedAlgorithm}
         selectedAlgorithm={selectedAlgorithm}
-        
         startingNode={startingNode}
         setStartingNode={setStartingNode}
       ></LeftMenu>

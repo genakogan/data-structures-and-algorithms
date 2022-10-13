@@ -19,12 +19,13 @@ interface Props {
   onDirectedEdgeClick: VoidFunction;
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
   onNodeDelete: (node: number) => void;
-
   /* algorithms */
   setSelectedAlgorithm: Function;
   selectedAlgorithm: Algorithms;
   startingNode: number;
   setStartingNode: Function;
+
+  transferArrayData: (userSelectedTreeNodeArray: Array<number>)=>void;
 }
 const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
   const [isNodeEdgeNavVisible, setNodeEdgeNavVisible] =
@@ -39,14 +40,16 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
     useState<boolean>(false);
 
   const adjacencyList = props.adjacencyList;
-
+  /* management of node-edge control */
   const toggleNodeEdgeVisibility = () => {
     if (isAlgorithmsVisible) {
       setAlgorithmsIsVisible((prev) => !prev);
     }
     setNodeEdgeNavVisible((prev) => !prev);
+    
   };
 
+    /* management of algorithms control */
   const toggleAlgoritmsVisibility = () => {
     if (isNodeEdgeNavVisible) {
       setNodeEdgeNavVisible((prev) => !prev);
@@ -54,9 +57,9 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
     setAlgorithmsIsVisible((prev) => !prev);
   };
 
+
   return (
     <LeftMenuContainer>
-      
       {/* node-edge toggleButton*/}
       <ToggleButton
         onMouseEnter={() => setIsNodeedgeToolTipVisible(true)}
@@ -93,6 +96,8 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         connectNodes={props.connectNodes}
         onEdgeDelete={props.onEdgeDelete}
         clearCanvas={props.clearCanvas}
+
+        transferArrayData={props.transferArrayData}
       ></NodeEdgeNav>
 
       <AlgorithmsNav
@@ -100,7 +105,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         selectedAlgorithm={props.selectedAlgorithm}
         setSelectedAlgorithm={props.setSelectedAlgorithm}
         selectedTile={props.startingNode}
-        setSelectedTile={props.setStartingNode}
+        setStartingNode={props.setStartingNode}
         adjacencyList={adjacencyList}
       ></AlgorithmsNav>
     </LeftMenuContainer>

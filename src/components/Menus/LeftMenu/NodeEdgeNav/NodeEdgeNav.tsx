@@ -1,5 +1,5 @@
 // Genady Kogan
-import React, { ChangeEvent, ReactElement, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import Dropdown from "../../../Common/Dropdown/Dropdown";
 import Row from "../../../Common/Row";
 import LeftMenuBottomContentText from "../Common/ContentText/LeftMenuBottomContentText";
@@ -13,8 +13,8 @@ import ButtonContainer from "./NodeEdgeOptions/ButtonContainer";
   UndirectedIcon,
 } from "./NodeEdgeOptions/OptionIcons";*/
 import Container from "../Common/Container";
-import SubmitButton from "./SubmitButton";
-import Input from "./Input";
+import SubmitButton from "./NodeEdgeOptions/InoutuserSelectedNode/SubmitButton";
+import Input from "./NodeEdgeOptions/InoutuserSelectedNode/Input";
 
 interface Props {
   isVisible: boolean;
@@ -24,6 +24,8 @@ interface Props {
   connectNodes: Function;
   onEdgeDelete: Function;
   clearCanvas: () => void;
+
+  transferArrayData: (userSelectedTreeNodeArray: Array<number>) => void;
 }
 
 const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -32,9 +34,10 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
 
   /* a user-selected node */
   const [aUserSelectedTreeNode, addUserSelectedTreeNode] = useState<string>("");
-  const [userSelectedTreeNodeArray,_] = useState<Array<number>>([]);
+  const [userSelectedTreeNodeArray, _] = useState<Array<number>>([]);
 
-  const [dUserSelectedTreeNode, deleteUserSelectedTreeNode] = useState<string>("");
+  const [dUserSelectedTreeNode, deleteUserSelectedTreeNode] =
+    useState<string>("");
 
   /* add a user-selected node */
   const submitAddForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -44,6 +47,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
     // insert new valuse
     userSelectedTreeNodeArray.push(Number(aUserSelectedTreeNode));
     addUserSelectedTreeNode("");
+    props.transferArrayData(userSelectedTreeNodeArray);
     console.log(userSelectedTreeNodeArray);
   };
 
@@ -51,6 +55,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
     // prevent typing non-numeric in input type number
     const result = e.target.value.replace(/\D/g, "");
     addUserSelectedTreeNode(result);
+    //doingSomething();
   };
 
   /* delete a user-selected node */
@@ -58,8 +63,6 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
     // preventing the page from reloading
     event.preventDefault();
     deleteUserSelectedTreeNode("");
-    
-
     const indexOfObject = userSelectedTreeNodeArray.findIndex((node) => {
       return node === Number(dUserSelectedTreeNode);
     });
@@ -112,7 +115,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
         />
       </Row>
 
-      {/* add user node */}
+      {/* add a user-selected node */}
       <form onSubmit={submitAddForm}>
         <Row justifyContent="space-between" margin="0px 10px">
           <SubmitButton
@@ -133,7 +136,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
           ></Input>
         </Row>
       </form>
-
+      {/* delete a user-selected node */}
       <form onSubmit={submitDeleteForm}>
         <Row justifyContent="space-between" margin="0px 10px">
           <SubmitButton
