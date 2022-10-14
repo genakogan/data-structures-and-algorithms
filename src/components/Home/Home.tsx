@@ -38,7 +38,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [userSelectedTreeNodeArray, updateNodesArray] = useState<
     Array<number>
   >([]);
-  const [userSelectedNodeKeys, setUserSelectedNodeKeys] = useState<Array<string>>([]);
+  const [keysForUserSelectedNodes, setKeysForUserSelectedNode] = useState<Array<string>>([]);
 
   //===================================================================
   //===================================================================
@@ -185,9 +185,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     /* update user selected nodes array */
     updateNodesArray(userSelectedTreeNode);
    
-    const newNodeKeys = userSelectedNodeKeys.slice();
+    const newNodeKeys = keysForUserSelectedNodes.slice();
     newNodeKeys.push(uuidv4());
-    setUserSelectedNodeKeys(newNodeKeys);
+    setKeysForUserSelectedNode(newNodeKeys);
     console.log(newNodeKeys);
   };
 
@@ -222,6 +222,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
       <Canvas
         //===============================================
+        keysForUserSelectedNodes={keysForUserSelectedNodes}
         userSelectedTreeNodeArray={userSelectedTreeNodeArray}
         //===============================================
         visited={visited}

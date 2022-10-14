@@ -148,7 +148,7 @@ const GraphNode: React.FC<Props> = (props: Props): ReactElement => {
       zoomPercentage={props.zoomPercentage}
     >
       {props.children}
-      {(props.nodeIdex + 1).toString()}
+      {(props.nodeIdex ).toString()}
     </TreeNodeContainer>
   );
 };

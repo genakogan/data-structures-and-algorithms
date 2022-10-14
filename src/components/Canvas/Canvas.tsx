@@ -13,6 +13,7 @@ interface Props {
   currentEdge: [number, number];
   //==========================================
   userSelectedTreeNodeArray: Array<number>;
+  keysForUserSelectedNodes: Array<string>;
 }
 
 const Canvas: React.FC<Props> = (props: Props): ReactElement => {
@@ -22,9 +23,11 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
   const connectedNodePairs: Array<Array<number>> = [];
   const reducedEdges: Map<number, Array<number>> = new Map();
   const nodeRefs = adjacencyList.map((_) => React.createRef<HTMLSpanElement>());
-
   const visited = props.visited;
-
+  //==========================================
+  const userSelectedTreeNodeArray = props.userSelectedTreeNodeArray;
+  const keysForUserSelectedNodes = props.keysForUserSelectedNodes;
+  //==========================================
   // adjacencyList = [[],[0,2],[0],[]];
   adjacencyList.forEach((adjacentNodes: Array<number>, currentNode: number) => {
     // adjacentNodes -> [], [0,2], [0], []
@@ -68,9 +71,9 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
             zoomPercentage={props.zoomPercentage}
             isActive={visited.includes(index)}
             edgeRef={nodeRefs[index]}
-            nodeIdex={index+1}
+            nodeIdex={index + 1}
           >
-            <span ref={nodeRefs[index]}></span>
+            <span ref={nodeRefs[index + 1]}></span>
           </TreeNode>
         );
       })}
@@ -89,6 +92,21 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
             zoomPercentage={props.zoomPercentage}
             isVisited={isVisited}
           />
+        );
+      })}
+
+      {userSelectedTreeNodeArray.map((val: number, index: number) => {
+        return (
+          <TreeNode
+            key={keysForUserSelectedNodes[index]}
+            canvasRef={canvasRef}
+            zoomPercentage={props.zoomPercentage}
+            isActive={visited.includes(val)}
+            edgeRef={nodeRefs[val]}
+            nodeIdex={val}
+          >
+            <span ref={nodeRefs[val]}></span>
+          </TreeNode>
         );
       })}
     </CanvasContainer>
