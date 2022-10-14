@@ -1,5 +1,6 @@
 // Genady Kogan
 import React, { ReactElement, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Dropdown from "../../../Common/Dropdown/Dropdown";
 import Row from "../../../Common/Row";
 import LeftMenuBottomContentText from "../Common/ContentText/LeftMenuBottomContentText";
@@ -24,8 +25,11 @@ interface Props {
   connectNodes: Function;
   onEdgeDelete: Function;
   clearCanvas: () => void;
- 
-  userSelectedNodesArrayData: (userSelectedTreeNodeArray: Array<number>) => void;
+
+  userSelectedNodesArrayData: (
+    userSelectedTreeNodeArray: Array<number>,
+    keysForUserSelectedNodes: Array<string>
+  ) => void;
 }
 
 const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -34,8 +38,12 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
 
   /* a user-selected node */
   const [aUserSelectedTreeNode, addUserSelectedTreeNode] = useState<string>("");
-  const [userSelectedTreeNodeArray, _] = useState<Array<number>>([]);
-
+  const [userSelectedTreeNodeArray, setUserSelectedTreeNodeArray] = useState<
+    Array<number>
+  >([]);
+  const [keysForUserSelectedNodes, setKeysForUserSelectedNode] = useState<
+    Array<string>
+  >([]);
   const [dUserSelectedTreeNode, deleteUserSelectedTreeNode] =
     useState<string>("");
 
@@ -46,31 +54,59 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
 
     // insert new valuse
     userSelectedTreeNodeArray.push(Number(aUserSelectedTreeNode));
+
+    // reset input form
     addUserSelectedTreeNode("");
-    props.userSelectedNodesArrayData(userSelectedTreeNodeArray);
-    console.log(userSelectedTreeNodeArray);
+
+    // add key for node
+    keysForUserSelectedNodes.push(uuidv4());
+
+    // set key
+    setKeysForUserSelectedNode(keysForUserSelectedNodes);
+
+    // send nodes data to HOME component
+    props.userSelectedNodesArrayData(
+      userSelectedTreeNodeArray,
+      keysForUserSelectedNodes
+    );
   };
 
   const addNode = (e: { target: { value: string } }) => {
     // prevent typing non-numeric in input type number
     const result = e.target.value.replace(/\D/g, "");
     addUserSelectedTreeNode(result);
-    //doingSomething();
   };
 
   /* delete a user-selected node */
   const submitDeleteForm = (event: React.FormEvent<HTMLFormElement>) => {
     // preventing the page from reloading
     event.preventDefault();
+
+    // reset input form
     deleteUserSelectedTreeNode("");
+
+    // find index of deleted node
     const indexOfObject = userSelectedTreeNodeArray.findIndex((node) => {
       return node === Number(dUserSelectedTreeNode);
     });
 
+    // delete node
     if (indexOfObject !== -1) {
       userSelectedTreeNodeArray.splice(indexOfObject, 1);
     }
-    console.log(userSelectedTreeNodeArray);
+
+    if (indexOfObject !== -1) {
+      keysForUserSelectedNodes.splice(indexOfObject, 1);
+    }
+    // set new array
+    setUserSelectedTreeNodeArray(userSelectedTreeNodeArray);
+    // set new keys
+    setKeysForUserSelectedNode(keysForUserSelectedNodes);
+    // send nodes data to HOME component
+    props.userSelectedNodesArrayData(
+      userSelectedTreeNodeArray,
+      keysForUserSelectedNodes
+    );
   };
   const deleteNode = (e: { target: { value: string } }) => {
     // prevent typing non-numeric in input type number

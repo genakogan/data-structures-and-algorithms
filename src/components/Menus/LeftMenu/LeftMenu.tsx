@@ -25,7 +25,7 @@ interface Props {
   startingNode: number;
   setStartingNode: Function;
   //===================================================================
-  userSelectedNodesArrayData: (userSelectedTreeNode: Array<number>) => void;
+  userSelectedNodesArrayData: (userSelectedTreeNode: Array<number>,keysForUserSelectedNodes: Array<string> ) => void;
 }
 const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
   const [isNodeEdgeNavVisible, setNodeEdgeNavVisible] =

@@ -181,14 +181,14 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   //===================================================================
   //===================================================================
 
-  const userSelectedNodesArrayData = (userSelectedTreeNode: Array<number>) => {
-    /* update user selected nodes array */
+  const userSelectedNodesArrayData = (userSelectedTreeNode: Array<number>,keysForUserSelectedNodes: Array<string>) => {
+    /* set user selected nodes array */
     updateNodesArray(userSelectedTreeNode);
-   
+     /* set keys for user selected nodes */
     const newNodeKeys = keysForUserSelectedNodes.slice();
-    newNodeKeys.push(uuidv4());
     setKeysForUserSelectedNode(newNodeKeys);
-    console.log(newNodeKeys);
+   console.log(userSelectedTreeNode);
+   console.log(keysForUserSelectedNodes);
   };
 
   return (
