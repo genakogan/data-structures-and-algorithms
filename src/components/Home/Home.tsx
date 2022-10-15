@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import CreateEdgeModal from "../Tree/TreeEdge/CreateEdgeModal/CreateEdgeModal";
 import Algorithms from "../../models/Algorithms";
 import algorithms from "../Tree/Algorithms";
+import { BinarySearchTree } from "../Tree/BST/BinarySearchTree";
 
 interface HomeProps {
   changeTheme: Function;
@@ -227,11 +228,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
       userSelectedTreeNodeArray,
       keysForUserSelectedNodes
     );
-  
   };
 
   const addUserSelectedNode = (e: { target: { value: string } }) => {
-
     // prevent typing non-numeric in input type number
     const result = e.target.value.replace(/\D/g, "");
     addUserSelectedTreeNode(result);
@@ -274,6 +273,31 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     const result = e.target.value.replace(/\D/g, "");
     deleteUserSelectedTreeNode(result);
   };
+
+  //===================================================================
+  // ==============================  BST ==============================
+  const comparator = (a: number, b: number): number => {
+    if (a < b) return -1;
+
+    if (a > b) return 1;
+
+    return 0;
+  };
+  const bst = new BinarySearchTree(comparator);
+
+  bst.insert(5);
+
+  bst.insert(2);
+  bst.insert(3);
+  bst.insert(1);
+
+  bst.insert(7);
+  bst.insert(6);
+  bst.insert(8);
+
+  console.log(bst.postOrderTraversal(bst.root));
+  // ==============================  BST ==============================
+  //===================================================================
 
   return (
     <div>
