@@ -1,6 +1,5 @@
 // Genady Kogan
 import React, { ReactElement, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import Dropdown from "../../../Common/Dropdown/Dropdown";
 import Row from "../../../Common/Row";
 import LeftMenuBottomContentText from "../Common/ContentText/LeftMenuBottomContentText";
@@ -25,22 +24,14 @@ interface Props {
   connectNodes: Function;
   onEdgeDelete: Function;
   clearCanvas: () => void;
-
-  userSelectedNodesArrayData: (
-    userSelectedTreeNodeArray: Array<number>,
-    keysForUserSelectedNodes: Array<string>
-  ) => void;
- 
-  userSelectedTreeNodeArray: Array<number>;
-  keysForUserSelectedNodes:  Array<string>;
-
+  /* add usere-selected tree node */
   aUserSelectedTreeNode: string;
   submitAddForm: (e:React.FormEvent<HTMLFormElement>)=>void;
-  addNode:(e: { target: { value: string } })=>void;
- 
+  addUserSelectedNode:(e: { target: { value: string } })=>void;
+ /* delete usere-selected tree node */
   dUserSelectedTreeNode: string;
   submitDeleteForm: (e:React.FormEvent<HTMLFormElement>)=>void;
-  deleteNode_:(e: { target: { value: string } })=>void;
+  deleteUserSelectedNode:(e: { target: { value: string } })=>void;
 }
 
 const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
@@ -101,7 +92,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
             right="30px"
             height="27px"
             value={props.aUserSelectedTreeNode}
-            onChange={props.addNode}
+            onChange={props.addUserSelectedNode}
           ></Input>
         </Row>
       </form>
@@ -123,7 +114,7 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
             right="30px"
             height="27px"
             value={props.dUserSelectedTreeNode}
-            onChange={props.deleteNode_}
+            onChange={props.deleteUserSelectedNode}
           ></Input>
         </Row>
       </form>

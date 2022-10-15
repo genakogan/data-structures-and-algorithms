@@ -19,25 +19,20 @@ interface Props {
   onDirectedEdgeClick: VoidFunction;
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
   onNodeDelete: (node: number) => void;
+  /* add usere-selected tree node */
+  aUserSelectedTreeNode: string;
+  submitAddForm: (e:React.FormEvent<HTMLFormElement>)=>void;
+  addUserSelectedNode:(e: { target: { value: string } })=>void;
+  /* delete usere-selected tree node */
+  dUserSelectedTreeNode: string;
+  submitDeleteForm: (e:React.FormEvent<HTMLFormElement>)=>void;
+  deleteUserSelectedNode:(e: { target: { value: string } })=>void;
   /* algorithms */
   setSelectedAlgorithm: Function;
   selectedAlgorithm: Algorithms;
   startingNode: number;
   setStartingNode: Function;
-  //===================================================================
-  userSelectedNodesArrayData: (userSelectedTreeNode: Array<number>,keysForUserSelectedNodes: Array<string> ) => void;
- 
-  userSelectedTreeNodeArray: Array<number>;
-  keysForUserSelectedNodes:  Array<string>
-
-  aUserSelectedTreeNode: string;
-  submitAddForm: (e:React.FormEvent<HTMLFormElement>)=>void;
-  addNode:(e: { target: { value: string } })=>void;
-
-  dUserSelectedTreeNode: string;
-  submitDeleteForm: (e:React.FormEvent<HTMLFormElement>)=>void;
-  deleteNode_:(e: { target: { value: string } })=>void;
-
+  
 }
 const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
   const [isNodeEdgeNavVisible, setNodeEdgeNavVisible] =
@@ -108,17 +103,15 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         onEdgeDelete={props.onEdgeDelete}
         clearCanvas={props.clearCanvas}
         /* transfer array data from NodeEdgeNav*/
-        userSelectedNodesArrayData={props.userSelectedNodesArrayData}
-     
-        userSelectedTreeNodeArray={props.userSelectedTreeNodeArray}
-        keysForUserSelectedNodes={props.keysForUserSelectedNodes}
+      
+      
         
         aUserSelectedTreeNode={props.aUserSelectedTreeNode}
         submitAddForm={props.submitAddForm}
-        addNode={props.addNode}
+        addUserSelectedNode={props.addUserSelectedNode}
 
         dUserSelectedTreeNode={props.dUserSelectedTreeNode}
-        deleteNode_={props.deleteNode_}
+        deleteUserSelectedNode={props.deleteUserSelectedNode}
         submitDeleteForm={props.submitDeleteForm}
       ></NodeEdgeNav>
 

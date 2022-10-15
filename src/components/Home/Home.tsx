@@ -46,8 +46,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   //===================================================================
   const [aUserSelectedTreeNode, addUserSelectedTreeNode] = useState<string>("");
   const [dUserSelectedTreeNode, deleteUserSelectedTreeNode] =
-  useState<string>("");
-
+    useState<string>("");
 
   //===================================================================
   //===================================================================
@@ -82,7 +81,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setVisited([]);
     setCurrentEdge([-1, -1]);
     setUserSelectedTreeNodeArray([]);
-    setKeysForUserSelectedNode([])
+    setKeysForUserSelectedNode([]);
   };
 
   const handlePlayVisualize = async () => {
@@ -204,15 +203,16 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     const newNodeKeys = keysForUserSelectedNodes.slice();
     setKeysForUserSelectedNode(newNodeKeys);
   };
- //===================================================================
+  //===================================================================
   /* add a user-selected node function*/
   const submitAddForm = (event: React.FormEvent<HTMLFormElement>) => {
     // preventing the page from reloading
     event.preventDefault();
-  
+
     // insert new valuse
     userSelectedTreeNodeArray.push(Number(aUserSelectedTreeNode));
-    setUserSelectedTreeNodeArray(()=>userSelectedTreeNodeArray);
+    setUserSelectedTreeNodeArray(() => userSelectedTreeNodeArray);
+
     // reset input form
     addUserSelectedTreeNode("");
 
@@ -222,21 +222,21 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     // set key
     setKeysForUserSelectedNode(keysForUserSelectedNodes);
 
-  // send nodes data to HOME component
+    // update nodes data
     userSelectedNodesArrayData(
       userSelectedTreeNodeArray,
       keysForUserSelectedNodes
     );
-    console.log("props.isClearCanvas ",keysForUserSelectedNodes);
   
   };
 
-    const addNode = (e: { target: { value: string } }) => {
-      // prevent typing non-numeric in input type number
-      const result = e.target.value.replace(/\D/g, "");
-      addUserSelectedTreeNode(result);
-    };
-//=============================================================================================
+  const addUserSelectedNode = (e: { target: { value: string } }) => {
+
+    // prevent typing non-numeric in input type number
+    const result = e.target.value.replace(/\D/g, "");
+    addUserSelectedTreeNode(result);
+  };
+  //=============================================================================================
   /* delete a user-selected node function */
   const submitDeleteForm = (event: React.FormEvent<HTMLFormElement>) => {
     // preventing the page from reloading
@@ -262,14 +262,14 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setUserSelectedTreeNodeArray(userSelectedTreeNodeArray);
     // set new keys
     setKeysForUserSelectedNode(keysForUserSelectedNodes);
-  
-    // send nodes data to HOME component
+
+    // update nodes data
     userSelectedNodesArrayData(
       userSelectedTreeNodeArray,
       keysForUserSelectedNodes
     );
   };
-  const deleteNode_ = (e: { target: { value: string } }) => {
+  const deleteUserSelectedNode = (e: { target: { value: string } }) => {
     // prevent typing non-numeric in input type number
     const result = e.target.value.replace(/\D/g, "");
     deleteUserSelectedTreeNode(result);
@@ -300,17 +300,13 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         selectedAlgorithm={selectedAlgorithm}
         startingNode={startingNode}
         setStartingNode={setStartingNode}
-        /* transfer array data from NodeEdgeNav*/
-        userSelectedNodesArrayData={userSelectedNodesArrayData}
-        userSelectedTreeNodeArray={userSelectedTreeNodeArray}
-        keysForUserSelectedNodes={keysForUserSelectedNodes}
-        
+        /* add usere-selected tree node */
         aUserSelectedTreeNode={aUserSelectedTreeNode}
         submitAddForm={submitAddForm}
-        addNode={addNode}
-      
+        addUserSelectedNode={addUserSelectedNode}
+        /* delete usere-selected tree node */
         dUserSelectedTreeNode={dUserSelectedTreeNode}
-        deleteNode_={deleteNode_}
+        deleteUserSelectedNode={deleteUserSelectedNode}
         submitDeleteForm={submitDeleteForm}
       ></LeftMenu>
 
