@@ -33,12 +33,21 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
   );
+
   //===================================================================
   //===================================================================
-  const [userSelectedTreeNodeArray, updateNodesArray] = useState<
+  const [userSelectedTreeNodeArray, setUserSelectedTreeNodeArray] = useState<
     Array<number>
   >([]);
-  const [keysForUserSelectedNodes, setKeysForUserSelectedNode] = useState<Array<string>>([]);
+  const [keysForUserSelectedNodes, setKeysForUserSelectedNode] = useState<
+    Array<string>
+  >([]);
+
+  //===================================================================
+  const [aUserSelectedTreeNode, addUserSelectedTreeNode] = useState<string>("");
+  const [dUserSelectedTreeNode, deleteUserSelectedTreeNode] =
+  useState<string>("");
+
 
   //===================================================================
   //===================================================================
@@ -67,11 +76,15 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   const clearCanvas = () => {
     if (isVisualizing) return;
+
     setAdjacencyList([]);
     setNodeKeys([]);
     setVisited([]);
     setCurrentEdge([-1, -1]);
+    setUserSelectedTreeNodeArray([]);
+    setKeysForUserSelectedNode([])
   };
+
   const handlePlayVisualize = async () => {
     if (adjacencyList.length === 0) return;
     if (isPlayVisualizing) return;
@@ -181,14 +194,85 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   //===================================================================
   //===================================================================
 
-  const userSelectedNodesArrayData = (userSelectedTreeNode: Array<number>,keysForUserSelectedNodes: Array<string>) => {
+  const userSelectedNodesArrayData = (
+    userSelectedTreeNode: Array<number>,
+    keysForUserSelectedNodes: Array<string>
+  ) => {
     /* set user selected nodes array */
-    updateNodesArray(userSelectedTreeNode);
-     /* set keys for user selected nodes */
+    setUserSelectedTreeNodeArray(userSelectedTreeNode);
+    /* set keys for user selected nodes */
     const newNodeKeys = keysForUserSelectedNodes.slice();
     setKeysForUserSelectedNode(newNodeKeys);
-   console.log(userSelectedTreeNode);
-   console.log(keysForUserSelectedNodes);
+  };
+ //===================================================================
+  /* add a user-selected node function*/
+  const submitAddForm = (event: React.FormEvent<HTMLFormElement>) => {
+    // preventing the page from reloading
+    event.preventDefault();
+  
+    // insert new valuse
+    userSelectedTreeNodeArray.push(Number(aUserSelectedTreeNode));
+    setUserSelectedTreeNodeArray(()=>userSelectedTreeNodeArray);
+    // reset input form
+    addUserSelectedTreeNode("");
+
+    // add key for node
+    keysForUserSelectedNodes.push(uuidv4());
+
+    // set key
+    setKeysForUserSelectedNode(keysForUserSelectedNodes);
+
+  // send nodes data to HOME component
+    userSelectedNodesArrayData(
+      userSelectedTreeNodeArray,
+      keysForUserSelectedNodes
+    );
+    console.log("props.isClearCanvas ",keysForUserSelectedNodes);
+  
+  };
+
+    const addNode = (e: { target: { value: string } }) => {
+      // prevent typing non-numeric in input type number
+      const result = e.target.value.replace(/\D/g, "");
+      addUserSelectedTreeNode(result);
+    };
+//=============================================================================================
+  /* delete a user-selected node function */
+  const submitDeleteForm = (event: React.FormEvent<HTMLFormElement>) => {
+    // preventing the page from reloading
+    event.preventDefault();
+
+    // reset input form
+    deleteUserSelectedTreeNode("");
+
+    // find index of deleted node
+    const indexOfObject = userSelectedTreeNodeArray.findIndex((node) => {
+      return node === Number(dUserSelectedTreeNode);
+    });
+
+    // delete node
+    if (indexOfObject !== -1) {
+      userSelectedTreeNodeArray.splice(indexOfObject, 1);
+    }
+
+    if (indexOfObject !== -1) {
+      keysForUserSelectedNodes.splice(indexOfObject, 1);
+    }
+    // set new array
+    setUserSelectedTreeNodeArray(userSelectedTreeNodeArray);
+    // set new keys
+    setKeysForUserSelectedNode(keysForUserSelectedNodes);
+  
+    // send nodes data to HOME component
+    userSelectedNodesArrayData(
+      userSelectedTreeNodeArray,
+      keysForUserSelectedNodes
+    );
+  };
+  const deleteNode_ = (e: { target: { value: string } }) => {
+    // prevent typing non-numeric in input type number
+    const result = e.target.value.replace(/\D/g, "");
+    deleteUserSelectedTreeNode(result);
   };
 
   return (
@@ -218,6 +302,16 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         setStartingNode={setStartingNode}
         /* transfer array data from NodeEdgeNav*/
         userSelectedNodesArrayData={userSelectedNodesArrayData}
+        userSelectedTreeNodeArray={userSelectedTreeNodeArray}
+        keysForUserSelectedNodes={keysForUserSelectedNodes}
+        
+        aUserSelectedTreeNode={aUserSelectedTreeNode}
+        submitAddForm={submitAddForm}
+        addNode={addNode}
+      
+        dUserSelectedTreeNode={dUserSelectedTreeNode}
+        deleteNode_={deleteNode_}
+        submitDeleteForm={submitDeleteForm}
       ></LeftMenu>
 
       <Canvas

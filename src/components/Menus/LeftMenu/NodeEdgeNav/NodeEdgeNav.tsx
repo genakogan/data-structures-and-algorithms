@@ -30,89 +30,22 @@ interface Props {
     userSelectedTreeNodeArray: Array<number>,
     keysForUserSelectedNodes: Array<string>
   ) => void;
+ 
+  userSelectedTreeNodeArray: Array<number>;
+  keysForUserSelectedNodes:  Array<string>;
+
+  aUserSelectedTreeNode: string;
+  submitAddForm: (e:React.FormEvent<HTMLFormElement>)=>void;
+  addNode:(e: { target: { value: string } })=>void;
+ 
+  dUserSelectedTreeNode: string;
+  submitDeleteForm: (e:React.FormEvent<HTMLFormElement>)=>void;
+  deleteNode_:(e: { target: { value: string } })=>void;
 }
 
 const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
   const [firstNode, setFirstNode] = useState<number>(0);
   const [secondNode, setSecondNode] = useState<number>(1);
-
-  /* a user-selected node */
-  const [aUserSelectedTreeNode, addUserSelectedTreeNode] = useState<string>("");
-  const [userSelectedTreeNodeArray, setUserSelectedTreeNodeArray] = useState<
-    Array<number>
-  >([]);
-  const [keysForUserSelectedNodes, setKeysForUserSelectedNode] = useState<
-    Array<string>
-  >([]);
-  const [dUserSelectedTreeNode, deleteUserSelectedTreeNode] =
-    useState<string>("");
-
-  /* add a user-selected node */
-  const submitAddForm = (event: React.FormEvent<HTMLFormElement>) => {
-    // preventing the page from reloading
-    event.preventDefault();
-
-    // insert new valuse
-    userSelectedTreeNodeArray.push(Number(aUserSelectedTreeNode));
-
-    // reset input form
-    addUserSelectedTreeNode("");
-
-    // add key for node
-    keysForUserSelectedNodes.push(uuidv4());
-
-    // set key
-    setKeysForUserSelectedNode(keysForUserSelectedNodes);
-
-    // send nodes data to HOME component
-    props.userSelectedNodesArrayData(
-      userSelectedTreeNodeArray,
-      keysForUserSelectedNodes
-    );
-  };
-
-  const addNode = (e: { target: { value: string } }) => {
-    // prevent typing non-numeric in input type number
-    const result = e.target.value.replace(/\D/g, "");
-    addUserSelectedTreeNode(result);
-  };
-
-  /* delete a user-selected node */
-  const submitDeleteForm = (event: React.FormEvent<HTMLFormElement>) => {
-    // preventing the page from reloading
-    event.preventDefault();
-
-    // reset input form
-    deleteUserSelectedTreeNode("");
-
-    // find index of deleted node
-    const indexOfObject = userSelectedTreeNodeArray.findIndex((node) => {
-      return node === Number(dUserSelectedTreeNode);
-    });
-
-    // delete node
-    if (indexOfObject !== -1) {
-      userSelectedTreeNodeArray.splice(indexOfObject, 1);
-    }
-
-    if (indexOfObject !== -1) {
-      keysForUserSelectedNodes.splice(indexOfObject, 1);
-    }
-    // set new array
-    setUserSelectedTreeNodeArray(userSelectedTreeNodeArray);
-    // set new keys
-    setKeysForUserSelectedNode(keysForUserSelectedNodes);
-    // send nodes data to HOME component
-    props.userSelectedNodesArrayData(
-      userSelectedTreeNodeArray,
-      keysForUserSelectedNodes
-    );
-  };
-  const deleteNode = (e: { target: { value: string } }) => {
-    // prevent typing non-numeric in input type number
-    const result = e.target.value.replace(/\D/g, "");
-    deleteUserSelectedTreeNode(result);
-  };
 
   return (
     <Container isVisible={props.isVisible}>
@@ -152,10 +85,10 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
       </Row>
 
       {/* add a user-selected node */}
-      <form onSubmit={submitAddForm}>
+      <form onSubmit={props.submitAddForm}>
         <Row justifyContent="space-between" margin="0px 10px">
           <SubmitButton
-            disabled={!aUserSelectedTreeNode}
+            disabled={!props.aUserSelectedTreeNode}
             type="submit"
             value="Add node"
             width="120px"
@@ -167,16 +100,17 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
             width="72px"
             right="30px"
             height="27px"
-            value={aUserSelectedTreeNode}
-            onChange={addNode}
+            value={props.aUserSelectedTreeNode}
+            onChange={props.addNode}
           ></Input>
         </Row>
       </form>
+
       {/* delete a user-selected node */}
-      <form onSubmit={submitDeleteForm}>
+      <form onSubmit={props.submitDeleteForm}>
         <Row justifyContent="space-between" margin="0px 10px">
           <SubmitButton
-            disabled={!dUserSelectedTreeNode}
+            disabled={!props.dUserSelectedTreeNode}
             type="submit"
             value="Delete node"
             width="120px"
@@ -188,8 +122,8 @@ const NodeEdgeNav: React.FC<Props> = (props: Props): ReactElement => {
             width="72px"
             right="30px"
             height="27px"
-            value={dUserSelectedTreeNode}
-            onChange={deleteNode}
+            value={props.dUserSelectedTreeNode}
+            onChange={props.deleteNode_}
           ></Input>
         </Row>
       </form>
