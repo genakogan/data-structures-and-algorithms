@@ -26,6 +26,18 @@ interface Props {
   setStartingNode: Function;
   //===================================================================
   userSelectedNodesArrayData: (userSelectedTreeNode: Array<number>,keysForUserSelectedNodes: Array<string> ) => void;
+ 
+  userSelectedTreeNodeArray: Array<number>;
+  keysForUserSelectedNodes:  Array<string>
+
+  aUserSelectedTreeNode: string;
+  submitAddForm: (e:React.FormEvent<HTMLFormElement>)=>void;
+  addNode:(e: { target: { value: string } })=>void;
+
+  dUserSelectedTreeNode: string;
+  submitDeleteForm: (e:React.FormEvent<HTMLFormElement>)=>void;
+  deleteNode_:(e: { target: { value: string } })=>void;
+
 }
 const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
   const [isNodeEdgeNavVisible, setNodeEdgeNavVisible] =
@@ -55,7 +67,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
     }
     setAlgorithmsIsVisible((prev) => !prev);
   };
-
+ 
   return (
     <LeftMenuContainer>
       {/* node-edge toggleButton*/}
@@ -87,6 +99,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
       </ToggleButton>
 
       <NodeEdgeNav
+       
         isVisible={isNodeEdgeNavVisible}
         addNewNode={props.addNewNode}
         adjacencyList={adjacencyList}
@@ -96,6 +109,17 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         clearCanvas={props.clearCanvas}
         /* transfer array data from NodeEdgeNav*/
         userSelectedNodesArrayData={props.userSelectedNodesArrayData}
+     
+        userSelectedTreeNodeArray={props.userSelectedTreeNodeArray}
+        keysForUserSelectedNodes={props.keysForUserSelectedNodes}
+        
+        aUserSelectedTreeNode={props.aUserSelectedTreeNode}
+        submitAddForm={props.submitAddForm}
+        addNode={props.addNode}
+
+        dUserSelectedTreeNode={props.dUserSelectedTreeNode}
+        deleteNode_={props.deleteNode_}
+        submitDeleteForm={props.submitDeleteForm}
       ></NodeEdgeNav>
 
       <AlgorithmsNav
