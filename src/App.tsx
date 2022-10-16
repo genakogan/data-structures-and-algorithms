@@ -6,7 +6,7 @@ import themes from "./themes";
 import Theme from "./models/Theme";
 
 import TeamWindow from "./components/Menus/TopMenu/Window/TeamWindow";
-import { BinarySearchTree } from "./components/Tree/BST/BinarySearchTree";
+import { BinarySearchTree } from "./components/Tree/BinarySearchTree/BinarySearchTree";
 
 const App: React.FC<{}> = (): ReactElement => {
   /*
