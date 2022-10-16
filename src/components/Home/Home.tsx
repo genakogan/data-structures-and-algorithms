@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import CreateEdgeModal from "../Tree/TreeEdge/CreateEdgeModal/CreateEdgeModal";
 import Algorithms from "../../models/Algorithms";
 import algorithms from "../Tree/Algorithms";
-import BinaryTree from "../Tree/BST/BinaryTree";
+import BinaryTree from "../Tree/BinaryTree/BinaryTree";
 
 
 interface HomeProps {
