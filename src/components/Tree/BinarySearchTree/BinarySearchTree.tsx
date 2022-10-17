@@ -1,24 +1,22 @@
-export class BinarySearchTreeNode<T> {
-  data: T;
-  leftNode?: BinarySearchTreeNode<T>;
-  rightNode?: BinarySearchTreeNode<T>;
+import BinaryTree from "../BinaryTree/BinaryTree";
+import TreeNode from "../TreeNode";
 
-  constructor(data: T) {
-    this.data = data;
+
+export class BinarySearchTree<T> extends BinaryTree<T> {
+  postOrderTraversal(root: TreeNode<number> | undefined): any {
+    throw new Error("Method not implemented.");
   }
-}
-
-export class BinarySearchTree<T> {
-  root?: BinarySearchTreeNode<T>;
+  root: TreeNode<T> | undefined;
   comparator: (a: T, b: T) => number;
 
   constructor(comparator: (a: T, b: T) => number) {
+    super();
     this.comparator = comparator;
   }
 
-  insert(data: T): BinarySearchTreeNode<T> | undefined {
+  insert(data: T): TreeNode<T> | undefined {
     if (!this.root) {
-      this.root = new BinarySearchTreeNode(data);
+      this.root = new TreeNode(data);
       return this.root;
     }
 
@@ -29,21 +27,21 @@ export class BinarySearchTree<T> {
         if (current.rightNode) {
           current = current.rightNode;
         } else {
-          current.rightNode = new BinarySearchTreeNode(data);
+          current.rightNode = new TreeNode(data);
           return current.rightNode;
         }
       } else {
         if (current.leftNode) {
           current = current.leftNode;
         } else {
-          current.leftNode = new BinarySearchTreeNode(data);
+          current.leftNode = new TreeNode(data);
           return current.leftNode;
         }
       }
     }
   }
 
-  search(data: T): BinarySearchTreeNode<T> | undefined {
+  search(data: T): TreeNode<T> | undefined {
     if (!this.root) return undefined;
 
     let current = this.root;
@@ -63,49 +61,55 @@ export class BinarySearchTree<T> {
     return current;
   }
 
-  inOrderTraversal(node: BinarySearchTreeNode<T> | undefined): void {
-    if (node) {
-      this.inOrderTraversal(node.leftNode);
-      console.log(node.data);
-      this.inOrderTraversal(node.rightNode);
-    }
-  }
+ /* inOrderTraversal = (node: TreeNode<T> | undefined) => {
+    let result: (T | undefined)[];
+    result = [];
+    const traverse = (node: TreeNode<T> | undefined) => {
+      if (node) {
+        node?.leftNode && traverse(node?.leftNode);
+        result.push(node?.data);
+        node?.rightNode && traverse(node?.rightNode);
+      }
+    };
+    //const rootNode: BinarySearchTreeNode<T> | undefined = this.root as BinarySearchTreeNode<T>
+    traverse(node);
+    return result;
+  };
 
-  preOrderTraversal(node: BinarySearchTreeNode<T> | undefined): void {
-    if (node) {
-      console.log(node.data);
-      this.preOrderTraversal(node.leftNode);
-      this.preOrderTraversal(node.rightNode);
-    }
-  }
+  /*preOrderTraversal = (node: TreeNode<T> | undefined) => {
+    let result: (T | undefined)[];
+    result = [];
 
-  postOrderTraversal(node: BinarySearchTreeNode<T> | undefined): void {
-    if (node) {
-      this.postOrderTraversal(node.leftNode);
-      this.postOrderTraversal(node.rightNode);
-      console.log(node.data);
-    }
-  }
+    const traverse = (node: TreeNode<T> | undefined) => {
+      if (node) {
+        result.push(node?.data);
+        node?.leftNode && traverse(node?.leftNode);
+        node?.rightNode && traverse(node?.rightNode);
+      }
+    };
+    traverse(node);
+    return result;
+  };
+
+  postOrderTraversal = (node: TreeNode<T> | undefined) => {
+    let result: (T | undefined)[];
+    result = [];
+    const traverse = (node: TreeNode<T> | undefined) => {
+      if (node) {
+        node?.leftNode && traverse(node?.leftNode);
+        node?.rightNode && traverse(node?.rightNode);
+        result.push(node?.data);
+      }
+    };
+    traverse(node);
+    return result;
+  };*/
 }
 
-function comparator(a: number, b: number) {
+export function comparator(a: number, b: number) {
   if (a < b) return -1;
 
   if (a > b) return 1;
 
   return 0;
 }
-
-const bst = new BinarySearchTree(comparator);
-
-bst.insert(5);
-
-bst.insert(2);
-bst.insert(3);
-bst.insert(1);
-
-bst.insert(7);
-bst.insert(6);
-bst.insert(8);
-
-bst.inOrderTraversal(bst.root);

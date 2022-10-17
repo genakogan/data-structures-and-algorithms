@@ -11,6 +11,7 @@ import CreateEdgeModal from "../Tree/TreeEdge/CreateEdgeModal/CreateEdgeModal";
 import Algorithms from "../../models/Algorithms";
 import algorithms from "../Tree/Algorithms";
 import BinaryTree from "../Tree/BinaryTree/BinaryTree";
+import { BinarySearchTree, comparator } from "../Tree/BinarySearchTree/BinarySearchTree";
 
 
 interface HomeProps {
@@ -277,13 +278,28 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   };
 
   //===================================================================
-  // ==============================  BST ==============================
+  // ==============================  BT ==============================
   const binaryTree = new BinaryTree()
-  binaryTree.insert(10).insert(20).insert(30).insert(5).insert(8).insert(1).insert(9)
-  console.log(binaryTree.contains(30)) // true
-console.log(binaryTree.findMin()) // 3
-console.log(binaryTree.findMax()) // 30
+  binaryTree.insertBT(10).insertBT(20).insertBT(30).insertBT(5).insertBT(8).insertBT(1).insertBT (9)
+   console.log(binaryTree.contains(30)) // true
+   console.log(binaryTree.findMin()) // 1
+   console.log(binaryTree.findMax()) // 30
   // ==============================  BST ==============================
+  //===================================================================
+
+  const bst = new BinarySearchTree(comparator);
+
+  bst.insert(5);
+
+  bst.insert(2);
+  bst.insert(3);
+  bst.insert(1);
+
+  bst.insert(7);
+  bst.insert(6);
+  bst.insert(8);
+  console.log(bst.postOrder());
+   // ==============================  BST ==============================
   //===================================================================
 
   return (
