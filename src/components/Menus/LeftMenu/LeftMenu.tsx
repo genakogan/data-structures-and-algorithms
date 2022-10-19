@@ -19,20 +19,19 @@ interface Props {
   onDirectedEdgeClick: VoidFunction;
   onEdgeDelete: (firstNode: number, secondNode: number) => void;
   onNodeDelete: (node: number) => void;
-  /* add usere-selected tree node */
-  aUserSelectedTreeNode: string;
-  submitAddForm: (e:React.FormEvent<HTMLFormElement>)=>void;
-  addUserSelectedNode:(e: { target: { value: string } })=>void;
-  /* delete usere-selected tree node */
-  dUserSelectedTreeNode: string;
-  submitDeleteForm: (e:React.FormEvent<HTMLFormElement>)=>void;
-  deleteUserSelectedNode:(e: { target: { value: string } })=>void;
+/* add usere-selected tree node */
+aUserSelectedTreeNode: string;
+submitAddForm: (e:React.FormEvent<HTMLFormElement>)=>void;
+addUserSelectedNode:(e: { target: { value: string } })=>void;
+/* delete usere-selected tree node */
+dUserSelectedTreeNode: string;
+submitDeleteForm: (e:React.FormEvent<HTMLFormElement>)=>void;
+deleteUserSelectedNode:(e: { target: { value: string } })=>void;
   /* algorithms */
   setSelectedAlgorithm: Function;
   selectedAlgorithm: Algorithms;
   startingNode: number;
   setStartingNode: Function;
-  
 }
 const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
   const [isNodeEdgeNavVisible, setNodeEdgeNavVisible] =
@@ -47,7 +46,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
     useState<boolean>(false);
 
   const adjacencyList = props.adjacencyList;
-  /* management of node-edge control */
+
   const toggleNodeEdgeVisibility = () => {
     if (isAlgorithmsVisible) {
       setAlgorithmsIsVisible((prev) => !prev);
@@ -55,16 +54,16 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
     setNodeEdgeNavVisible((prev) => !prev);
   };
 
-  /* management of algorithms control */
   const toggleAlgoritmsVisibility = () => {
     if (isNodeEdgeNavVisible) {
       setNodeEdgeNavVisible((prev) => !prev);
     }
     setAlgorithmsIsVisible((prev) => !prev);
   };
- 
+
   return (
     <LeftMenuContainer>
+      
       {/* node-edge toggleButton*/}
       <ToggleButton
         onMouseEnter={() => setIsNodeedgeToolTipVisible(true)}
@@ -94,7 +93,6 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
       </ToggleButton>
 
       <NodeEdgeNav
-       
         isVisible={isNodeEdgeNavVisible}
         addNewNode={props.addNewNode}
         adjacencyList={adjacencyList}
@@ -102,10 +100,8 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         connectNodes={props.connectNodes}
         onEdgeDelete={props.onEdgeDelete}
         clearCanvas={props.clearCanvas}
-        /* transfer array data from NodeEdgeNav*/
-      
-      
-        
+
+
         aUserSelectedTreeNode={props.aUserSelectedTreeNode}
         submitAddForm={props.submitAddForm}
         addUserSelectedNode={props.addUserSelectedNode}
@@ -120,7 +116,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
         selectedAlgorithm={props.selectedAlgorithm}
         setSelectedAlgorithm={props.setSelectedAlgorithm}
         selectedTile={props.startingNode}
-        setStartingNode={props.setStartingNode}
+        setSelectedTile={props.setStartingNode}
         adjacencyList={adjacencyList}
       ></AlgorithmsNav>
     </LeftMenuContainer>

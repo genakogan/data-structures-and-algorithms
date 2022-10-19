@@ -11,6 +11,7 @@ interface Props {
   zoomPercentage: number;
   visited: Array<number>;
   currentEdge: [number, number];
+
   //==========================================
   userSelectedTreeNodeArray: Array<number>;
   keysForUserSelectedNodes: Array<string>;
@@ -24,10 +25,11 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
   const reducedEdges: Map<number, Array<number>> = new Map();
   const nodeRefs = adjacencyList.map((_) => React.createRef<HTMLSpanElement>());
   const visited = props.visited;
-  //==========================================
-  const userSelectedTreeNodeArray = props.userSelectedTreeNodeArray;
-  const keysForUserSelectedNodes = props.keysForUserSelectedNodes;
-  //==========================================
+
+   //==========================================
+   const userSelectedTreeNodeArray = props.userSelectedTreeNodeArray;
+   const keysForUserSelectedNodes = props.keysForUserSelectedNodes;
+
   // adjacencyList = [[],[0,2],[0],[]];
   adjacencyList.forEach((adjacentNodes: Array<number>, currentNode: number) => {
     // adjacentNodes -> [], [0,2], [0], []
@@ -56,9 +58,9 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
             zoomPercentage={props.zoomPercentage}
             isActive={visited.includes(index)}
             edgeRef={nodeRefs[index]}
-            nodeIdex={index + 1}
+            nodeIdex={index}
           >
-            <span ref={nodeRefs[index + 1]}></span>
+            <span ref={nodeRefs[index]}></span>
           </TreeNode>
         );
       })}
@@ -80,7 +82,7 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
         );
       })}
 
-      {userSelectedTreeNodeArray.map((val: number, index: number) => {
+    {userSelectedTreeNodeArray.map((val: number, index: number) => {
         return (
           <TreeNode
             key={keysForUserSelectedNodes[index]}

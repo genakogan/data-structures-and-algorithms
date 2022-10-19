@@ -10,7 +10,7 @@ interface Props {
   selectedAlgorithm: Algorithms;
   setSelectedAlgorithm: Function;
   selectedTile: number;
-  setStartingNode: Function;
+  setSelectedTile: Function;
   adjacencyList: Array<Array<number>>;
 }
 
@@ -47,7 +47,7 @@ const AlgoruthmsNav: React.FC<Props> = (props: Props): ReactElement => {
         right='none'
           width="80px"
           selectedTile={props.selectedTile} //
-          setSelectedTile={props.setStartingNode}
+          setSelectedTile={props.setSelectedTile}
           content={props.adjacencyList.map(
             (val: Array<number>, index: number) => {
               return (index + 1).toString();

@@ -1,5 +1,6 @@
-import BinaryTree from "../BinaryTree/BinaryTree";
-import TreeNode from "../TreeNode";
+// Genady Kogan
+import BinaryTree from "./BinaryTree";
+import TreeNode from "./TreeNode";
 
 
 export class BinarySearchTree<T> extends BinaryTree<T> {
