@@ -11,8 +11,7 @@ import CreateEdgeModal from "../Tree/TreeEdge/CreateEdgeModal/CreateEdgeModal";
 import Algorithms from "../../models/Algorithms";
 import algorithms from "../Tree/Algorithms";
 import BinaryTree from "../Tree/BinaryTree/BinaryTree";
-import { BinarySearchTree, comparator } from "../Tree/BinarySearchTree/BinarySearchTree";
-
+import { BinarySearchTree, comparator } from "../Tree/BinaryTree/BinarySearchTree";
 
 interface HomeProps {
   changeTheme: Function;
@@ -25,6 +24,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
   const [isPlayVisualizing, setPlayVisualizing] = useState<boolean>(false);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
+
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
@@ -33,11 +33,12 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     useState<boolean>(false);
   const [isConnectingDirected, setIsConnectingDirected] =
     useState<boolean>(false);
+
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<Algorithms>(
     Algorithms.dfs
   );
 
-  //===================================================================
+ //===================================================================
   //===================================================================
   const [userSelectedTreeNodeArray, setUserSelectedTreeNodeArray] = useState<
     Array<number>
@@ -53,6 +54,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   //===================================================================
   //===================================================================
+
+
+
+
   const addNewNode = () => {
     /*
     The slice() method returns a shallow copy of a
@@ -67,6 +72,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     All new array represent new node
     */
     newAdjacencyList.push([]);
+    console.log(newAdjacencyList);
     /* 
     All node have a unique key
     */
@@ -78,15 +84,11 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   const clearCanvas = () => {
     if (isVisualizing) return;
-
     setAdjacencyList([]);
     setNodeKeys([]);
     setVisited([]);
     setCurrentEdge([-1, -1]);
-    setUserSelectedTreeNodeArray([]);
-    setKeysForUserSelectedNode([]);
   };
-
   const handlePlayVisualize = async () => {
     if (adjacencyList.length === 0) return;
     if (isPlayVisualizing) return;
@@ -152,7 +154,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     if (!isDirected) newAdjacencyList[secondNode].push(firstNode);
     setAdjacencyList(newAdjacencyList);
   };
-
   const deleteNode = (node: number) => {
     let newAdjacencyList = adjacencyList.map((val: Array<number>) => {
       //remove node from neighbours and decrement all nodes bigger than the
@@ -193,7 +194,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList(newAdjacencyList);
     resetGraphState();
   };
-  //===================================================================
+//===================================================================
   //===================================================================
 
   const userSelectedNodesArrayData = (
@@ -276,14 +277,13 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     const result = e.target.value.replace(/\D/g, "");
     deleteUserSelectedTreeNode(result);
   };
-
   //===================================================================
   // ==============================  BT ==============================
   const binaryTree = new BinaryTree()
   binaryTree.insertBT(10).insertBT(20).insertBT(30).insertBT(5).insertBT(8).insertBT(1).insertBT (9)
-   console.log(binaryTree.contains(30)) // true
-   console.log(binaryTree.findMin()) // 1
-   console.log(binaryTree.findMax()) // 30
+   //console.log(binaryTree.contains(30)) // true
+   //console.log(binaryTree.findMin()) // 1
+   //console.log(binaryTree.findMax()) // 30
   // ==============================  BST ==============================
   //===================================================================
 
@@ -298,10 +298,9 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   bst.insert(7);
   bst.insert(6);
   bst.insert(8);
-  console.log(bst.postOrder());
+  console.log(bst.findMax());
    // ==============================  BST ==============================
   //===================================================================
-
   return (
     <div>
       <TopMenu
@@ -325,23 +324,28 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         onDirectedEdgeClick={() => setIsConnectingDirected(true)}
         setSelectedAlgorithm={setSelectedAlgorithm}
         selectedAlgorithm={selectedAlgorithm}
+        
         startingNode={startingNode}
         setStartingNode={setStartingNode}
-        /* add usere-selected tree node */
-        aUserSelectedTreeNode={aUserSelectedTreeNode}
-        submitAddForm={submitAddForm}
-        addUserSelectedNode={addUserSelectedNode}
-        /* delete usere-selected tree node */
-        dUserSelectedTreeNode={dUserSelectedTreeNode}
-        deleteUserSelectedNode={deleteUserSelectedNode}
-        submitDeleteForm={submitDeleteForm}
+
+
+ /* add usere-selected tree node */
+ aUserSelectedTreeNode={aUserSelectedTreeNode}
+ submitAddForm={submitAddForm}
+ addUserSelectedNode={addUserSelectedNode}
+ /* delete usere-selected tree node */
+ dUserSelectedTreeNode={dUserSelectedTreeNode}
+ deleteUserSelectedNode={deleteUserSelectedNode}
+ submitDeleteForm={submitDeleteForm}
+
       ></LeftMenu>
 
       <Canvas
-        //===============================================
-        keysForUserSelectedNodes={keysForUserSelectedNodes}
-        userSelectedTreeNodeArray={userSelectedTreeNodeArray}
-        //===============================================
+ //===============================================
+ keysForUserSelectedNodes={keysForUserSelectedNodes}
+ userSelectedTreeNodeArray={userSelectedTreeNodeArray}
+ //===============================================
+
         visited={visited}
         adjacencyList={adjacencyList}
         nodeKeys={nodeKeys}

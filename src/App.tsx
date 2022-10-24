@@ -6,7 +6,9 @@ import themes from "./themes";
 import Theme from "./models/Theme";
 
 import TeamWindow from "./components/Menus/TopMenu/Window/TeamWindow";
-import { BinarySearchTree } from "./components/Tree/BinarySearchTree/BinarySearchTree";
+
+
+
 
 const App: React.FC<{}> = (): ReactElement => {
   /*
@@ -27,10 +29,7 @@ const App: React.FC<{}> = (): ReactElement => {
   return (
     <ThemeProvider theme={globalTheme}>
       <Home changeTheme={setGlobalTheme} onTeamClick={onWindowOpen}></Home>
-      <TeamWindow
-        isVisible={isWindowVisible}
-        onExit={onWindowExit}
-      ></TeamWindow>
+      <TeamWindow isVisible={isWindowVisible} onExit={onWindowExit}></TeamWindow>
     </ThemeProvider>
   );
 };

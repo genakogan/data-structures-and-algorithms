@@ -1,5 +1,5 @@
-import TreeNode from "../TreeNode";
-
+// Genady Kogan
+import TreeNode from "./TreeNode";
 
 export default class BinaryTree<T> {
   root: TreeNode<T> | undefined;
