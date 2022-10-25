@@ -72,7 +72,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     All new array represent new node
     */
     newAdjacencyList.push([]);
-    console.log(newAdjacencyList);
+    //console.log(newAdjacencyList);
     /* 
     All node have a unique key
     */
@@ -273,10 +273,13 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     );
   };
   const deleteUserSelectedNode = (e: { target: { value: string } }) => {
+    
     // prevent typing non-numeric in input type number
     const result = e.target.value.replace(/\D/g, "");
     deleteUserSelectedTreeNode(result);
   };
+
+
   //===================================================================
   // ==============================  BT ==============================
   const binaryTree = new BinaryTree()
@@ -298,7 +301,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   bst.insert(7);
   bst.insert(6);
   bst.insert(8);
-  console.log(bst.findMax());
+  //console.log(bst.findMax());
    // ==============================  BST ==============================
   //===================================================================
   return (
