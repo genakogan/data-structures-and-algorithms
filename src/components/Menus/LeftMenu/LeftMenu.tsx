@@ -60,7 +60,7 @@ const LeftMenu: React.FC<Props> = (props: Props): ReactElement => {
     }
     setAlgorithmsIsVisible((prev) => !prev);
   };
-
+  
   return (
     <LeftMenuContainer>
       

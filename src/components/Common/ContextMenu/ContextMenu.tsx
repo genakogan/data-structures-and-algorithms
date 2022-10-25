@@ -1,11 +1,11 @@
 import React, { ReactElement, useRef, useEffect } from 'react';
 import Container from './Container';
-import Position from '../../../models/Position';
+import TreeNodePosition from '../../../models/TreeNodePosition';
 
 interface Props {
   isVisible: boolean;
   setIsVisible: Function;
-  position: Position;
+  position: TreeNodePosition;
   canvasRef: React.RefObject<HTMLDivElement>;
   children: Array<ReactElement>;
   invertedTheme?: boolean

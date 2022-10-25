@@ -9,9 +9,12 @@ import { v4 as uuidv4 } from "uuid";
 
 import CreateEdgeModal from "../Tree/TreeEdge/CreateEdgeModal/CreateEdgeModal";
 import Algorithms from "../../models/Algorithms";
-import algorithms from "../Tree/Algorithms";
+import algorithms from "../Tree/Algorithms/algorithms";
 import BinaryTree from "../Tree/BinaryTree/BinaryTree";
-import { BinarySearchTree, comparator } from "../Tree/BinaryTree/BinarySearchTree";
+import {
+  BinarySearchTree,
+  comparator,
+} from "../Tree/BinaryTree/BinarySearchTree";
 
 interface HomeProps {
   changeTheme: Function;
@@ -24,7 +27,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const [nodeKeys, setNodeKeys] = useState<Array<string>>([]);
   const [isPlayVisualizing, setPlayVisualizing] = useState<boolean>(false);
   const [isVisualizing, setIsVisualizing] = useState<boolean>(false);
-
   const [visited, setVisited] = useState<Array<number>>([]);
   const [startingNode, setStartingNode] = useState<number>(0);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1000);
@@ -38,7 +40,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     Algorithms.dfs
   );
 
- //===================================================================
+  //===================================================================
   //===================================================================
   const [userSelectedTreeNodeArray, setUserSelectedTreeNodeArray] = useState<
     Array<number>
@@ -54,9 +56,6 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   //===================================================================
   //===================================================================
-
-
-
 
   const addNewNode = () => {
     /*
@@ -88,20 +87,33 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setNodeKeys([]);
     setVisited([]);
     setCurrentEdge([-1, -1]);
+    setUserSelectedTreeNodeArray([]);
+    setKeysForUserSelectedNode([]);
   };
   const handlePlayVisualize = async () => {
-    if (adjacencyList.length === 0) return;
-    if (isPlayVisualizing) return;
+    //if (adjacencyList.length === 0) return;
+    //if (isPlayVisualizing) return;
     setPlayVisualizing(true);
     setVisited([]);
     setCurrentEdge([-1, -1]);
-
+    // TODO - check the sequence of nodes after adding edges
     switch (selectedAlgorithm) {
       case Algorithms.dfs:
         await algorithms.dfs(
           adjacencyList,
           startingNode,
           setVisited,
+          visualizationSpeed,
+          setCurrentEdge
+        );
+        break;
+
+      case Algorithms.bfs:
+        // TODO - set grapfh info
+        await algorithms.bfs(
+          adjacencyList,
+          setVisited,
+          startingNode,
           visualizationSpeed,
           setCurrentEdge
         );
@@ -194,7 +206,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     setAdjacencyList(newAdjacencyList);
     resetGraphState();
   };
-//===================================================================
+  //===================================================================
   //===================================================================
 
   const userSelectedNodesArrayData = (
@@ -236,10 +248,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
   const addUserSelectedNode = (e: { target: { value: string } }) => {
     // prevent typing non-numeric in input type number
     const result = e.target.value.replace(/\D/g, "");
-   
+
     addUserSelectedTreeNode(result);
   };
-  //=============================================================================================
+  //========================================================================
   /* delete a user-selected node function */
   const submitDeleteForm = (event: React.FormEvent<HTMLFormElement>) => {
     // preventing the page from reloading
@@ -273,21 +285,26 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
     );
   };
   const deleteUserSelectedNode = (e: { target: { value: string } }) => {
-    
     // prevent typing non-numeric in input type number
     const result = e.target.value.replace(/\D/g, "");
     deleteUserSelectedTreeNode(result);
   };
 
-
   //===================================================================
-  // ==============================  BT ==============================
-  const binaryTree = new BinaryTree()
-  binaryTree.insertBT(10).insertBT(20).insertBT(30).insertBT(5).insertBT(8).insertBT(1).insertBT (9)
-   //console.log(binaryTree.contains(30)) // true
-   //console.log(binaryTree.findMin()) // 1
-   //console.log(binaryTree.findMax()) // 30
-  // ==============================  BST ==============================
+  //===============================  BT ===============================
+  const binaryTree = new BinaryTree();
+  binaryTree
+    .insertBT(10)
+    .insertBT(20)
+    .insertBT(30)
+    .insertBT(5)
+    .insertBT(8)
+    .insertBT(1)
+    .insertBT(9);
+  //console.log(binaryTree.contains(30)) // true
+  //console.log(binaryTree.findMin()) // 1
+  //console.log(binaryTree.findMax()) // 30
+  //=============================== BST ===============================
   //===================================================================
 
   const bst = new BinarySearchTree(comparator);
@@ -296,13 +313,13 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
 
   bst.insert(2);
   bst.insert(3);
-  bst.insert(1);
+  bst.insert(0);
 
   bst.insert(7);
   bst.insert(6);
   bst.insert(8);
-  //console.log(bst.findMax());
-   // ==============================  BST ==============================
+  //console.log(bst.findMin())
+  //=============================== BST ===============================
   //===================================================================
   return (
     <div>
@@ -327,27 +344,23 @@ const Home: React.FC<HomeProps> = (props: HomeProps): ReactElement => {
         onDirectedEdgeClick={() => setIsConnectingDirected(true)}
         setSelectedAlgorithm={setSelectedAlgorithm}
         selectedAlgorithm={selectedAlgorithm}
-        
         startingNode={startingNode}
         setStartingNode={setStartingNode}
-
-
- /* add usere-selected tree node */
- aUserSelectedTreeNode={aUserSelectedTreeNode}
- submitAddForm={submitAddForm}
- addUserSelectedNode={addUserSelectedNode}
- /* delete usere-selected tree node */
- dUserSelectedTreeNode={dUserSelectedTreeNode}
- deleteUserSelectedNode={deleteUserSelectedNode}
- submitDeleteForm={submitDeleteForm}
-
+        /* add usere-selected tree node */
+        aUserSelectedTreeNode={aUserSelectedTreeNode}
+        submitAddForm={submitAddForm}
+        addUserSelectedNode={addUserSelectedNode}
+        /* delete usere-selected tree node */
+        dUserSelectedTreeNode={dUserSelectedTreeNode}
+        deleteUserSelectedNode={deleteUserSelectedNode}
+        submitDeleteForm={submitDeleteForm}
       ></LeftMenu>
 
       <Canvas
- //===============================================
- keysForUserSelectedNodes={keysForUserSelectedNodes}
- userSelectedTreeNodeArray={userSelectedTreeNodeArray}
- //===============================================
+        //===============================================
+        keysForUserSelectedNodes={keysForUserSelectedNodes}
+        userSelectedTreeNodeArray={userSelectedTreeNodeArray}
+        //===============================================
 
         visited={visited}
         adjacencyList={adjacencyList}

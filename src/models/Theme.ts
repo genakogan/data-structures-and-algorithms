@@ -1,3 +1,4 @@
+// Genady Kogan
 interface Theme {
   name: string;
   navbar: Color;

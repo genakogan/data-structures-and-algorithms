@@ -47,7 +47,7 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
       reducedEdges.set(currentNode, currentNodeEdges);
     }
   });
-  console.log("sdsd", userSelectedTreeNodeArray);
+
   return (
     <CanvasContainer ref={canvasRef}>
       {adjacencyList.map((val: Array<number>, index: number) => {
@@ -83,6 +83,7 @@ const Canvas: React.FC<Props> = (props: Props): ReactElement => {
       })}
 
     {userSelectedTreeNodeArray.map((val: number, index: number) => {
+     
         return (
           <TreeNode
             key={keysForUserSelectedNodes[index]}

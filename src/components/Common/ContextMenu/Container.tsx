@@ -1,9 +1,9 @@
 import styled, { keyframes } from 'styled-components';
-import Position from '../../../models/Position';
+import TreeNodePosition from '../../../models/TreeNodePosition';
 
 interface Props {
   isVisible: boolean;
-  position: Position;
+  position: TreeNodePosition;
   height: number;
   invertedTheme?: boolean;
 }

@@ -1,5 +1,5 @@
 import React, { ReactElement, RefObject, useEffect, useState } from "react";
-import Position from "../../../models/Position";
+import Position from "../../../models/TreeNodePosition";
 import StyledEdgeContainer from "./StyledEdgeContainer";
 import StyledEdgeLine from "./StyledEdgeLine";
 import StyledPolygon from "./StyledPolygon";

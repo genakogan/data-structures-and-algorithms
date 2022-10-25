@@ -1,6 +1,6 @@
 // Genady Kogan
 import React, { ReactElement, useState, useRef, useEffect } from "react";
-import Position from "../../../models/Position";
+import Position from "../../../models/TreeNodePosition";
 import TreeNodePosition from "../../../models/TreeNodePosition";
 import TreeNodeContainer from "./TreeNodeContainer";
 

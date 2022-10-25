@@ -14,7 +14,10 @@ interface Props {
   adjacencyList: Array<Array<number>>;
 }
 
-const availableAlgorithms: Array<Algorithms> = [Algorithms.dfs];
+const availableAlgorithms: Array<Algorithms> = [
+  Algorithms.dfs,
+  Algorithms.bfs
+];
 
 const AlgoruthmsNav: React.FC<Props> = (props: Props): ReactElement => {
   const setSelectedAlgorithm = (val: number) => {
