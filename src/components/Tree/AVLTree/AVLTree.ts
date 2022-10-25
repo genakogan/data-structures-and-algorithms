@@ -4,6 +4,8 @@
 // AVL Tree insertion
 
 // Avl Tree Node
+export default null;
+/*
 export default class TreeNode
 {
 	public data: number;
@@ -193,18 +195,7 @@ class AvlTree
 		tree.root = tree.addNode(tree.root, 3);
 		tree.root = tree.addNode(tree.root, 2);
 		tree.root = tree.addNode(tree.root, -3);
-		/*
-		  Resultant  AVL Tree
-		  -----------------
-		         7
-		        /  \ 
-		       /    \
-		      4      17
-		     / \     / \
-		    2   5  13  19
-		   / \     /
-		 -3   3   11
-		*/
+	
 		console.log("Resultant AVL Tree");
 		console.log("\nPreorder  :");
 		tree.preorder(tree.root);
@@ -215,8 +206,4 @@ class AvlTree
 	}
 }
 AvlTree.main([]);
-/*
- file : code.ts
- tsc --target es6 code.ts
- node code.js
- */
+*/
