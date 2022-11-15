@@ -19,7 +19,7 @@ const Circle = styled.div<Props>`
         : themes.dark.navbar.background
       : props.theme.name === 'dark'
       ? '#C4C4C4'
-      : 'white'};;
+      : 'red'};;
   transition: background-color 0.5s;
 `;
 

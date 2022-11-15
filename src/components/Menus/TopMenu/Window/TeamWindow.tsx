@@ -11,11 +11,12 @@ interface Props {
 const TeamWindow: React.FC<Props> = (props: Props): ReactElement => {
   return (
     <Modal isVisible={props.isVisible} onExit={props.onExit}>
-      <div style={{ width: "600px", height: "500px" }}>
+      <div style={{ width: "700px", height: "500px" }}>
         <Carousel>
           <div>1</div>
           <div>2</div>
           <div>3</div>
+          <div>4</div>
         </Carousel>
       </div>
     </Modal>
